@@ -1,0 +1,14 @@
+/* ==========================================================================
+   MOBILE NAVIGATION (max-width: 700px)
+   ========================================================================== */
+@media screen and (max-width: 700px) {
+    .meniu a, .meniu div {
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+
+    #hamburger {
+        padding: 1rem;
+        font-size: 1.8rem;
+    }
+}

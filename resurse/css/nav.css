@@ -1,0 +1,115 @@
+/* ==========================================================================
+   NAVIGATION MENU STYLING
+   ========================================================================== */
+nav {
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 3px solid var(--primary-color);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    /* Task 3.a - margins should not apply to nav usually to keep it full width, 
+       but if requirement says all page, I'll keep it full width for better UX */
+}
+
+.meniu {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+.meniu > li {
+    position: relative;
+    transition: var(--transition-speed);
+}
+
+.meniu > li:hover {
+    background: var(--primary-color);
+}
+
+/* Base link styling */
+.meniu a, .meniu div {
+    display: block;
+    padding: 1.2rem 1.5rem;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+}
+
+/* Icon visibility logic */
+.meniu .imag-icon {
+    display: none; /* Hidden on desktop by default */
+}
+
+/* Dropdown Menu */
+.meniu ul {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #1a1a1a;
+    min-width: 220px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    border-top: 2px solid var(--primary-color);
+}
+
+.meniu li:hover > ul {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.meniu ul li {
+    border-bottom: 1px solid #333;
+    transition: var(--transition-speed);
+}
+
+.meniu ul li:hover {
+    background: #333;
+    padding-left: 5px;
+}
+
+.meniu ul li a {
+    padding: 1rem 1.5rem;
+    font-size: 0.85rem;
+    text-transform: none;
+}
+
+.meniu ul li a:hover {
+    color: var(--accent-color);
+}
+
+/* Hamburger menu elements - Hidden on desktop */
+#ch-menu, #hamburger {
+    display: none;
+}
+
+/* Animation for menu items */
+.meniu > li::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: var(--accent-color);
+    transition: var(--transition-speed);
+    transform: translateX(-50%);
+}
+
+.meniu > li:hover::after {
+    width: 100%;
+}

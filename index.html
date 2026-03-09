@@ -8,7 +8,7 @@
   <meta name="description"
     content="Magazin dedicat antrenamentelor functionale ce contine fiecare tip de echipament si accesorii folosite in CrossFit.">
   <meta name="keywords"
-    content="forta,cardio,greutate corporala,conditionare,masinarii,oferte speciale,incaltaminte,accesorii">
+    content="forta, cardio, greutate corporala, conditionare, masinarii, oferte speciale, incaltaminte, accesorii, CrossFit, antrenament">
   <title>Magazin CrossFit</title>
   <link rel="icon" type="image/png" href="./resurse/imagini/favicon/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="./resurse/imagini/favicon/favicon.svg" />
@@ -16,17 +16,11 @@
   <link rel="apple-touch-icon" sizes="180x180" href="./resurse/imagini/favicon/apple-touch-icon.png" />
   <meta name="apple-mobile-web-app-title" content="Magazin CrossFit" />
   <link rel="manifest" href="./resurse/imagini/favicon/site.webmanifest" />
+  <meta name="msapplication-TileColor" content="#da532c">
+
   <link rel="stylesheet" href="./resurse/css/general.css" type="text/css" />
-  <link rel="stylesheet" href="./resurse/css/general1000.css" type="text/css" media="screen and (max-width:1000px)" />
-  <link rel="stylesheet" href="./resurse/css/general700.css" type="text/css" media="screen and (max-width:700px)" />
   <link rel="stylesheet" href="./resurse/css/nav.css" type="text/css" />
 
-  <link rel="stylesheet" href="./resurse/css/nav1000.css" type="text/css" media="screen and (max-width:1000px)" />
-
-  <link rel="stylesheet" href="./resurse/css/nav700.css" type="text/css" media="screen and (max-width:700px)" />
-  <link rel="stylesheet" href="./resurse/css/galerie-statica.css" type="text/css" />
-  <link rel="stylesheet" href="./resurse/css/galerie-statica-500.css" type="text/css"
-    media="screen and (max-width:500px)" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Eater&family=Madimi+One&display=swap" rel="stylesheet">
@@ -35,373 +29,345 @@
 </head>
 
 <body>
-  <header>
-    <h1>Tehnici web</h1>
-    <img src="resurse/imagini/sigla.png" alt="sigla" />
-    <nav>
-      <ul>
-        <li>Acasa
-          <ul>
-            <li><a href="#welcome">Bine ati venit</a></li>
-            <li><a href="#promotii">Promotii</a></li>
-          </ul>
-        </li>
-        <li>Produse</li>
-        <li>Inregistrare</li>
-      </ul>
-    </nav>
-  </header>
-  <main> <!--  comentariu -->
+  <nav>
+    <label id="hamburger" for="ch-menu">
+      <i class="fas fa-bars"></i>
+    </label>
+    <input type="checkbox" id="ch-menu" />
+    <ul class="meniu">
+      <li>
+        <div class="text-icon" id="acasa">Acasa</div>
+        <div class="imag-icon" id="acasa-mediu">
+          <span class="fas fa-regular fa-house"></span>
+        </div>
+        <ul>
+          <li><a href="#welcome">Bine ati venit</a></li>
+          <li><a href="#promotii">Promotii</a></li>
+          <li><a href="#anunturi">Anunturi</a></li>
+          <li><a href="#produse">Produse</a></li>
+          <li><a href="#orar">Orar</a></li>
+          <li><a href="#index-intrebari">Intrebari</a></li>
+          <li><a href="#retete">Retete</a></li>
+          <li><a href="#subsol">Contact</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="text-icon"><a href="#">Inregistrare</a></div>
+        <div class="imag-icon"><span class="fas fa-solid fa-user-plus"></span></div>
+      </li>
+      <li>
+        <div>Despre</div>
+        <ul>
+          <li><a href="despre.html#prezentare">Prezentare</a></li>
+          <li><a href="despre.html#istoric">Istoric</a></li>
+          <li><a href="despre.html#motivatie">Motivatie</a></li>
+          <li><a href="despre.html#galerie">Galerie</a></li>
+        </ul>
+      </li>
+      <li>
+        <div>Produse</div>
+        <ul>
+          <li><a href="#">Toate</a></li>
+          <li><a href="#">Echipament</a></li>
+          <li><a href="#">Accesorii</a></li>
+          <li><a href="#">Incaltaminte</a></li>
+        </ul>
+      </li>
+      <li><a href="#"><i class="fa-regular fa-envelope"></i> Contact</a></li>
+    </ul>
+  </nav>
+
+  <section id="test">
+    <header class="c1" id="titlu">
+      <h1 id="t">Magazin <span>CrossFit</span></h1>
+      <img src="resurse/imagini/sigla.png" alt="sigla" style="max-height: 50px;" />
+    </header>
+  </section>
+
+  <main>
     <div id="grid-pagina">
 
       <section id="welcome">
         <hgroup>
           <h2>Bine ati venit</h2>
-          <p class="subtitlu">Prezentarea cofetăriei</p>
+          <p class="subtitlu">Partenerul tau in performanta</p>
         </hgroup>
 
-        <p class="intro">Vă mulțumim că ne vizitați site-ul. Luați de aici niște biscuiți virtuali. Poftă bună!</p>
+        <p class="intro">Va multumim ca ne vizitati site-ul. Echipa noastra este gata sa va ajute sa va atingeti
+          obiectivele de fitness.</p>
+
+        <blockquote>
+          "The only way to do it is to do it." - Greg Glassman, Founder of CrossFit.
+        </blockquote>
 
         <div class="intro-oferte">
-          <div>Pateuri</div>
-          <div>Bomboane</div>
-          <div>Fursecuri</div>
-          <div>Prajituri</div>
-          <div>Torturi</div>
+          <div>Greutati</div>
+          <div>Benzi</div>
+          <div>Corzi</div>
+          <div>Manusi</div>
+          <div>Pantofi</div>
         </div>
-        <p class="anunt intro">Vă puteți îngrășa atât la sediul nostru cât și la propriul dumneavoastră domiciliu, cu
-          ajutorul ofertei noastre de livrare a produselor prin curier.</p>
+        <p class="anunt intro">Produsele noastre sunt testate de atleti de top. Puteti comanda online sau ne puteti
+          vizita la showroom-ul nostru.</p>
+
         <div id="dv-prezentare-1">
           <div id="dv-prezentare">
             <figure>
               <picture>
-                <!-- il ia pe primul care se potriveste cu query-ul din media-->
-                <source srcset="./resurse/imagini/macarons-200x200.jpg" media="(max-width:700px)" />
-                <source srcset="./resurse/imagini/macarons.jpg" media="(max-width:1200px)" />
-                <img src="./resurse/imagini/macarons-640x360.jpg" alt="text" />
+                <!-- Imagine adaptiva conform cerintei 10 -->
+                <source srcset="./resurse/imagini/img1.png" media="(max-width:700px)" />
+                <source srcset="./resurse/imagini/img2.png" media="(max-width:1200px)" />
+                <img src="./resurse/imagini/sigla.png" alt="Echipament CrossFit" />
               </picture>
-              <figcaption>Descriere imagine</figcaption>
+              <figcaption>Echipament de antrenament profesional</figcaption>
             </figure>
           </div>
         </div>
+
         <hr class="prajituri" />
+
         <div id="container-video">
-          <img style="width:50%" class="farfurie" src="resurse/imagini/farfurie-flori-albastre.png" alt="farfurie"
-            title="O farfurie cu flori">
+          <!-- Cerinta 12.d: Link de tip imagine care se deschide in tab nou -->
+          <a href="https://www.crossfit.com/" target="_blank">
+            <img style="width:50%" class="farfurie" src="resurse/imagini/sigla.png" alt="Sigla CrossFit"
+              title="Viziteaza site-ul oficial CrossFit">
+          </a>
           <div id="centrare-video">
             <div id="clip-video">
               <div id="stil-video">
-                <video width="320" height="240" playsinline autoplay loop muted>
-                  <source src="resurse/video/Chocolate.mp4" type="video/mp4">
-                  <source src="resurse/video/Chocolate.ogv" type="video/ogv">
-                  <track default
-                    src="data:image/png;base64, V0VCVlRUIC0gQ2lvY29sYXTEgwoKMDA6MDAuMDAwIC0tPiAwMDowMy4wMDAgbGluZTowCkNpb2NvbGF0xIMhISEKCjAwOjAzLjAwMCAtLT4gMDA6MDcuMDAwIGxpbmU6MApNdWx0xIMgY2lvY29sYXTEgyEhISEKCjAwOjA5LjAwMCAtLT4gMDA6MTQuMDAwIGxpbmU6MApVcHMsIGFtIG11cmTEg3JpdCBtYXNhIQoKMDA6MTQuNTAwIC0tPiAwMDoxOS4wMDAgbGluZTowCk51IGNvbnRlYXrEgyEgQ2lvY29sYXTEg8SDxIPEg8SDxIMhCgo="
-                    kind="captions" srclang="ro" label="romana">
-                  <track
-                    src="data:image/png;base64, V0VCVlRUIC0gQ2hvY29sYXRlDQoNCjAwOjAwLjAwMCAtLT4gMDA6MDMuMDAwDQpDaG9jb2xhdGUhISENCg0KMDA6MDMuMDAwIC0tPiAwMDowNy4wMDANCkxvdHMgb2YgY2hvY29sYXRlISEhIQ0KDQowMDowOS4wMDAgLS0+IDAwOjE0LjAwMA0KT3VwcywgdGFibGUgZ290IGRpcnR5IQ0KDQowMDoxNC41MDAgLS0+IDAwOjE5LjAwMA0KRG9lc24ndCBtYXR0ZXIhIENob2NvbGF0ZSEhIQ0KDQo="
-                    kind="captions" srclang="en" label="engleza">
-                </video>
+                <!-- Cerinta 13: Youtube Iframe -->
+                <iframe width="560" height="315"
+                  src="https://www.youtube.com/embed/jfKfPfyJRdk?playlist=mPZkdNFkNps,L_LUpnjgPso&autoplay=1&loop=1&controls=1&mute=1"
+                  title="Playlist Ambianță BookVerse" style="border: none;"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen>
+                </iframe>
               </div>
             </div>
           </div>
         </div>
       </section>
+
       <section id="promotii">
-        <h2>Promoții și oferte</h2>
+        <h2>Promotii si oferte</h2>
         <article>
-          <h3 class="titlu">Super ofertă de weekend</h3>
-          <p><b>Cofetăria Dulcelind</b> oferă <b>reduceri de <s>10%</s> <ins>15%</ins></b> pentru toate produsele
-            cumpărate în intervalul 10-14.</p>
-          <p>Oferta este valabilă doar în zilele de sâmbătă și duminică la sediile <abbr
-              title="Cofetăria Dulcelind">CD</abbr>.</p>
-          <p>în cazul în care cumpărați mai mult de zece <b>prăjituri</b> primiți si un card de fidelitate pentru
-            Salvare!</p>
+          <h3 class="titlu">Super oferta de weekend</h3>
+          <p><b>Magazinul CrossFit</b> ofera <b>reduceri de <s>10%</s> <ins>20%</ins></b> pentru toate accesoriile
+            cumparate in intervalul 10-14.</p>
+          <p>Oferta este valabila doar in zilele de sambata si duminica la sediile <abbr
+              title="Magazin CrossFit">MC</abbr>.</p>
+          <p>In cazul in care cumparati mai mult de trei <b>perechi de pantofi</b> primiti si un card de fidelitate!</p>
         </article>
+
         <article>
-          <h3>Ofertă pachet</h3>
-          <p>Cofetăria Dulcelind oferă pachete cuprinzând:</p>
+          <h3>Pachete de start</h3>
+          <p>Pachetele noastre cuprind:</p>
           <ol>
-            <li><i lang="en">icecream</i></li>
-            <li>Un set de 4 pateuri de sortimente diferite</li>
-            <li>O prajitură la alegere</li>
-            <li>Un <i>suc</i></li>
-            <li>Gratis: o farfurioară ornata cu inițiala cofetăriei</li>
-            <li>Gratis: o felicitare cu imaginea cofetăriei</li>
-            <li>Gratis: un pui de pisică (am găsit niște pui de pisică abandonați lângă cofetărie și noi nu îi putem
-              păstra. Nu ne reclamați la ANPC, <!--abreviere--> mulțumim de înțelegere!). </li>
+            <li><i lang="en">Jump rope</i></li>
+            <li>Un set de 3 benzi elastice</li>
+            <li>O sticla de apa reutilizabila</li>
+            <li>Un <i>prosop</i> personalizat</li>
+            <li>Gratis: un ghid de antrenament <mark>Bonus</mark></li>
           </ol>
-
-        </article>
-        <article>
-          <h3>Prajituri de Halloween</h3>
-          <p>Noi punem suflet în prăjiturile noastre!... Literalmente!</p>
-          <p>Chiar și dacă nu e Halloween încă, avem prajituri bântuite, de toate dimensiunile</p>
-          <ol>
-            <li>Când vreți să gustați o prajitura, aceasta țipă, sau, mai rău, vă spune sincer că ar cam trebui să vă
-              mai spălați pe dinți.</li>
-            <li>Când puneți mai multe prăjituri pe platou, vor conspira împotriva dumneavoastră... hehe... dar n-au ce
-              să vă facă, în final sunt doar niște prăjituri</li>
-            <li>Nu încercați să mușcați vreun fursec de Halloween, căci va mușca el înainte. Ați fost avertizați.</li>
-
-          </ol>
-
-        </article>
-        <article>
-          <h3>Prăjituri de Anul Nou</h3>
-          <p>La începutul fiecărui an vă faceți planuri că de data asta veti trăi mai sănatos, veți mânca mai chibzuit
-            și vă veți duce din prima zi la sală. Știm cu toții că e doar o amăgire. Luați mai bine o prăjitură, măcar
-            să va delectați cu un gust bun și dulce în timp ce plângeți despre kilogramele în plus.</p>
-
+          <!-- Cerinta 12.e: Link download -->
+          <p>Descarca manualul de utilizare: <a href="resurse/imagini/sigla.png"
+              download="manual_echipament.png">Download PDF</a></p>
         </article>
       </section>
+
       <section id="produse">
         <h2>Produsele noastre</h2>
-        <p>Vă oferim o multitudine de metode să câștigați cu succes kilograme în plus.</p>
+        <p>Popularitatea magazinului nostru in acest moment:</p>
+        <!-- Cerinta 16: Meter tag -->
+        <meter value="0.8" min="0" max="1" low="0.3" high="0.7" optimum="0.9">80%</meter>
+
         <section>
-          <h3>Torturi</h3>
-          <p>În caz că nu le puteți mânca fiindcă sunteți la dietă și doar vă uitați la ele, puneți accentul pe u!</p>
-          <p>Avem torturi cu:</p>
+          <h3>Echipament Grea</h3>
+          <p>Pentru cei care vor sa ridice greutati <cite>heavy</cite>.</p>
           <ul>
-            <li>ciocolată</li>
-            <li>frișcă</li>
-            <li>fructe</li>
-            <li>dulceață</li>
-            <li>înghețată</li>
-            <li>regrete</li>
-          </ul>
-        </section>
-        <section>
-          <h3>Prăjituri</h3>
-          <p>Oferim prăjiturile clasice plus câteva creations personnelles, oui!</p>
-          <p>Prăjituri:</p>
-          <ul>
-            <li>savarină</li>
-            <li>amandină</li>
-            <li>tartă cu fructe</li>
-            <li>doboș</li>
-            <li>carpați (orientali, meridionali și occidentali)</li>
-            <li>ecler</li>
-            <li>tiramisu</li>
-            <li>colivă</li>
+            <li>Haltere</li>
+            <li>Gantere</li>
+            <li>Kettlebells</li>
+            <li>Discuri olimpice</li>
           </ul>
         </section>
 
         <section>
-          <h3>Pateuri</h3>
-          <p>Pateurile noastre sunt umplute cu:</p>
+          <h3>Cardio</h3>
+          <p>Imbunatateste-ti <dfn
+              title="Capacitatea sistemelor cardiovascular si respirator de a furniza oxigen">conditia fizica</dfn>.</p>
           <ul>
-            <li>brânză</li>
-            <li>pizza</li>
-            <li>spanac</li>
-            <li>ciuperci</li>
-            <li>compoziție secretă (sincer, nici noi nu mai știm ce conține)</li>
+            <li>Rower (Aparat de vaslit)</li>
+            <li>BikeErg</li>
+            <li>SkiErg</li>
+            <li>AirBike</li>
           </ul>
         </section>
       </section>
-      <section id="orar">
-        <h2>Orar</h2>
-        <table id="tab-orar">
-          <thead>
 
+      <section id="orar">
+        <h2>Orar Showroom</h2>
+        <table id="tab-orar">
+          <!-- Cerinta 14: Tabel complex cu caption -->
+          <caption>Programul de functionare al showroom-ului nostru din Bucuresti</caption>
+          <thead>
             <tr>
               <th>Cod</th>
-              <th>Perioadă</th>
+              <th>Perioada</th>
               <th>Zi</th>
               <th>Interval dimineata</th>
               <th>Pauza de masa</th>
-              <th>Interval seară</th>
+              <th>Interval seara</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td></td>
-              <td rowspan="5">Zile<br />Lucrătoare</td>
+              <td>L01</td>
+              <td rowspan="5">Zile&nbsp;Lucratoare</td>
               <td>Luni</td>
-              <td>10-12</td>
-              <td>12-14</td>
-              <td>14-20</td>
+              <td>10:00&nbsp;-&nbsp;12:00</td>
+              <td>12:00&nbsp;-&nbsp;14:00</td>
+              <td>14:00&nbsp;-&nbsp;20:00</td>
             </tr>
             <tr>
-              <td></td>
-
+              <td>M02</td>
               <td>Marti</td>
-              <td>9-12</td>
-              <td>12-14</td>
-              <td>14-21</td>
+              <td>09:00&nbsp;-&nbsp;12:00</td>
+              <td>12:00&nbsp;-&nbsp;14:00</td>
+              <td>14:00&nbsp;-&nbsp;21:00</td>
             </tr>
             <tr>
-              <td></td>
-
+              <td>MI03</td>
               <td>Miercuri</td>
-              <td>9-11</td>
-              <td>11-13</td>
-              <td>14-21</td>
+              <td>09:00&nbsp;-&nbsp;11:00</td>
+              <td>11:00&nbsp;-&nbsp;13:00</td>
+              <td>14:00&nbsp;-&nbsp;21:00</td>
             </tr>
             <tr>
-              <td></td>
-
+              <td>J04</td>
               <td>Joi</td>
-              <td>9-11</td>
-              <td>11-13</td>
-              <td>14-21</td>
+              <td>09:00&nbsp;-&nbsp;11:00</td>
+              <td>11:00&nbsp;-&nbsp;13:00</td>
+              <td>14:00&nbsp;-&nbsp;21:00</td>
             </tr>
             <tr>
-              <td></td>
-
+              <td>V05</td>
               <td>Vineri</td>
-              <td>9-12</td>
-              <td>12-14</td>
-              <td>14-19</td>
+              <td>09:00&nbsp;-&nbsp;12:00</td>
+              <td>12:00&nbsp;-&nbsp;14:00</td>
+              <td>14:00&nbsp;-&nbsp;19:00</td>
             </tr>
             <tr>
-              <td></td>
+              <td>S06</td>
               <td rowspan="2">Weekend</td>
               <td>Sambata</td>
-              <td>10-12</td>
-              <td>12-13</td>
-              <td>13-16</td>
+              <td>10:00&nbsp;-&nbsp;12:00</td>
+              <td>12:00&nbsp;-&nbsp;13:00</td>
+              <td>13:00&nbsp;-&nbsp;16:00</td>
             </tr>
             <tr>
-              <td></td>
+              <td>D07</td>
               <td>Duminica</td>
-              <td>10-14</td>
-              <td>-</td>
-              <td>inchis</td>
+              <td>10:00&nbsp;-&nbsp;14:00</td>
+              <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-</td>
+              <td>Inchis</td>
             </tr>
           </tbody>
           <tfoot>
             <tr>
-              <td colspan="6">Închis cu ocazia sărbătorilor legale, sau, când ne e mai lene așa.</td>
+              <td colspan="6">Inchis cu ocazia sarbatorilor legale.</td>
             </tr>
           </tfoot>
         </table>
-        <p><strong>Atentie!!!</strong> in prima zi a lunii facem inventar.</p>
+        <p><strong>Atentie!!!</strong> In prima zi a fiecarei luni se face inventarul <wbr> si magazinul este inchis.
+        </p>
       </section>
-      <figure id="fig1" class="fg-img">
-        <img src="resurse/imagini/briose-frisca.png" alt="briose">
-        <figcaption>Briose 1</figcaption>
-      </figure>
-      <figure id="fig2" class="fg-img">
-        <img src="resurse/imagini/briose-frisca.png" alt="briose">
-        <figcaption>Briose 2</figcaption>
-      </figure>
-      <figure id="fig3" class="fg-img">
-        <img src="resurse/imagini/briose-frisca.png" alt="briose">
-        <figcaption>Briose 3</figcaption>
-      </figure>
-      <figure id="fig4">
-        <img src="resurse/imagini/briose-frisca.png" alt="briose">
-        <figcaption>Briose 3</figcaption>
-      </figure>
-      <section id="anunturi">
-        <h2 class="fg-img">Anunțuri</h2>
-        <p><time datetime="2025-07-20">20 iulie 2025</time>Nu avem nimic de anuntat, doar a trecut ceva vreme de la
-          ultimul anunț și ne-am gândit să mai scriem ceva pe aici.</p>
-        <p><time datetime="2022-01-05">5 ianuarie 2022</time> <strong>No more Covid!!!!</strong></p>
 
-        <p><time datetime="2020-03-15">15 martie 2020</time> <span>Am adăugat o prăjitură noua în meniu</span></p>
-        <p><time datetime="2020-04-05">5 aprilie 2020</time> <span>Am adăugat o prăjitură noua în meniu</span></p>
-        <p><time datetime="2020-07-05">5 iulie 2020</time> Am adăugat o prăjitură noua în meniu</p>
-        <p><time datetime="2020-09-15">15 septembrie 2020</time> Am adăugat un fursec nou în meniu</p>
-        <p><time datetime="2020-12-20">20 decembrie 2020</time> Nu avem nimic de anunțat, dar ne era dor de voi.</p>
-        <p><time datetime="2020-12-28">28 decembrie 2020</time> Am adăugat o prăjitură noua în meniu</p>
-        <p><time datetime="2021-01-01">1 ianuarie 2021</time> Un an nou fericit!</p>
-        <p><time datetime="2021-02-11">11 februarie 2021</time> Studiile au arătat că prăjiturile sunt cele mai
-          sănătoase alimente.
-          E adevărat că doar studiile noastre, dar astea sunt detalii. </p>
+      <aside>
+        <h3>Informatii suplimentare</h3>
+        <p>Livrarea este gratuita pentru comenzi de peste 300 RON. Oferim garantie 2 ani pentru toate aparatele.</p>
+        <p>Vizitati si blogul nostru pentru <q>sfaturi de antrenament</q>.</p>
+        <!-- Cerinta 12.a: Link extern in tab nou -->
+        <p><a href="https://www.reebok.com" target="_blank">Partenerul nostru oficial Reebok</a></p>
+      </aside>
+
+      <section id="anunturi">
+        <h2 class="fg-img">Anunturi Recente</h2>
+        <!-- Cerinta 9: Sectiune evenimente cu time si datetime -->
+        <p><time datetime="2026-03-01">1 martie 2026</time> - Am lansat noua colectie de incaltaminte Nano X5!</p>
+        <p><time datetime="2026-02-15">15 februarie 2026</time> - Workshop de Weightlifting la sediul nostru.</p>
+        <p><time datetime="2026-01-01">1 ianuarie 2026</time> - La multi ani! Pregateste-te pentru Open-ul CrossFit.</p>
       </section>
+
       <section id="index-intrebari">
-        <h2>Întrebări frecvente</h2>
+        <h2>Intrebari frecvente</h2>
+        <!-- Cerinta 15: Details si Summary -->
         <details>
-          <summary>Produsele dumneavoastră provoacă afecțiuni dentare?</summary>
-          <p>Da!</p>
+          <summary>Livrati in toata tara?</summary>
+          <p>Da, livram prin curier rapid oriunde in Romania in 24-48 ore.</p>
         </details>
         <details>
-          <summary>Produsele dumneavoastră provoacă afecțiuni ale sistemului digestiv (precum diabetul)?</summary>
-          <p>Da!</p>
-        </details>
-        <details>
-          <summary>Produsele dumneavoastră provoacă obezitate?</summary>
-          <p>Foarte! Da!</p>
-        </details>
-        <details>
-          <summary>Sunteți cumva asociați cu medicii dentiști, medicii gastroenterologi, companiile farmaceutice și
-            sălile de Fitness?</summary>
-          <p>Ne rezervăm dreptul de a nu răspunde la această întrebare; mulțumim pentru înțelegere!</p>
+          <summary>Pot returna produsele?</summary>
+          <p>Da, aveti dreptul de retur in 14 zile de la primirea coletului, fara explicatii suplimentare.</p>
         </details>
       </section>
 
     </div>
+
     <section id="galerie-statica">
-      <h2>Galerie</h2>
+      <h2>Galerie Produse</h2>
       <div id="grid-galerie">
         <figure>
-          <div>
-            <img src="resurse/imagini/briose-frisca.png" alt="briose">
-          </div>
-
-          <figcaption>Briose</figcaption>
+          <div><img src="resurse/imagini/img1.png" alt="Echipament 1"></div>
+          <figcaption>Kettlebells profesionale</figcaption>
         </figure>
         <figure>
-          <img src="resurse/imagini/briose-frisca.png" alt="briose">
-          <figcaption>Briose</figcaption>
+          <img src="resurse/imagini/img2.png" alt="Echipament 2">
+          <figcaption>Bare olimpice</figcaption>
         </figure>
         <figure>
-          <img src="resurse/imagini/briose-frisca.png" alt="briose">
-          <figcaption>Briose</figcaption>
+          <img src="resurse/imagini/img1.png" alt="Echipament 3">
+          <figcaption>Discuri cauciucate</figcaption>
         </figure>
         <figure>
-          <img src="resurse/imagini/briose-frisca.png" alt="briose">
-          <figcaption>Briose</figcaption>
+          <img src="resurse/imagini/img2.png" alt="Echipament 4">
+          <figcaption>Rack-uri pentru forta</figcaption>
         </figure>
-        <figure>
-          <img src="resurse/imagini/briose-frisca.png" alt="briose">
-          <figcaption>Briose</figcaption>
-        </figure>
-        <figure>
-          <img src="resurse/imagini/briose-frisca.png" alt="briose">
-          <figcaption>Briose</figcaption>
-        </figure>
-        <figure>
-          <img src="resurse/imagini/briose-frisca.png" alt="briose">
-          <figcaption>Briose</figcaption>
-        </figure>
-
       </div>
     </section>
+
     <section id="retete">
-      <h2>Retete</h2>
-      <p>Dacă doriți să vă faceți singuri prăjiturile (dar de ce ati face asta când ne aveți pe noi???)
-        vă recomandăm următoarele rețete simple pe care sperăm să le încercați, să vedeți cât e de <s>ușor</s> să le
-        faceți,
-        să vă dați în final bătuți și să veniți să cumpărați de la noi &#128512;. Mulțumim! &#128513;</p>
+      <h2>Ghiduri Video</h2>
+      <p>Invata cum sa folosesti corect echipamentul pentru a evita accidentarile.</p>
       <div class="container-iframe">
         <div class="taburi-iframe">
-          <a href="https://www.youtube.com/embed/qtlhdIfojmc?si=TqTMN4k_BY-iuvxx" target="ifr-video">Reteta tort
-            vanilie</a>
-          <a href="https://www.youtube.com/embed/dsJtgmAhFF4" target="ifr-video">Reteta tort ciocolata</a>
-          <a href="https://www.youtube.com/embed/Wtxbt-CpA2s" target="ifr-video">Reteta tort căpșuni</a><br />
+          <a href="https://www.youtube.com/embed/mlVrkiCoKNo" target="ifr-video">What is CrossFit?</a>
+          <a href="https://www.youtube.com/embed/uG_A0xNIn-M" target="ifr-video">Kettlebell Swing Guide</a>
+          <a href="https://www.youtube.com/embed/xS2D6Hdf8HY" target="ifr-video">How to Row</a><br />
         </div>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/qtlhdIfojmc?si=TqTMN4k_BY-iuvxx"
-          name="ifr-video" title="YouTube video player" frameborder="0"
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/L_LUpnjgPso?controls=1" name="ifr-video"
+          title="YouTube video player - Ambianță BookVerse" style="border: none;"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-
+          allowfullscreen>
+        </iframe>
       </div>
     </section>
 
-
-
   </main>
-  <p>Este o materie care îmi place <em>mult</em>!...</p>
-  <section>
-    <h2>Despre HTML</h2>
-    <p>Este limbajul paginilor web.</p>
-  </section>
-  </main>
-  <footer>
-    <p><small>Copyright &copy;2020 Ionel Popescu</small></p>
+
+  <footer id="subsol">
+    <!-- Cerinta 12.c: Link footer spre inceputul paginii -->
+    <a href="#" title="mergi sus" id="link-top">
+      <div id="triunghi"></div>
+    </a>
+    <!-- Cerinta 17: Address tag cu contact -->
+    <address>
+      Magazin CrossFit SRL, Strada Sportului, nr. 42, Bucuresti, Romania<br>
+      E-mail: <a href="mailto:contact@magazincrossfit.ro">contact@magazincrossfit.ro</a><br>
+      Telefon: <a href="tel:+40722334455">+40 722 33 44 55</a><br>
+      WhatsApp: <a href="https://wa.me/40722334455">Chat cu noi</a><br>
+      &copy; 2026 Magazin CrossFit. Toate drepturile rezervate.
+    </address>
   </footer>
 </body>
 

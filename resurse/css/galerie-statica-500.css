@@ -1,0 +1,19 @@
+/* ==========================================================================
+   STATIC GALLERY (max-width: 500px)
+   ========================================================================== */
+@media screen and (max-width: 500px) {
+    #grid-galerie {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 0.5rem;
+    }
+
+    #grid-galerie div {
+        height: 250px;
+    }
+
+    #grid-galerie figcaption {
+        font-size: 0.9rem;
+        padding: 1rem;
+    }
+}

@@ -1,0 +1,37 @@
+/* ==========================================================================
+   MEDIUM SCREENS (max-width: 1000px)
+   ========================================================================== */
+@media screen and (max-width: 1000px) {
+    :root {
+        /* Task 3.a - Reduced side margin on medium screens */
+        --pagina-margin: 5%;
+        --grid-gap: 1.5rem; /* Task 3.c - Reduced gap */
+    }
+
+    body {
+        padding-left: var(--pagina-margin);
+        padding-right: var(--pagina-margin);
+    }
+
+    #grid-pagina {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 
+            "welcome welcome"
+            "promotii anunturi"
+            "produse produse"
+            "orar orar"
+            "index-intrebari index-intrebari";
+    }
+
+    #t {
+        font-size: 3.5rem;
+    }
+
+    header#titlu {
+        padding: 4rem 1rem;
+    }
+
+    #clip-video {
+        width: 100%;
+    }
+}

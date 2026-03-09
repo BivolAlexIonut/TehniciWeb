@@ -1,0 +1,61 @@
+/* ==========================================================================
+   SMALL SCREENS (max-width: 700px)
+   ========================================================================== */
+@media screen and (max-width: 700px) {
+    :root {
+        /* Task 3.a - Minimal side margin on small screens */
+        --pagina-margin: 2%;
+        --grid-gap: 1rem; /* Task 3.c - Minimal gap */
+    }
+
+    body {
+        padding-left: var(--pagina-margin);
+        padding-right: var(--pagina-margin);
+    }
+
+    #grid-pagina {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "welcome"
+            "promotii"
+            "anunturi"
+            "produse"
+            "orar"
+            "index-intrebari";
+    }
+
+    main {
+        padding: 1rem 0;
+    }
+
+    #t {
+        font-size: 2.2rem;
+    }
+
+    header#titlu {
+        padding: 3rem 1rem;
+    }
+
+    /* Task 3.f - Small elements adjustment */
+    .intro-oferte div {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.8rem;
+    }
+
+    #tab-orar {
+        display: block;
+        overflow-x: auto; /* Task 5 - Scroll for small screens */
+    }
+
+    .taburi-iframe a {
+        width: 100%;
+        max-width: 280px;
+    }
+
+    #link-top {
+        bottom: 1.5rem;
+        right: 1.5rem;
+        width: 50px;
+        height: 50px;
+    }
+}
