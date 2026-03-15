@@ -1,6 +1,3 @@
-/* ==========================================================================
-   MEYER RESET - Bonus Requirement
-   ========================================================================== */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -21,7 +18,7 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
-/* HTML5 display-role reset for older browsers */
+
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
 	display: block;
@@ -46,7 +43,7 @@ table {
 }
 
 :root {
-    /* Colors */
+    
     --primary-color: #ff4d00;
     --primary-dark: #cc3e00;
     --secondary-color: #1a1a1a;
@@ -56,20 +53,17 @@ table {
     --accent-color: #ffd700;
     --border-color: #333;
     
-    /* Spacing Requirements (Task 3.a) */
-    --pagina-margin: 10%; /* Desktop margin */
+    
+    --pagina-margin: 10%;
     --grid-gap: 2rem;
     --section-padding: 1.5rem;
     
-    /* Effects (Task 3.d) */
+    
     --border-radius: 12px;
     --box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
     --transition-speed: 0.3s;
 }
 
-/* ==========================================================================
-   GLOBAL STYLES
-   ========================================================================== */
 html {
     scroll-behavior: smooth;
     font-size: 16px;
@@ -81,7 +75,6 @@ body {
     font-family: 'Madimi One', sans-serif;
     line-height: 1.6;
     overflow-x: hidden;
-    /* Aerisire pagina (Task 3.a) */
     padding-left: var(--pagina-margin);
     padding-right: var(--pagina-margin);
 }
@@ -115,15 +108,11 @@ a:hover {
     color: var(--accent-color);
 }
 
-/* Selection color */
 ::selection {
     background: var(--primary-color);
     color: white;
 }
 
-/* ==========================================================================
-   LAYOUT STRUCTURE
-   ========================================================================== */
 header#titlu {
     background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.6)), url('../imagini/img1.png');
     background-size: cover;
@@ -133,7 +122,7 @@ header#titlu {
     border-bottom: 5px solid var(--primary-color);
     border-radius: 0 0 var(--border-radius) var(--border-radius);
     margin-bottom: 3rem;
-    box-shadow: var(--box-shadow); /* Task 3.d */
+    box-shadow: var(--box-shadow); 
 }
 
 #t {
@@ -165,7 +154,6 @@ main {
         "index-intrebari index-intrebari orar";
 }
 
-/* Section Isolation (Task 3.d & 3.e) */
 #grid-pagina > section, 
 #grid-pagina > aside {
     background: var(--secondary-color);
@@ -188,10 +176,7 @@ main {
 #orar { grid-area: orar; border-top: 5px solid #00ff00 !important; }
 #index-intrebari { grid-area: index-intrebari; border-top: 5px solid var(--accent-color) !important; }
 
-/* ==========================================================================
-   COMPONENTS
-   ========================================================================== */
-/* Task 3.f - Responsive media elements */
+
 img, iframe, video {
     max-width: 100%;
     height: auto;
@@ -199,7 +184,7 @@ img, iframe, video {
 }
 
 #clip-video {
-    width: 80%; /* Task 3.f */
+    width: 80%;
     max-width: 1000px;
     min-width: 300px;
     margin: 2rem auto;
@@ -207,7 +192,7 @@ img, iframe, video {
 
 #stil-video {
     position: relative;
-    padding-bottom: 56.25%; /* 16:9 */
+    padding-bottom: 56.25%;
     height: 0;
 }
 
@@ -220,7 +205,6 @@ img, iframe, video {
     border: 3px solid var(--primary-color);
 }
 
-/* Blockquote */
 blockquote {
     border-left: 5px solid var(--accent-color);
     padding: 1.5rem;
@@ -231,7 +215,7 @@ blockquote {
 }
 
 blockquote::before {
-    content: "\f10d"; /* FontAwesome Quote Left */
+    content: "\f10d";
     font-family: "Font Awesome 6 Free";
     font-weight: 900;
     position: absolute;
@@ -241,7 +225,6 @@ blockquote::before {
     font-size: 1.5rem;
 }
 
-/* Info highlights */
 .intro-oferte {
     display: flex;
     justify-content: center;
@@ -265,7 +248,6 @@ blockquote::before {
     transform: scale(1.1);
 }
 
-/* HR styling */
 .prajituri {
     border: none;
     height: 3px;
@@ -273,15 +255,12 @@ blockquote::before {
     margin: 3rem 0;
 }
 
-/* ==========================================================================
-   TABLE STYLING (Task 5)
-   ========================================================================== */
 #tab-orar {
     width: 100%;
     margin: 1.5rem 0;
     border: 1px solid var(--border-color);
     border-radius: 8px;
-    overflow: hidden; /* For rounded corners */
+    overflow: hidden; 
 }
 
 #tab-orar caption {
@@ -304,7 +283,6 @@ blockquote::before {
     text-align: center;
 }
 
-/* Zebra striping (Task 5) */
 #tab-orar tbody tr:nth-child(even) {
     background: rgba(255, 255, 255, 0.05);
 }
@@ -313,7 +291,6 @@ blockquote::before {
     background: transparent;
 }
 
-/* Column highlighting */
 #tab-orar td:nth-child(even) {
     color: var(--accent-color);
 }
@@ -322,9 +299,6 @@ blockquote::before {
     background: rgba(255, 77, 0, 0.1);
 }
 
-/* ==========================================================================
-   TABS / IFRAME STYLING (Task 6)
-   ========================================================================== */
 .container-iframe {
     margin-top: 2rem;
     display: flex;
@@ -333,7 +307,7 @@ blockquote::before {
 }
 
 .taburi-iframe {
-    display: flex; /* Task 6.3 */
+    display: flex;
     gap: 1rem;
     margin-bottom: 2rem;
     flex-wrap: wrap;
@@ -343,7 +317,7 @@ blockquote::before {
 .taburi-iframe a {
     display: inline-block;
     padding: 1rem 2rem;
-    width: 200px; /* Task 6.2 */
+    width: 200px; 
     text-align: center;
     background: var(--secondary-color);
     border: 2px solid var(--primary-color);
@@ -358,9 +332,6 @@ blockquote::before {
     box-shadow: 0 0 15px var(--primary-color);
 }
 
-/* ==========================================================================
-   METER & DETAILS
-   ========================================================================== */
 meter {
     width: 100%;
     height: 25px;
@@ -416,9 +387,6 @@ details p {
     margin: 0;
 }
 
-/* ==========================================================================
-   FOOTER & LINK TOP (Task 7)
-   ========================================================================== */
 footer {
     background: #000;
     padding: 4rem 2rem;
@@ -426,7 +394,7 @@ footer {
     border-top: 5px solid var(--primary-color);
     position: relative;
     margin-top: 5rem;
-    /* Reset margins for footer to full width if desired, but requirements say isolation */
+    
 }
 
 #link-top {
@@ -461,14 +429,10 @@ footer {
     margin-bottom: 5px;
 }
 
-/* Animated icon example (Task 4) */
 .fa-house {
     animation: pulse 2s infinite;
 }
 
-/* ==========================================================================
-   ANIMATIONS
-   ========================================================================== */
 @keyframes fadeInDown {
     from {
         opacity: 0;
@@ -486,7 +450,6 @@ footer {
     100% { transform: scale(1); }
 }
 
-/* Scrollbar */
 ::-webkit-scrollbar {
     width: 12px;
 }
