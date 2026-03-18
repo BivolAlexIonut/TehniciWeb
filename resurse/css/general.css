@@ -1,49 +1,4 @@
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-}
-
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
-body {
-	line-height: 1;
-}
-ol, ul {
-	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-
 :root {
-    
     --primary-color: #ff4d00;
     --primary-dark: #cc3e00;
     --secondary-color: #1a1a1a;
@@ -52,13 +7,9 @@ table {
     --text-muted: #a0a0a0;
     --accent-color: #ffd700;
     --border-color: #333;
-    
-    
     --pagina-margin: 10%;
     --grid-gap: 2rem;
     --section-padding: 1.5rem;
-    
-    
     --border-radius: 12px;
     --box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
     --transition-speed: 0.3s;
@@ -145,7 +96,7 @@ main {
 
 #grid-pagina {
     display: grid;
-    gap: var(--grid-gap); /* Task 3.c */
+    gap: var(--grid-gap);
     grid-template-columns: repeat(3, 1fr);
     grid-template-areas: 
         "welcome welcome welcome"
@@ -157,7 +108,7 @@ main {
 #grid-pagina > section, 
 #grid-pagina > aside {
     background: var(--secondary-color);
-    padding: var(--section-padding); /* Task 3.e */
+    padding: var(--section-padding);
     border-radius: var(--border-radius);
     border: 1px solid var(--border-color);
     box-shadow: var(--box-shadow);
@@ -176,9 +127,10 @@ main {
 #orar { grid-area: orar; border-top: 5px solid #00ff00 !important; }
 #index-intrebari { grid-area: index-intrebari; border-top: 5px solid var(--accent-color) !important; }
 
-
 img, iframe, video {
-    max-width: 100%;
+    width: 100%;
+    max-width: 1200px;
+    min-width: 300px;
     height: auto;
     border-radius: 8px;
 }
@@ -394,7 +346,6 @@ footer {
     border-top: 5px solid var(--primary-color);
     position: relative;
     margin-top: 5rem;
-    
 }
 
 #link-top {
@@ -466,4 +417,72 @@ footer {
 
 ::-webkit-scrollbar-thumb:hover {
     background: var(--accent-color);
+}
+
+@media screen and (max-width: 992px) {
+    :root {
+        --pagina-margin: 5%;
+        --grid-gap: 1.5rem;
+        --section-padding: 1.2rem;
+    }
+    
+    img, iframe, video {
+        max-width: 800px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    :root {
+        --pagina-margin: 2%;
+        --grid-gap: 1rem;
+        --section-padding: 1rem;
+    }
+    
+    img, iframe, video {
+        min-width: 200px;
+    }
+    
+    #grid-pagina {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "welcome"
+            "promotii"
+            "anunturi"
+            "produse"
+            "orar"
+            "index-intrebari";
+    }
+}
+
+math {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    border: 1px dashed var(--primary-color);
+    display: inline-block;
+    margin: 1.5rem 0;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+}
+
+math mi {
+    color: var(--accent-color);
+    font-weight: bold;
+    font-style: italic;
+    font-size: 1.2rem;
+}
+
+math mo {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    padding: 0 0.5rem;
+}
+
+math mfrac {
+    border-color: var(--primary-color);
+}
+
+math mn {
+    color: #00d4ff;
+    font-weight: 900;
+    font-size: 1.1rem;
 }
