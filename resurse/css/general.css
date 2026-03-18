@@ -1,18 +1,46 @@
-:root {
-    --primary-color: #ff4d00;
-    --primary-dark: #cc3e00;
-    --secondary-color: #1a1a1a;
-    --background-color: #0a0a0a;
-    --text-color: #ffffff;
-    --text-muted: #a0a0a0;
-    --accent-color: #ffd700;
-    --border-color: #333;
+body {
+    --c-base: #ff4d00;
+    --c-dark-orange: #cc3e00;
+    --c-accent-yellow: #ffd700;
+    --c-accent-cyan: #00d4ff;
+    --c-accent-magenta: #ff00ff;
+    --c-accent-green: #00ff00;
+    --c-bg-main: #0a0a0a;
+    --c-bg-sec: #1a1a1a;
+    --c-text-white: #ffffff;
+    --c-text-gray: #a0a0a0;
+    --c-border-dark: #333333;
+    --c-border-light: #444444;
+    --c-border-gray: #888888;
+    --c-black: #000000;
+    --c-black-meter: #222222;
+    --c-transparent: transparent;
+    
+    --c-overlay-80: rgba(0, 0, 0, 0.8);
+    --c-overlay-60: rgba(0, 0, 0, 0.6);
+    --c-overlay-50: rgba(0, 0, 0, 0.5);
+    --c-overlay-30: rgba(0, 0, 0, 0.3);
+    --c-text-shadow: rgba(0, 0, 0, 1);
+    --c-white-05: rgba(255, 255, 255, 0.05);
+    --c-orange-10: rgba(255, 77, 0, 0.1);
+    --c-orange-30: rgba(255, 77, 0, 0.3);
+    --c-orange-50: rgba(255, 77, 0, 0.5);
+
     --pagina-margin: 10%;
     --grid-gap: 2rem;
     --section-padding: 1.5rem;
     --border-radius: 12px;
-    --box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    --box-shadow: 0 8px 32px var(--c-overlay-50);
     --transition-speed: 0.3s;
+
+    background-color: var(--c-bg-main);
+    color: var(--c-text-white);
+    font-family: 'Madimi One', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+    padding-left: var(--pagina-margin);
+    padding-right: var(--pagina-margin);
+    transition: font-size 0.3s;
 }
 
 html {
@@ -20,26 +48,16 @@ html {
     font-size: 16px;
 }
 
-body {
-    background-color: var(--background-color);
-    color: var(--text-color);
-    font-family: 'Madimi One', sans-serif;
-    line-height: 1.6;
-    overflow-x: hidden;
-    padding-left: var(--pagina-margin);
-    padding-right: var(--pagina-margin);
-}
-
 h1, h2, h3 {
     font-family: 'Eater', cursive;
     text-transform: uppercase;
-    color: var(--primary-color);
+    color: var(--c-base);
     margin-bottom: 1.5rem;
 }
 
 h2 {
     font-size: 2rem;
-    border-bottom: 2px solid var(--primary-color);
+    border-bottom: 2px solid var(--c-base);
     display: inline-block;
     padding-bottom: 0.5rem;
     margin-bottom: 2rem;
@@ -50,27 +68,27 @@ p {
 }
 
 a {
-    color: var(--primary-color);
+    color: var(--c-base);
     text-decoration: none;
     transition: var(--transition-speed);
 }
 
 a:hover {
-    color: var(--accent-color);
+    color: var(--c-accent-yellow);
 }
 
 ::selection {
-    background: var(--primary-color);
-    color: white;
+    background: var(--c-base);
+    color: var(--c-text-white);
 }
 
 header#titlu {
-    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.6)), url('../imagini/img1.png');
+    background: linear-gradient(var(--c-overlay-80), var(--c-overlay-60)), url('../imagini/img1.png');
     background-size: cover;
     background-attachment: fixed;
     padding: 6rem 2rem;
     text-align: center;
-    border-bottom: 5px solid var(--primary-color);
+    border-bottom: 5px solid var(--c-base);
     border-radius: 0 0 var(--border-radius) var(--border-radius);
     margin-bottom: 3rem;
     box-shadow: var(--box-shadow); 
@@ -79,13 +97,13 @@ header#titlu {
 #t {
     font-size: 5rem;
     margin: 0;
-    text-shadow: 3px 3px 0px rgba(0,0,0,1);
+    text-shadow: 3px 3px 0px var(--c-text-shadow);
     animation: fadeInDown 1s ease-out;
 }
 
 #t span {
-    color: var(--text-color);
-    -webkit-text-stroke: 2px var(--primary-color);
+    color: var(--c-text-white);
+    -webkit-text-stroke: 2px var(--c-base);
 }
 
 main {
@@ -100,32 +118,34 @@ main {
     grid-template-columns: repeat(3, 1fr);
     grid-template-areas: 
         "welcome welcome welcome"
-        "promotii promotii anunturi"
-        "produse produse orar"
-        "index-intrebari index-intrebari orar";
+        "orar promotii promotii"
+        "orar anunturi anunturi"
+        "produse index-intrebari aside";
 }
 
 #grid-pagina > section, 
 #grid-pagina > aside {
-    background: var(--secondary-color);
+    background: var(--c-bg-sec);
     padding: var(--section-padding);
     border-radius: var(--border-radius);
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--c-border-dark);
     box-shadow: var(--box-shadow);
     transition: transform var(--transition-speed);
 }
 
-#grid-pagina > section:hover {
+#grid-pagina > section:hover,
+#grid-pagina > aside:hover {
     transform: translateY(-5px);
-    border-color: var(--primary-color);
+    border-color: var(--c-base);
 }
 
-#welcome { grid-area: welcome; border-top: 5px solid var(--accent-color) !important; }
-#promotii { grid-area: promotii; border-top: 5px solid var(--primary-color) !important; }
-#anunturi { grid-area: anunturi; border-top: 5px solid #00d4ff !important; }
-#produse { grid-area: produse; border-top: 5px solid #ff00ff !important; }
-#orar { grid-area: orar; border-top: 5px solid #00ff00 !important; }
-#index-intrebari { grid-area: index-intrebari; border-top: 5px solid var(--accent-color) !important; }
+#welcome { grid-area: welcome; border-top: 5px solid var(--c-accent-yellow) !important; }
+#promotii { grid-area: promotii; border-top: 5px solid var(--c-base) !important; }
+#anunturi { grid-area: anunturi; border-top: 5px solid var(--c-accent-cyan) !important; }
+#produse { grid-area: produse; border-top: 5px solid var(--c-accent-magenta) !important; }
+#orar { grid-area: orar; border-top: 5px solid var(--c-accent-green) !important; }
+#index-intrebari { grid-area: index-intrebari; border-top: 5px solid var(--c-accent-yellow) !important; }
+aside { grid-area: aside; border-top: 5px solid var(--c-border-gray) !important; }
 
 img, iframe, video {
     width: 100%;
@@ -154,14 +174,14 @@ img, iframe, video {
     left: 0;
     width: 100%;
     height: 100%;
-    border: 3px solid var(--primary-color);
+    border: 3px solid var(--c-base);
 }
 
 blockquote {
-    border-left: 5px solid var(--accent-color);
+    border-left: 5px solid var(--c-accent-yellow);
     padding: 1.5rem;
     font-style: italic;
-    background: rgba(255, 215, 0, 0.05);
+    background: var(--c-white-05);
     margin: 2rem 0;
     position: relative;
 }
@@ -173,7 +193,7 @@ blockquote::before {
     position: absolute;
     top: -10px;
     left: 10px;
-    color: var(--accent-color);
+    color: var(--c-accent-yellow);
     font-size: 1.5rem;
 }
 
@@ -186,12 +206,12 @@ blockquote::before {
 }
 
 .intro-oferte div {
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    background: linear-gradient(135deg, var(--c-base), var(--c-dark-orange));
     padding: 0.8rem 2rem;
     border-radius: 30px;
     font-weight: bold;
     text-transform: uppercase;
-    box-shadow: 0 4px 15px rgba(255, 77, 0, 0.3);
+    box-shadow: 0 4px 15px var(--c-orange-30);
     cursor: default;
     transition: var(--transition-speed);
 }
@@ -203,85 +223,102 @@ blockquote::before {
 .prajituri {
     border: none;
     height: 3px;
-    background: linear-gradient(to right, transparent, var(--primary-color), var(--accent-color), var(--primary-color), transparent);
+    background: linear-gradient(to right, var(--c-transparent), var(--c-base), var(--c-accent-yellow), var(--c-base), var(--c-transparent));
     margin: 3rem 0;
 }
 
 #tab-orar {
     width: 100%;
     margin: 1.5rem 0;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    overflow: hidden; 
+    border-collapse: collapse;
+    caption-side: bottom;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
 }
 
 #tab-orar caption {
     padding: 1rem;
     font-weight: bold;
-    color: var(--accent-color);
+    color: var(--c-accent-yellow);
     text-transform: uppercase;
 }
 
-#tab-orar th {
-    background: var(--primary-color);
-    color: white;
-    padding: 1rem;
-    text-transform: uppercase;
+#tab-orar thead {
+    border-bottom: 4px solid var(--c-base);
 }
 
-#tab-orar td {
+#tab-orar tfoot {
+    border-top: 4px solid var(--c-base);
+}
+
+#tab-orar th, #tab-orar td {
     padding: 0.8rem;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--c-border-dark);
     text-align: center;
 }
 
-#tab-orar tbody tr:nth-child(even) {
-    background: rgba(255, 255, 255, 0.05);
+#tab-orar td:nth-child(even), #tab-orar th:nth-child(even) {
+    border-left: 2px solid var(--c-accent-yellow);
+    border-right: 2px solid var(--c-base);
 }
 
-#tab-orar tbody tr:nth-child(odd) {
-    background: transparent;
+#tab-orar td:nth-child(odd), #tab-orar th:nth-child(odd) {
+    border-left: 2px solid var(--c-base);
+    border-right: 2px solid var(--c-accent-yellow);
 }
 
-#tab-orar td:nth-child(even) {
-    color: var(--accent-color);
+#tab-orar tbody tr {
+    transition: box-shadow 0.5s ease-in-out;
 }
 
 #tab-orar tbody tr:hover {
-    background: rgba(255, 77, 0, 0.1);
+    box-shadow: inset 0 0 20px var(--c-base);
 }
 
 .container-iframe {
     margin-top: 2rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .taburi-iframe {
     display: flex;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
-    justify-content: center;
+    gap: 5px;
+    margin-bottom: 0;
+    padding-left: 20px;
 }
 
 .taburi-iframe a {
     display: inline-block;
-    padding: 1rem 2rem;
-    width: 200px; 
-    text-align: center;
-    background: var(--secondary-color);
-    border: 2px solid var(--primary-color);
-    color: white;
+    padding: 10px 20px;
+    background: var(--c-bg-sec);
+    border: 3px solid var(--c-base);
+    border-bottom: none;
+    border-radius: 10px 10px 0 0;
+    color: var(--c-text-white);
     font-weight: bold;
-    border-radius: 5px;
     transition: var(--transition-speed);
+    z-index: 1;
+    position: relative;
+    top: 3px;
 }
 
 .taburi-iframe a:hover {
-    background: var(--primary-color);
-    box-shadow: 0 0 15px var(--primary-color);
+    background: var(--c-base);
+}
+
+iframe[name="ifr-video"] {
+    border: 3px solid var(--c-base) !important;
+    border-radius: 0 8px 8px 8px;
+    width: 100%;
+    z-index: 0;
+    position: relative;
 }
 
 meter {
@@ -291,21 +328,21 @@ meter {
 }
 
 meter::-webkit-meter-bar {
-    background: #222;
+    background: var(--c-black-meter);
     border-radius: 12px;
-    border: 1px solid #444;
+    border: 1px solid var(--c-border-light);
 }
 
 meter::-webkit-meter-optimum-value {
-    background: linear-gradient(to right, #ffbb00, #ff4d00);
+    background: linear-gradient(to right, var(--c-accent-yellow), var(--c-base));
     border-radius: 12px;
 }
 
 details {
-    background: rgba(0,0,0,0.3);
+    background: var(--c-overlay-30);
     margin-bottom: 1rem;
     border-radius: 8px;
-    border: 1px solid #333;
+    border: 1px solid var(--c-border-dark);
     overflow: hidden;
 }
 
@@ -313,7 +350,7 @@ summary {
     padding: 1rem;
     cursor: pointer;
     font-weight: bold;
-    color: var(--accent-color);
+    color: var(--c-accent-yellow);
     transition: var(--transition-speed);
     list-style: none;
 }
@@ -330,8 +367,8 @@ details[open] summary::before {
 }
 
 details[open] summary {
-    border-bottom: 1px solid #333;
-    background: rgba(255, 77, 0, 0.1);
+    border-bottom: 1px solid var(--c-border-dark);
+    background: var(--c-orange-10);
 }
 
 details p {
@@ -340,10 +377,10 @@ details p {
 }
 
 footer {
-    background: #000;
+    background: var(--c-black);
     padding: 4rem 2rem;
     text-align: center;
-    border-top: 5px solid var(--primary-color);
+    border-top: 5px solid var(--c-base);
     position: relative;
     margin-top: 5rem;
 }
@@ -352,36 +389,65 @@ footer {
     position: fixed;
     bottom: 3rem;
     right: 3rem;
-    width: 60px;
-    height: 60px;
-    background: var(--primary-color);
-    border: 2px solid white;
+    width: 70px;
+    height: 70px;
+    background: radial-gradient(circle, var(--c-text-white) 20%, var(--c-text-gray) 50%, var(--c-bg-sec) 100%);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 999;
-    box-shadow: 0 0 20px rgba(255, 77, 0, 0.5);
-    opacity: 0.8;
+    opacity: 0.6;
+    transition: opacity 0.5s ease;
+    text-decoration: none;
+}
+
+#link-top::before {
+    content: "";
+    position: absolute;
+    top: -4px; left: -4px; right: -4px; bottom: -4px;
+    border: 4px dashed var(--c-bg-sec);
+    border-radius: 50%;
+    transition: transform 0.6s linear;
 }
 
 #link-top:hover {
     opacity: 1;
-    transform: scale(1.1);
-    background: var(--accent-color);
+}
+
+#link-top:hover::before {
+    transform: rotate(360deg);
 }
 
 #triunghi {
-    width: 0;
-    height: 0;
-    border-left: 12px solid transparent;
-    border-right: 12px solid transparent;
-    border-bottom: 18px solid white;
-    margin-bottom: 5px;
+    border: none;
+    width: auto; height: auto; margin: 0;
 }
 
-.fa-house {
-    animation: pulse 2s infinite;
+#triunghi::after {
+    content: "\2191";
+    font-size: 2.5rem;
+    color: var(--c-bg-sec);
+    font-weight: bold;
+}
+
+#link-top::after {
+    content: "Spre Antrenament!";
+    position: absolute;
+    bottom: -35px;
+    background: var(--c-base);
+    color: var(--c-text-white);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    opacity: 0;
+    white-space: nowrap;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+#link-top:hover::after {
+    opacity: 1;
 }
 
 @keyframes fadeInDown {
@@ -397,7 +463,7 @@ footer {
 
 @keyframes pulse {
     0% { transform: scale(1); }
-    50% { transform: scale(1.2); color: var(--accent-color); }
+    50% { transform: scale(1.2); color: var(--c-accent-yellow); }
     100% { transform: scale(1); }
 }
 
@@ -406,41 +472,50 @@ footer {
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--background-color);
+    background: var(--c-bg-main);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--primary-color);
+    background: var(--c-base);
     border-radius: 6px;
-    border: 3px solid var(--background-color);
+    border: 3px solid var(--c-bg-main);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--accent-color);
+    background: var(--c-accent-yellow);
 }
 
 @media screen and (max-width: 992px) {
-    :root {
+    body { 
         --pagina-margin: 5%;
         --grid-gap: 1.5rem;
         --section-padding: 1.2rem;
+        font-size: 1.05rem; 
     }
     
-    img, iframe, video {
-        max-width: 800px;
+    img, iframe, video { max-width: 800px; }
+    
+    #grid-pagina {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 
+            "welcome welcome"
+            "promotii promotii"
+            "anunturi anunturi"
+            "orar orar"
+            "produse index-intrebari"
+            "aside aside";
     }
 }
 
 @media screen and (max-width: 600px) {
-    :root {
+    body { 
         --pagina-margin: 2%;
         --grid-gap: 1rem;
         --section-padding: 1rem;
+        font-size: 0.95rem; 
     }
     
-    img, iframe, video {
-        min-width: 200px;
-    }
+    img, iframe, video { min-width: 200px; }
     
     #grid-pagina {
         grid-template-columns: 1fr;
@@ -448,41 +523,47 @@ footer {
             "welcome"
             "promotii"
             "anunturi"
-            "produse"
             "orar"
-            "index-intrebari";
+            "produse"
+            "index-intrebari"
+            "aside";
+    }
+    
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
     }
 }
 
 math {
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--c-white-05);
     padding: 1.5rem;
     border-radius: var(--border-radius);
-    border: 1px dashed var(--primary-color);
+    border: 1px dashed var(--c-base);
     display: inline-block;
     margin: 1.5rem 0;
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+    box-shadow: inset 0 0 10px var(--c-overlay-50);
 }
 
 math mi {
-    color: var(--accent-color);
+    color: var(--c-accent-yellow);
     font-weight: bold;
     font-style: italic;
     font-size: 1.2rem;
 }
 
 math mo {
-    color: var(--text-color);
+    color: var(--c-text-white);
     font-size: 1.5rem;
     padding: 0 0.5rem;
 }
 
 math mfrac {
-    border-color: var(--primary-color);
+    border-color: var(--c-base);
 }
 
 math mn {
-    color: #00d4ff;
+    color: var(--c-accent-cyan);
     font-weight: 900;
     font-size: 1.1rem;
 }
