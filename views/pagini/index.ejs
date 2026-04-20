@@ -1,0 +1,121 @@
+<%- include('../fragmente/head') %>
+
+<%- include('../fragmente/header') %>
+
+  <main>
+    <div id="grid-pagina">
+
+      <section id="welcome">
+        <hgroup>
+          <h2>Bine ati venit</h2>
+          <p class="subtitlu">Partenerul tau in performanta</p>
+        </hgroup>
+
+        <p class="intro">Va multumim ca ne vizitati site-ul. Echipa noastra este gata sa va ajute sa va atingeti obiectivele de fitness prin <b>antrenament</b> intens si <b>conditionare</b> fizica superioara.</p>
+
+        <blockquote cite="https://ro.wikipedia.org/wiki/CrossFit">
+          "The only way to do it is to do it." - Greg Glassman, Founder of CrossFit.
+        </blockquote>
+
+        <dl>
+          <dt>CrossFit</dt>
+          <dd>Un program de fitness care promoveaza atat performanta fizica, cat si sanatatea generala.</dd>
+          <dt>WOD</dt>
+          <dd>Workout of the Day - antrenamentul specific pentru ziua respectiva.</dd>
+        </dl>
+
+        <div class="intro-oferte">
+          <div>Greutati</div>
+          <div>Benzi</div>
+          <div>Corzi</div>
+          <div>Manusi</div>
+          <div>Pantofi</div>
+        </div>
+        <p class="anunt intro">Produsele noastre sunt testate de atleti de top care pun pret pe <b>forta</b>. Puteti comanda online sau ne puteti vizita la showroom-ul nostru pentru a vedea noile noastre <b>masinarii</b>.</p>
+
+        <section>
+          <h3>Formula IMC (Indice de Masa Corporala)</h3>
+          <p>Calculeaza-ti singur nivelul de fitness:</p>
+          <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+            <mi>IMC</mi>
+            <mo>=</mo>
+            <mfrac>
+              <mi>greutate</mi>
+              <msup>
+                <mi>inaltime</mi>
+                <mn>2</mn>
+              </msup>
+            </mfrac>
+          </math>
+        </section>
+
+        <div id="dv-prezentare-1">
+          <div id="dv-prezentare">
+            <figure>
+              <picture>
+                <source srcset="/resurse/imagini/img1.png" media="(max-width:700px)" />
+                <source srcset="/resurse/imagini/img2.png" media="(max-width:1200px)" />
+                <img src="/resurse/imagini/sigla.png" alt="Echipament CrossFit" title="Vedere de ansamblu echipament profesional">
+              </picture>
+              <figcaption>Echipament de antrenament profesional</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <hr class="prajituri" />
+
+        <div id="container-video">
+          <a href="/resurse/imagini/sigla.png" target="_self">
+            <img style="width:50%" class="farfurie" src="/resurse/imagini/sigla.png" alt="Sigla CrossFit" title="Click pentru a vedea imaginea marita">
+          </a>
+          <div id="centrare-video">
+            <div id="clip-video">
+              <div id="stil-video">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/jfKfPfyJRdk?playlist=mPZkdNFkNps,L_LUpnjgPso&autoplay=1&loop=1&controls=1&mute=1" title="Playlist YouTube CrossFit" style="border: none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                </iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="promotii">
+        <h2>Promotii si oferte speciale</h2>
+
+        <article>
+          <h3 class="titlu">Super oferta de weekend</h3>
+          <p><b>Magazinul CrossFit</b> ofera <b>reduceri de <s>10%</s> <ins>20%</ins></b> pentru toate accesoriile cumparate in intervalul 10-14.</p>
+          <p>Oferta este valabila doar in zilele de sambata si duminica la sediile <abbr title="Magazin CrossFit">MC</abbr>.</p>
+          <p>In cazul in care cumparati mai mult de trei <b>perechi de incaltaminte</b> primiti si un card de fidelitate!</p>
+        </article>
+
+        <article>
+          <h3>Pachete de start</h3>
+          <p>Pachetele noastre cuprind:</p>
+          <ol>
+            <li><i lang="en">Jump rope</i></li>
+            <li>Un set de 3 benzi elastice</li>
+            <li>O sticla de apa reutilizabila</li>
+            <li>Un <em>prosop</em> personalizat</li>
+            <li>Gratis: un ghid de antrenament <mark>Bonus</mark></li>
+          </ol>
+          <p>Descarca manualul de utilizare: <a href="/resurse/imagini/sigla.png" download="manual_echipament_2026.png">Download Manual (Imagine)</a></p>
+        </article>
+
+        <section>
+          <h3>Documentatie oficiala</h3>
+          <embed src="/resurse/proiect.pdf" type="application/pdf" width="100%" height="400px" />
+        </section>
+      </section>
+
+      <section id="produse">
+        <h2>Produsele noastre</h2>
+        <p>Popularitatea magazinului în acest moment:</p>
+        <meter value="0.8" min="0" max="1" low="0.3" high="0.7" optimum="0.9">80%</meter>
+        <p>Stoc curent centuri:</p>
+        <meter value="10" min="0" max="100" low="25" high="75">10%</meter>
+      </section>
+    </div>
+  </main>
+
+<%- include('../fragmente/footer') %>

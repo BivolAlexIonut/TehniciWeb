@@ -1,0 +1,17 @@
+<%- include('../fragmente/head') %>
+
+  <body>
+    <main>
+      <div id="grid-pagina">
+        <section style="text-align: center; padding: 40px;">
+          <h1><%= titluEroare %></h1>
+          <% if (imagineEroare) { %>
+            <img src="<%= imagineEroare %>" alt="Eroare <%= identificatorEroare %>" style="max-width: 300px; margin: 20px auto; display: block;">
+          <% } %>
+          <p style="font-size: 18px; margin: 20px 0;"><%= textEroare %></p>
+          <a href="/" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: #333; color: white; text-decoration: none; border-radius: 5px;">Înapoi la pagina principală</a>
+        </section>
+      </div>
+    </main>
+
+<%- include('../fragmente/footer') %>

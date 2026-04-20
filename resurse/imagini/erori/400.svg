@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300">
+  <rect width="300" height="300" fill="#f0f0f0"/>
+  <text x="150" y="150" font-size="48" text-anchor="middle" fill="#e91e63" font-weight="bold">400</text>
+  <text x="150" y="200" font-size="20" text-anchor="middle" fill="#333">Cerere nevalidă</text>
+</svg>

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300">
+  <rect width="300" height="300" fill="#f0f0f0"/>
+  <text x="150" y="150" font-size="48" text-anchor="middle" fill="#ff9800" font-weight="bold">403</text>
+  <text x="150" y="200" font-size="20" text-anchor="middle" fill="#333">Acces interzis</text>
+</svg>

@@ -1,0 +1,26 @@
+{
+  "name": "magazin-crossfit",
+  "version": "1.0.0",
+  "description": "Magazin dedicat antrenamentelor functionale cu echipament CrossFit",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BivolAlexIonut/TehniciWeb.git"
+  },
+  "keywords": ["CrossFit", "fitness", "echipament", "antrenament"],
+  "author": "Bivol Alexandru-Ionut",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/BivolAlexIonut/TehniciWeb/issues"
+  },
+  "homepage": "https://github.com/BivolAlexIonut/TehniciWeb#readme",
+  "dependencies": {
+    "ejs": "^5.0.2",
+    "express": "^5.2.1"
+  }
+}
