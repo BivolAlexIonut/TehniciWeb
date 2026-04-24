@@ -186,3 +186,51 @@ nav {
     opacity: 1;
   }
 }
+
+// ============================================================
+// EFECTE CSS ADIȚIONALE
+// ============================================================
+
+// Efect DUOTONE pe butoane - efect-css-duotone
+.btn-duotone {
+  background: linear-gradient(135deg, #ff4d00 0%, #ffb366 100%);
+  mix-blend-mode: screen;
+  filter: saturate(1.2) contrast(1.1);
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 77, 0, 0.3) 0%, rgba(0, 0, 0, 0.3) 100%);
+    mix-blend-mode: multiply;
+    border-radius: inherit;
+    pointer-events: none;
+  }
+}
+
+// Efect REFLEXIE pe text - efect-css-reflexie-text
+.text-reflexie {
+  position: relative;
+  display: inline-block;
+  
+  &::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), transparent);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transform: scaleY(-1);
+    opacity: 0.5;
+    letter-spacing: inherit;
+    font-family: inherit;
+    font-size: inherit;
+  }
+}

@@ -1,0 +1,209 @@
+<%- include('../fragmente/head') %>
+
+<%- include('../fragmente/header') %>
+
+  <main>
+    <section id="efecte-css-pagina">
+      <h1>Efecte CSS Personalizate - Etapa 5</h1>
+      <p>Demonstrație a efectelor CSS implementate pentru proiect.</p>
+
+      <!-- EFECT 1: Duotone -->
+      <section class="efect-demonstratie">
+        <h2>1. Efect DUOTONE (efect-css-duotone)</h2>
+        <p>Efect de imagine cu duas culori care dau aspect profesional.</p>
+        <img src="/public/imagini/img1.png" alt="Duotone" class="image-duotone">
+      </section>
+
+      <!-- EFECT 2: Reflexie Text -->
+      <section class="efect-demonstratie">
+        <h2>2. Efect REFLEXIE TEXT (efect-css-reflexie-text)</h2>
+        <p>Text cu reflexie în jos:</p>
+        <h3 class="heading-reflexie" data-text="Antrenament Profesional">Antrenament Profesional</h3>
+      </section>
+
+      <!-- EFECT 3: Text în Coloane -->
+      <section class="efect-demonstratie">
+        <h2>3. Efect TEXT ÎN COLOANE (efect-css-coloane-text)</h2>
+        <div class="text-coloane">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. Duis aute irure dolor in reprehenderit in voluptate velit esse. 
+          Cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
+        </div>
+      </section>
+
+      <!-- EFECT 4: Selection Personalizat -->
+      <section class="efect-demonstratie">
+        <h2>4. Efect SELECTION PERSONALIZAT</h2>
+        <p>Selectează textul de mai jos pentru a vedea efectul de selection personalizat:</p>
+        <p class="text-selectable">Acest text are o culoare de selecție personalizată cu glow effect! Încearcă să-l selectezi!</p>
+      </section>
+
+      <!-- EFECT 5: Text care se mișcă -->
+      <section class="efect-demonstratie">
+        <h2>5. Efect TEXT CARE SE MIȘCĂ (efect-css-text-animat)</h2>
+        <div class="text-marquee">
+          <p>🏋️ Echipament profesional de antrenament | 💪 Calitate garantizată | 🎯 Performanță maximă</p>
+        </div>
+      </section>
+
+      <!-- EFECT 6: Background Fix la Scroll -->
+      <section class="efect-demonstratie">
+        <h2>6. Efect BACKGROUND FIX LA SCROLL (efect-css-background-fix)</h2>
+        <div class="hero-section">
+          <h3>Imagine fixă la scroll cu animație</h3>
+        </div>
+      </section>
+
+      <!-- EFECT 7: Stilizare HR -->
+      <section class="efect-demonstratie">
+        <h2>7. Efect STILIZARE HR (efect-css-stilizare-hr)</h2>
+        <p>HR elementul cu gradient și animație:</p>
+        <hr class="prajituri">
+        <p>Continut după HR</p>
+      </section>
+
+      <!-- EFECT 8: Tabel Responsive -->
+      <section class="efect-demonstratie">
+        <h2>8. Efect TABEL RESPONSIVE</h2>
+        <table class="tabel-responsive">
+          <thead>
+            <tr>
+              <th>Produs</th>
+              <th>Categoria</th>
+              <th>Preț</th>
+              <th>Stoc</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Haltere 20kg</td>
+              <td>Echipament</td>
+              <td>250 RON</td>
+              <td>15</td>
+            </tr>
+            <tr>
+              <td>Kettlebell 16kg</td>
+              <td>Greutăți</td>
+              <td>180 RON</td>
+              <td>25</td>
+            </tr>
+            <tr>
+              <td>Coardă de sărit</td>
+              <td>Accesorii</td>
+              <td>50 RON</td>
+              <td>100</td>
+            </tr>
+            <tr>
+              <td>Pantofi CrossFit</td>
+              <td>Încălțăminte</td>
+              <td>420 RON</td>
+              <td>30</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- EFECT 9: Duotone Buton -->
+      <section class="efect-demonstratie">
+        <h2>9. Efect DUOTONE BUTON</h2>
+        <button class="btn-duotone">Cumpără Acum!</button>
+      </section>
+    </section>
+  </main>
+
+<%- include('../fragmente/footer') %>
+
+<style>
+#efecte-css-pagina {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+#efecte-css-pagina h1 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.efect-demonstratie {
+  background: var(--c-bg-sec);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 12px;
+  border-left: 5px solid var(--c-base);
+}
+
+.efect-demonstratie h2 {
+  color: var(--c-accent-yellow);
+  border-bottom: 2px solid var(--c-base);
+  display: inline-block;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.efect-demonstratie img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+.text-selectable {
+  padding: 1rem;
+  background: var(--c-white-05);
+  border-radius: 8px;
+  user-select: text;
+}
+
+.tabel-responsive {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabel-responsive th, .tabel-responsive td {
+  padding: 1rem;
+  text-align: left;
+  border: 1px solid var(--c-border-dark);
+}
+
+.tabel-responsive thead {
+  background: linear-gradient(135deg, var(--c-base), var(--c-dark-orange));
+  color: white;
+}
+
+.tabel-responsive tbody tr:hover {
+  background: var(--c-orange-10);
+}
+
+.btn-duotone {
+  background: linear-gradient(135deg, #ff4d00, #ffb366);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: bold;
+}
+
+.btn-duotone:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(255, 77, 0, 0.4);
+}
+
+@media (max-width: 768px) {
+  .text-coloane {
+    column-count: 1;
+  }
+
+  .tabel-responsive {
+    font-size: 0.9rem;
+  }
+
+  .tabel-responsive th, .tabel-responsive td {
+    padding: 0.5rem;
+  }
+}
+</style>

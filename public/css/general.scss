@@ -1,3 +1,13 @@
+// ============================================================
+// GENERAL.SCSS - Main Stylesheet with CSS Effects
+// ============================================================
+
+// Import custom Bootstrap
+@import 'custom';
+
+// ============================================================
+// VARIABILE CSS PERSONALIZATE
+// ============================================================
 body {
     --c-base: #ff4d00;
     --c-dark-orange: #cc3e00;
@@ -77,11 +87,18 @@ a:hover {
     color: var(--c-accent-yellow);
 }
 
+// ============================================================
+// EFECT CSS: SELECTION PERSONALIZAT
+// ============================================================
 ::selection {
     background: var(--c-base);
     color: var(--c-text-white);
+    text-shadow: 0 0 10px var(--c-base);
 }
 
+// ============================================================
+// HEADER SECTION
+// ============================================================
 header#titlu {
     background: linear-gradient(var(--c-overlay-80), var(--c-overlay-60)), url('../imagini/img1.png');
     background-size: cover;
@@ -220,21 +237,62 @@ blockquote::before {
     transform: scale(1.1);
 }
 
+// ============================================================
+// EFECT CSS: STILIZARE HR - efect-css-stilizare-hr
+// ============================================================
 .prajituri {
     border: none;
-    height: 3px;
-    background: linear-gradient(to right, var(--c-transparent), var(--c-base), var(--c-accent-yellow), var(--c-base), var(--c-transparent));
+    height: 4px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--c-base),
+        var(--c-accent-cyan),
+        var(--c-base),
+        transparent
+    );
+    border-radius: 2px;
     margin: 3rem 0;
+    position: relative;
+    opacity: 1;
+    animation: hrPulse 3s ease-in-out infinite;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 14px;
+        height: 14px;
+        background: radial-gradient(circle, var(--c-base), var(--c-accent-cyan));
+        border-radius: 50%;
+        opacity: 0;
+        box-shadow: 0 0 20px var(--c-base);
+    }
 }
 
+@keyframes hrPulse {
+    0%, 100% {
+        opacity: 1;
+        box-shadow: 0 0 5px var(--c-base);
+    }
+    50% {
+        opacity: 0.8;
+        box-shadow: 0 0 15px var(--c-accent-cyan);
+    }
+}
+
+// ============================================================
+// TABEL RESPONSIVE
+// ============================================================
 #tab-orar {
     width: 100%;
     margin: 1.5rem 0;
     border-collapse: collapse;
     caption-side: bottom;
-    display: block;
+    display: table;
     overflow-x: auto;
-    white-space: nowrap;
 }
 
 #tab-orar caption {
@@ -276,6 +334,9 @@ blockquote::before {
     box-shadow: inset 0 0 20px var(--c-base);
 }
 
+// ============================================================
+// IFRAME CONTAINER
+// ============================================================
 .container-iframe {
     margin-top: 2rem;
     display: flex;
@@ -321,6 +382,9 @@ iframe[name="ifr-video"] {
     position: relative;
 }
 
+// ============================================================
+// METER ELEMENT
+// ============================================================
 meter {
     width: 100%;
     height: 25px;
@@ -338,6 +402,9 @@ meter::-webkit-meter-optimum-value {
     border-radius: 12px;
 }
 
+// ============================================================
+// DETAILS/SUMMARY
+// ============================================================
 details {
     background: var(--c-overlay-30);
     margin-bottom: 1rem;
@@ -376,6 +443,9 @@ details p {
     margin: 0;
 }
 
+// ============================================================
+// FOOTER
+// ============================================================
 footer {
     background: var(--c-black);
     padding: 4rem 2rem;
@@ -405,7 +475,10 @@ footer {
 #link-top::before {
     content: "";
     position: absolute;
-    top: -4px; left: -4px; right: -4px; bottom: -4px;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
     border: 4px dashed var(--c-bg-sec);
     border-radius: 50%;
     transition: transform 0.6s linear;
@@ -421,7 +494,9 @@ footer {
 
 #triunghi {
     border: none;
-    width: auto; height: auto; margin: 0;
+    width: auto;
+    height: auto;
+    margin: 0;
 }
 
 #triunghi::after {
@@ -450,6 +525,9 @@ footer {
     opacity: 1;
 }
 
+// ============================================================
+// ANIMAȚII
+// ============================================================
 @keyframes fadeInDown {
     from {
         opacity: 0;
@@ -467,6 +545,9 @@ footer {
     100% { transform: scale(1); }
 }
 
+// ============================================================
+// SCROLLBAR CUSTOM
+// ============================================================
 ::-webkit-scrollbar {
     width: 12px;
 }
@@ -485,6 +566,9 @@ footer {
     background: var(--c-accent-yellow);
 }
 
+// ============================================================
+// MEDIA QUERIES
+// ============================================================
 @media screen and (max-width: 992px) {
     body { 
         --pagina-margin: 5%;
@@ -535,6 +619,9 @@ footer {
     }
 }
 
+// ============================================================
+// MATH ELEMENT
+// ============================================================
 math {
     background: var(--c-white-05);
     padding: 1.5rem;
@@ -566,4 +653,138 @@ math mn {
     color: var(--c-accent-cyan);
     font-weight: 900;
     font-size: 1.1rem;
+}
+
+// ============================================================
+// EFECT CSS: TEXT ÎN COLOANE - efect-css-coloane-text
+// ============================================================
+.text-coloane {
+    column-count: 3;
+    column-gap: 2rem;
+    column-rule: 2px solid var(--c-base);
+    line-height: 1.8;
+    text-align: justify;
+
+    @media screen and (max-width: 992px) {
+        column-count: 2;
+    }
+
+    @media screen and (max-width: 600px) {
+        column-count: 1;
+        column-rule: none;
+    }
+}
+
+// ============================================================
+// EFECT CSS: TEXT CARE SE MIȘCĂ - efect-css-text-animat
+// ============================================================
+.text-marquee {
+    overflow: hidden;
+    position: relative;
+    height: 3rem;
+    background: linear-gradient(135deg, var(--c-orange-10), var(--c-overlay-30));
+    border: 2px solid var(--c-base);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+
+    p {
+        animation: marquee 15s linear infinite;
+        margin: 0;
+        white-space: nowrap;
+        color: var(--c-accent-yellow);
+        font-weight: bold;
+    }
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+// ============================================================
+// EFECT CSS: BACKGROUND FIX LA SCROLL
+// ============================================================
+.hero-section {
+    background: linear-gradient(var(--c-overlay-70), var(--c-overlay-50)), url('../imagini/img1.png');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    padding: 4rem 2rem;
+    text-align: center;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: bgShift 8s ease-in-out infinite;
+
+    h2 {
+        color: var(--c-accent-cyan);
+        font-size: 3rem;
+        text-shadow: 2px 2px 4px var(--c-overlay-80);
+    }
+}
+
+@keyframes bgShift {
+    0%, 100% {
+        background-position: center;
+    }
+    50% {
+        background-position: center 50px;
+    }
+}
+
+// ============================================================
+// EFECT CSS: DUOTONE - efect-css-duotone
+// ============================================================
+.image-duotone {
+    filter: saturate(1.5) contrast(1.2);
+    mix-blend-mode: multiply;
+    position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(255, 77, 0, 0.4), rgba(0, 212, 255, 0.4));
+        mix-blend-mode: overlay;
+        pointer-events: none;
+    }
+}
+
+// ============================================================
+// EFECT CSS: REFLEXIE TEXT - efect-css-reflexie-text
+// ============================================================
+.heading-reflexie {
+    position: relative;
+    display: inline-block;
+    font-size: 2.5rem;
+    color: var(--c-base);
+    font-family: 'Eater', cursive;
+
+    &::after {
+        content: attr(data-text);
+        position: absolute;
+        left: 0;
+        top: calc(100% + 10px);
+        width: 100%;
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), transparent);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        transform: scaleY(-1);
+        opacity: 0.4;
+        letter-spacing: inherit;
+        font-family: inherit;
+        font-size: inherit;
+        font-weight: inherit;
+    }
 }

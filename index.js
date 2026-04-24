@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const sass = require('sass');
 const app = express();
 
 // ============================================================
@@ -19,8 +20,11 @@ const PORT = 8080;
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views', 'pagini'));
 
-// Verificare pentru /resurse fără fișier (TREBUIE ÎNAINTE de express.static)
-app.use('/resurse', (req, res, next) => {
+// Static files cu prefix /public
+app.use('/public', express.static(path.join(__dirname, 'public')));
+
+// Verificare pentru /public fără fișier (TREBUIE DUPĂ express.static)
+app.use('/public', (req, res, next) => {
   // Verific dacă cererea este la un folder (fără extensie de fișier)
   const caleRequest = decodeURIComponent(req.path);
   if (caleRequest.endsWith('/')) {
@@ -30,14 +34,14 @@ app.use('/resurse', (req, res, next) => {
   }
 });
 
-// Static files cu prefix /resurse
-app.use('/resurse', express.static(path.join(__dirname, 'resurse')));
-
 // ============================================================
 // VARIABILĂ GLOBALĂ
 // ============================================================
 global.obGlobal = {
-  obErori: null
+  obErori: null,
+  folderScss: path.join(__dirname, 'public', 'css'),
+  folderCss: path.join(__dirname, 'public', 'css'),
+  folderBackup: path.join(__dirname, 'backup', 'css')
 };
 
 // ============================================================
@@ -55,13 +59,138 @@ function creareFoldereNecesare() {
       console.log(`Folder există deja: ${carePath}`);
     }
   });
+
+  // Creare subdirectar backup/css
+  const folderBackupCss = path.join(__dirname, 'backup', 'css');
+  if (!fs.existsSync(folderBackupCss)) {
+    fs.mkdirSync(folderBackupCss, { recursive: true });
+    console.log(`Folder creat: ${folderBackupCss}`);
+  } else {
+    console.log(`Folder există deja: ${folderBackupCss}`);
+  }
+}
+
+// ============================================================
+// FUNCȚIE PENTRU COMPILAREA SCSS ÎN CSS
+// ============================================================
+function compileazaScss(caleScss, caleCss = null) {
+  try {
+    // Determinare cale absolută pentru fișierul scss
+    const caleAbsolutaScss = path.isAbsolute(caleScss) 
+      ? caleScss 
+      : path.join(global.obGlobal.folderScss, caleScss);
+
+    // Verificare existență fișier scss
+    if (!fs.existsSync(caleAbsolutaScss)) {
+      console.error(`❌ EROARE: Fișierul SCSS nu există: ${caleAbsolutaScss}`);
+      return;
+    }
+
+    // Determinare cale absolută pentru fișierul css
+    let caleAbsolutaCss;
+    if (caleCss === null || caleCss === undefined || caleCss === '') {
+      // Dacă nu se specifică cale css, se folosește folderul css cu același nume dar cu extensie .css
+      const numeFisier = path.basename(caleAbsolutaScss, path.extname(caleAbsolutaScss));
+      caleAbsolutaCss = path.join(global.obGlobal.folderCss, numeFisier + '.css');
+    } else if (path.isAbsolute(caleCss)) {
+      caleAbsolutaCss = caleCss;
+    } else {
+      caleAbsolutaCss = path.join(global.obGlobal.folderCss, caleCss);
+    }
+
+    // Faceă backup fișierului CSS vechi dacă există
+    if (fs.existsSync(caleAbsolutaCss)) {
+      const numeFisierBackup = path.basename(caleAbsolutaCss);
+      const caleAbsolutaBackup = path.join(global.obGlobal.folderBackup, numeFisierBackup);
+      
+      // Creare folder backup dacă nu există
+      if (!fs.existsSync(global.obGlobal.folderBackup)) {
+        fs.mkdirSync(global.obGlobal.folderBackup, { recursive: true });
+      }
+
+      try {
+        fs.copyFileSync(caleAbsolutaCss, caleAbsolutaBackup);
+        console.log(`✅ Backup CSS: ${caleAbsolutaBackup}`);
+      } catch (errBackup) {
+        console.error(`❌ EROARE la copierea backup CSS: ${errBackup.message}`);
+      }
+    }
+
+    // Compilare SCSS în CSS
+    const rezultat = sass.renderSync({
+      file: caleAbsolutaScss,
+      outputStyle: 'compressed',
+      includePaths: [
+        path.join(__dirname, 'node_modules'),
+        path.join(__dirname, 'resurse', 'css')
+      ]
+    });
+
+    // Scriere fișier CSS
+    fs.writeFileSync(caleAbsolutaCss, rezultat.css);
+    console.log(`✅ Compilat: ${caleAbsolutaScss} -> ${caleAbsolutaCss}`);
+  } catch (err) {
+    console.error(`❌ EROARE la compilarea SCSS: ${err.message}`);
+  }
+}
+
+// ============================================================
+// FUNCȚIE PENTRU COMPILAREA INIȚIALĂ A TUTUROR SCSS-URILOR
+// ============================================================
+function compilareInitialaScss() {
+  try {
+    if (!fs.existsSync(global.obGlobal.folderScss)) {
+      console.log(`⚠️ AVERTISMENT: Folderul SCSS nu există: ${global.obGlobal.folderScss}`);
+      return;
+    }
+
+    const fisiere = fs.readdirSync(global.obGlobal.folderScss);
+    const fisieriscss = fisiere.filter(f => f.endsWith('.scss'));
+
+    if (fisieriscss.length === 0) {
+      console.log(`ℹ️ Nu au fost găsite fișiere SCSS în: ${global.obGlobal.folderScss}`);
+      return;
+    }
+
+    console.log(`🔨 Compilare inițială a ${fisieriscss.length} fișier(e) SCSS...`);
+    fisieriscss.forEach(fisier => {
+      compileazaScss(fisier);
+    });
+  } catch (err) {
+    console.error(`❌ EROARE la compilare inițială SCSS: ${err.message}`);
+  }
+}
+
+// ============================================================
+// FUNCȚIE PENTRU MONITORIZAREA SCHIMBĂRILOR SCSS
+// ============================================================
+function monitorizareScss() {
+  try {
+    if (!fs.existsSync(global.obGlobal.folderScss)) {
+      console.log(`⚠️ AVERTISMENT: Folderul SCSS nu există: ${global.obGlobal.folderScss}`);
+      return;
+    }
+
+    console.log(`👁️ Monitorizare SCSS activată: ${global.obGlobal.folderScss}`);
+    
+    fs.watch(global.obGlobal.folderScss, (eventType, filename) => {
+      if (filename && filename.endsWith('.scss')) {
+        console.log(`\n📝 DETECTAT: ${eventType} - ${filename}`);
+        setTimeout(() => {
+          compileazaScss(filename);
+        }, 100);
+      }
+    });
+  } catch (err) {
+    console.error(`❌ EROARE la monitorizare SCSS: ${err.message}`);
+  }
 }
 
 // ============================================================
 // FUNCȚIE PENTRU VALIDARE ERORI.JSON
 // ============================================================
 function validareEroriJSON() {
-  const caleErori = path.join(__dirname, 'erori.json');
+  const caleErori = path.join(__dirname, 'config', 'erori.json');
   
   // Verificare existență fișier
   if (!fs.existsSync(caleErori)) {
@@ -99,7 +228,7 @@ function validareEroriJSON() {
 
   // Verificare folder cale_baza
   const calebaza = obEroriJSON.cale_baza;
-  const caleAbsoluta = path.join(__dirname, 'resurse', 'imagini', 'erori');
+  const caleAbsoluta = path.join(__dirname, 'public', 'imagini', 'erori');
   // Notă: Cale baza este URL, nu cale fizică. Voi verifica dacă folderul există
 
   // Verificare existență fișiere imagini
@@ -186,7 +315,7 @@ function verificareDuplicateProprietati(continutJSON) {
 // ============================================================
 function initErori() {
   try {
-    const caleErori = path.join(__dirname, 'erori.json');
+    const caleErori = path.join(__dirname, 'config', 'erori.json');
     const continut = fs.readFileSync(caleErori, 'utf-8');
     const obEroriJSON = JSON.parse(continut);
 
@@ -282,12 +411,30 @@ app.get(['/', '/index', '/home'], (req, res) => {
 
 // Rută pentru favicon
 app.get('/favicon.ico', (req, res) => {
-  res.sendFile(path.join(__dirname, 'resurse', 'imagini', 'favicon', 'favicon.ico'));
+  res.sendFile(path.join(__dirname, 'public', 'imagini', 'favicon', 'favicon.ico'));
 });
 
 // Verificare pentru cereri .ejs
 app.get(/.*\.ejs$/, (req, res) => {
   afisareEroare(res, 400);
+});
+
+// Rută pentru galerie
+app.get('/galerie', (req, res) => {
+  try {
+    const caleGalerie = path.join(__dirname, 'config', 'galerie.json');
+    const galerieData = JSON.parse(fs.readFileSync(caleGalerie, 'utf-8'));
+    res.render('galerie', { ipUtilizator: res.locals.ipUtilizator, galerieData }, (err, html) => {
+      if (err) {
+        afisareEroare(res);
+      } else {
+        res.send(html);
+      }
+    });
+  } catch (err) {
+    console.error('Eroare la citirea galerie.json:', err);
+    afisareEroare(res);
+  }
 });
 
 // Rută generică pentru pagini
@@ -315,6 +462,12 @@ function pornireServer() {
   
   // Creare folderele necesare
   creareFoldereNecesare();
+
+  // Compilare inițială SCSS
+  compilareInitialaScss();
+
+  // Monitorizare SCSS
+  monitorizareScss();
   
   // Inițializare erori
   initErori();

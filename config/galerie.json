@@ -1,0 +1,26 @@
+{
+  "cale_galerie": "/resurse/imagini/",
+  "imagini": [
+    {
+      "cale_galerie": "img1.png",
+      "nume_imagine": "Imagine 1",
+      "alternativ": "Echipament CrossFit profesional 1",
+      "descriere_imag": "Echipament de antrenament profesional cu greutăți și accesorii",
+      "intervale_ore": [[9, 17], [18, 22]]
+    },
+    {
+      "cale_galerie": "img2.png",
+      "nume_imagine": "Imagine 2",
+      "alternativ": "Echipament CrossFit profesional 2",
+      "descriere_imag": "Bare olimpice și discuri pentru ridicarea greutăților",
+      "intervale_ore": [[10, 18], [19, 21]]
+    },
+    {
+      "cale_galerie": "sigla.png",
+      "nume_imagine": "Logo CrossFit",
+      "alternativ": "Sigla magazinului CrossFit",
+      "descriere_imag": "Sigla oficială a magazinului nostuRedirect",
+      "intervale_ore": [[8, 20]]
+    }
+  ]
+}

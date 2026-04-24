@@ -11,7 +11,12 @@
     "type": "git",
     "url": "git+https://github.com/BivolAlexIonut/TehniciWeb.git"
   },
-  "keywords": ["CrossFit", "fitness", "echipament", "antrenament"],
+  "keywords": [
+    "CrossFit",
+    "fitness",
+    "echipament",
+    "antrenament"
+  ],
   "author": "Bivol Alexandru-Ionut",
   "license": "ISC",
   "type": "commonjs",
@@ -20,7 +25,9 @@
   },
   "homepage": "https://github.com/BivolAlexIonut/TehniciWeb#readme",
   "dependencies": {
+    "bootstrap": "^5.3.8",
     "ejs": "^5.0.2",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "sass": "^1.99.0"
   }
 }

@@ -1,0 +1,359 @@
+// ============================================================
+// CUSTOM.SCSS - Bootstrap Customization
+// Tema cromatică CrossFit: Portocal (#ff4d00) + Dark (#1a1a1a)
+// ============================================================
+
+// ============================================================
+// 1. VARIABILE PERSONALIZATE - CULORI
+// ============================================================
+$primary-color: #ff4d00;      // Portocal principal
+$primary-dark: #cc3d00;       // Portocal închis
+$primary-light: #ff6d1a;      // Portocal deschis
+$secondary-color: #1a1a1a;    // Negru/Dark
+$tertiary-color: #f0f0f0;     // Gri deschis
+$accent-color: #00d4ff;       // Cyan accent
+$success-color: #28a745;      // Verde
+$danger-color: #dc3545;       // Roșu
+
+// ============================================================
+// 2. VARIABILE PERSONALIZATE - DIMENSIUNI FONT
+// ============================================================
+$font-size-base: 1rem;
+$font-size-h1: 3rem;
+$font-size-h2: 2.5rem;
+$font-size-h3: 2rem;
+$font-size-h4: 1.5rem;
+$font-size-h5: 1.25rem;
+$font-size-h6: 1rem;
+
+// ============================================================
+// 3. VARIABILE PERSONALIZATE - FAMILY FONT
+// ============================================================
+$font-family-base: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+$font-family-heading: 'Madimi One', 'Eater', display;
+$font-family-monospace: 'Courier New', monospace;
+
+// ============================================================
+// 4. VARIABILE PERSONALIZATE - BORDER RADIUS
+// ============================================================
+$border-radius: 0.5rem;
+$border-radius-lg: 1rem;
+$border-radius-sm: 0.25rem;
+
+// ============================================================
+// 5. VARIABILE PERSONALIZATE - BREAKPOINTS
+// ============================================================
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+);
+
+// Media queries breakpoints pentru ecrane medii și mari
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+
+// ============================================================
+// 6. OVERRIDE VARIABILE BOOTSTRAP
+// ============================================================
+$bs-primary: $primary-color;
+$bs-secondary: $secondary-color;
+$bs-success: $success-color;
+$bs-danger: $danger-color;
+$bs-warning: #ffc107;
+$bs-info: $accent-color;
+$bs-light: $tertiary-color;
+$bs-dark: $secondary-color;
+
+// Font sizes
+$bs-font-sizes: (
+  1: $font-size-h1,
+  2: $font-size-h2,
+  3: $font-size-h3,
+  4: $font-size-h4,
+  5: $font-size-h5,
+  6: $font-size-h6,
+);
+
+// Font family
+$bs-body-font-family: $font-family-base;
+$bs-heading-font-family: $font-family-heading;
+
+// Border radius
+$bs-border-radius: $border-radius;
+$bs-border-radius-lg: $border-radius-lg;
+$bs-border-radius-sm: $border-radius-sm;
+
+// Gutter (spacing)
+$bs-gutter-x: 1.5rem;
+$bs-gutter-y: 0;
+
+// ============================================================
+// 7. IMPORT BOOTSTRAP
+// ============================================================
+@import 'bootstrap/scss/bootstrap';
+
+// ============================================================
+// 8. TEME PERSONALIZATE
+// ============================================================
+
+// Tema 1: CrossFit Orange
+.tema-crossfit {
+  --bs-bg-opacity: 1;
+  background-color: rgba($primary-color, var(--bs-bg-opacity));
+  color: $tertiary-color;
+
+  .btn-primary {
+    background-color: $primary-dark;
+    border-color: $primary-dark;
+
+    &:hover {
+      background-color: $primary-light;
+      border-color: $primary-light;
+    }
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: $accent-color;
+    font-family: $font-family-heading;
+    font-weight: 700;
+  }
+
+  p {
+    color: $tertiary-color;
+  }
+}
+
+// Tema 2: Dark Night
+.tema-dark {
+  background-color: $secondary-color;
+  color: $tertiary-color;
+
+  .btn-primary {
+    background-color: $primary-color;
+    border-color: $primary-color;
+
+    &:hover {
+      background-color: $primary-light;
+      border-color: $primary-light;
+    }
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: $primary-color;
+    font-family: $font-family-heading;
+  }
+
+  p {
+    color: $tertiary-color;
+  }
+}
+
+// ============================================================
+// 9. RESPONSIVE STYLES
+// ============================================================
+
+// Ecrane medii (768px - 991px)
+@media (min-width: $breakpoint-md) and (max-width: 991px) {
+  $font-size-h1: 2.5rem;
+  $font-size-h2: 2rem;
+  $font-size-h3: 1.75rem;
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  h3 {
+    font-size: 1.75rem;
+  }
+
+  .container {
+    padding: 1rem;
+  }
+}
+
+// Ecrane mari (992px+)
+@media (min-width: $breakpoint-lg) {
+  $font-size-h1: 3rem;
+  $font-size-h2: 2.5rem;
+  $font-size-h3: 2rem;
+
+  h1 {
+    font-size: 3rem;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+  }
+
+  h3 {
+    font-size: 2rem;
+  }
+
+  .container {
+    padding: 2rem;
+  }
+}
+
+// ============================================================
+// 10. COMPONENTE BOOTSTRAP PERSONALIZATE
+// ============================================================
+
+// Butoane personalizate
+.btn {
+  border-radius: $border-radius-lg;
+  font-weight: 600;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba($primary-color, 0.3);
+  }
+
+  &.btn-outline-primary {
+    color: $primary-color;
+    border-color: $primary-color;
+
+    &:hover {
+      background-color: $primary-color;
+      color: white;
+    }
+  }
+}
+
+// Carduri personalizate
+.card {
+  border: none;
+  border-radius: $border-radius-lg;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background-color: rgba($tertiary-color, 0.95);
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 8px 24px rgba($primary-color, 0.2);
+    transform: translateY(-4px);
+  }
+
+  .card-header {
+    background: linear-gradient(135deg, $primary-color, $primary-dark);
+    color: white;
+    border-radius: $border-radius-lg $border-radius-lg 0 0;
+    border: none;
+  }
+
+  .card-title {
+    color: $primary-color;
+    font-family: $font-family-heading;
+  }
+}
+
+// Alert personalizate
+.alert {
+  border-radius: $border-radius-lg;
+  border: none;
+  font-weight: 500;
+
+  &.alert-success {
+    background-color: rgba($success-color, 0.1);
+    color: $success-color;
+  }
+
+  &.alert-danger {
+    background-color: rgba($danger-color, 0.1);
+    color: $danger-color;
+  }
+
+  &.alert-warning {
+    background-color: rgba(255, 193, 7, 0.1);
+    color: #856404;
+  }
+
+  &.alert-info {
+    background-color: rgba($accent-color, 0.1);
+    color: $accent-color;
+  }
+}
+
+// Badge personalizate
+.badge {
+  border-radius: $border-radius;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+
+  &.badge-primary {
+    background-color: $primary-color;
+  }
+
+  &.badge-secondary {
+    background-color: $secondary-color;
+  }
+}
+
+// ============================================================
+// 11. STILIZARE HR PERSONALIZATĂ (EFECT CSS)
+// ============================================================
+hr {
+  border: none;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    $primary-color,
+    $accent-color,
+    $primary-color,
+    transparent
+  );
+  border-radius: 2px;
+  opacity: 1;
+  margin: 2rem 0;
+  position: relative;
+
+  &.prajituri {
+    background: repeating-linear-gradient(
+      90deg,
+      $primary-color 0px,
+      $primary-color 10px,
+      transparent 10px,
+      transparent 20px,
+      $accent-color 20px,
+      $accent-color 30px,
+      transparent 30px,
+      transparent 40px
+    );
+    height: 6px;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background-color: $primary-color;
+    border-radius: 50%;
+    opacity: 0;
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+}
+
+// Animație pulse pentru hr
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.3);
+  }
+}

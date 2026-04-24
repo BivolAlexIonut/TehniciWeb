@@ -1,0 +1,31 @@
+{
+  "cale_baza": "/resurse/imagini/erori/",
+  "eroare_default": {
+    "titlu": "Eroare neașteptată",
+    "text": "A apărut o eroare în procesarea cererii. Vă rugăm să încercați din nou mai târziu.",
+    "imagine": "eroare_generala.svg"
+  },
+  "info_erori": [
+    {
+      "identificator": 404,
+      "status": true,
+      "titlu": "Pagina nu a fost găsită",
+      "text": "Pagina pe care o căutați nu există. Vă rugăm să verificați adresa URL și încercați din nou.",
+      "imagine": "404.svg"
+    },
+    {
+      "identificator": 403,
+      "status": true,
+      "titlu": "Acces interzis",
+      "text": "Nu aveți permisiunea de a accesa această resursă. Contactați administratorul pentru mai multe informații.",
+      "imagine": "403.svg"
+    },
+    {
+      "identificator": 400,
+      "status": true,
+      "titlu": "Cerere nevalidă",
+      "text": "Tipul de fișier cerut nu este permis. Vă rugăm să contactați administratorul dacă credeți că aceasta este o eroare.",
+      "imagine": "400.svg"
+    }
+  ]
+}

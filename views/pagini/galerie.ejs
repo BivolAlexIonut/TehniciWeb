@@ -1,0 +1,275 @@
+<%- include('../fragmente/head') %>
+
+<%- include('../fragmente/header') %>
+
+  <main>
+    <section id="galerie-statica-pagina">
+      <h1 class="heading-reflexie" data-text="Galeria Produselor">Galeria Produselor</h1>
+      <p class="text-coloane">
+        Bine ați venit în galeria noastră! Aici veți găsi imagini de înaltă calitate ale echipamentelor noastre profesionale 
+        pentru antrenamentul funcțional și CrossFit. Fiecare imagine este selectată cu grijă pentru a vă prezenta calitatea și 
+        varietatea produselor noastre. Galeria se actualizează periodic cu noi adaosuri la colecția noastră de echipamente de 
+        antrenament. Puteți naviga prin imagini și a afla mai mult despre fiecare produs din descrierile detaliate. 
+        Imagini sunt disponibile în intervale orare specifice conform programului nostru.
+      </p>
+
+      <div class="hero-section">
+        <h2>Echipament Profesional pentru Antrenament</h2>
+      </div>
+
+      <div id="grid-galerie">
+        <% 
+          const galerieJson = galerieData;
+          
+          const acum = new Date();
+          const oraActuala = acum.getHours();
+        %>
+
+        <% galerieJson.imagini.forEach((img, idx) => { %>
+          <% 
+            let esteAfisatAcum = false;
+            if (img.intervale_ore) {
+              esteAfisatAcum = img.intervale_ore.some(interval => 
+                oraActuala >= interval[0] && oraActuala <= interval[1]
+              );
+            } else {
+              esteAfisatAcum = true;
+            }
+          %>
+          <figure class="galerie-item <%= esteAfisatAcum ? 'afisata' : 'ascunsa' %>" 
+                  data-index="<%= idx %>" 
+                  data-nume="<%= img.nume_imagine %>">
+            <div class="galerie-img-container">
+              <img src="<%= galerieJson.cale_galerie %><%= img.cale_galerie %>" 
+                   alt="<%= img.alternativ %>" 
+                   title="<%= img.descriere_imag %>"
+                   class="image-duotone">
+              <div class="galerie-overlay">
+                <h3><%= img.nume_imagine %></h3>
+                <p><%= img.descriere_imag %></p>
+              </div>
+            </div>
+            <figcaption>
+              <strong><%= img.nume_imagine %></strong><br>
+              <em><%= img.descriere_imag %></em><br>
+              <small>Orare afișare: 
+                <% if (img.intervale_ore) { %>
+                  <% img.intervale_ore.forEach((interval, i) => { %>
+                    <%= interval[0] %>:00 - <%= interval[1] %>:59<% if (i < img.intervale_ore.length - 1) { %>, <% } %>
+                  <% }); %>
+                <% } else { %>
+                  Disponibil permanent
+                <% } %>
+              </small>
+            </figcaption>
+          </figure>
+        <% }); %>
+      </div>
+
+      <div class="text-marquee">
+        <p>📸 Imagini de înaltă calitate ale echipamentelor noastre profesionale | 🏋️ Galeria se actualizează periodic | 💪 Explorați varietatea produselor CrossFit</p>
+      </div>
+    </section>
+  </main>
+
+<%- include('../fragmente/footer') %>
+
+<style>
+/* Galeria Statica Styles */
+#galerie-statica-pagina {
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 2rem auto;
+}
+
+#galerie-statica-pagina .heading-reflexie::after {
+  content: "Galeria Produselor";
+}
+
+.text-coloane {
+  column-count: 2;
+  column-gap: 2rem;
+  column-rule: 2px solid var(--c-base);
+  line-height: 1.8;
+  text-align: justify;
+  margin-bottom: 3rem;
+  padding: 1.5rem;
+  background: var(--c-white-05);
+  border-radius: 8px;
+}
+
+@media (max-width: 992px) {
+  .text-coloane {
+    column-count: 1;
+    column-rule: none;
+  }
+}
+
+#grid-galerie {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, var(--c-orange-10), var(--c-overlay-30));
+  border-radius: 8px;
+}
+
+.galerie-item {
+  position: relative;
+  border: 3px solid var(--c-base);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--c-bg-sec);
+  transition: all 0.4s ease;
+  cursor: pointer;
+  opacity: 1;
+  max-height: 500px;
+}
+
+.galerie-item.ascunsa {
+  opacity: 0.4;
+  filter: grayscale(80%);
+  pointer-events: none;
+}
+
+.galerie-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px var(--c-orange-50);
+  border-color: var(--c-accent-cyan);
+}
+
+.galerie-img-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
+  overflow: hidden;
+}
+
+.galerie-img-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.galerie-item:hover .galerie-img-container img {
+  transform: scale(1.1) rotate(2deg);
+}
+
+.galerie-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 77, 0, 0.8), rgba(0, 0, 0, 0.9));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  padding: 1rem;
+  text-align: center;
+  z-index: 2;
+}
+
+.galerie-item:hover .galerie-overlay {
+  opacity: 1;
+}
+
+.galerie-overlay h3 {
+  color: var(--c-accent-yellow);
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.galerie-overlay p {
+  color: var(--c-text-white);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+figcaption {
+  padding: 1rem;
+  background: var(--c-overlay-30);
+  text-align: center;
+  border-top: 2px solid var(--c-base);
+}
+
+figcaption strong {
+  color: var(--c-accent-yellow);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+figcaption em {
+  color: var(--c-text-gray);
+  font-size: 0.9rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+figcaption small {
+  color: var(--c-text-white);
+  font-size: 0.8rem;
+  display: block;
+}
+
+.text-marquee {
+  overflow: hidden;
+  position: relative;
+  height: 4rem;
+  background: linear-gradient(135deg, var(--c-orange-10), var(--c-overlay-30));
+  border: 3px solid var(--c-base);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  margin-top: 3rem;
+}
+
+.text-marquee p {
+  animation: marquee 20s linear infinite;
+  margin: 0;
+  white-space: nowrap;
+  color: var(--c-accent-yellow);
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  #grid-galerie {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .galerie-overlay h3 {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  #grid-galerie {
+    grid-template-columns: 1fr;
+  }
+  
+  .text-coloane {
+    column-count: 1;
+  }
+}
+</style>

@@ -1,0 +1,232 @@
+<%- include('../fragmente/head') %>
+
+<%- include('../fragmente/header') %>
+
+  <main>
+    <section id="galerie-animata-pagina">
+      <h1>Galeria Animată</h1>
+      <p>O galerie interactivă cu animații și efecte speciale. Imagini din JSON se rotesc cu animații fluid.</p>
+
+      <div id="carousel-galerie">
+        <div class="carousel-container">
+          <div class="carousel-slide active" style="background-image: url('/public/imagini/img1.png');">
+            <div class="carousel-content">
+              <h2>Imagine 1</h2>
+              <p>Echipament de antrenament profesional</p>
+            </div>
+          </div>
+          <div class="carousel-slide" style="background-image: url('/public/imagini/img2.png');">
+            <div class="carousel-content">
+              <h2>Imagine 2</h2>
+              <p>Bare olimpice și discuri</p>
+            </div>
+          </div>
+          <div class="carousel-slide" style="background-image: url('/public/imagini/sigla.png');">
+            <div class="carousel-content">
+              <h2>Logo CrossFit</h2>
+              <p>Sigla oficială a magazinului</p>
+            </div>
+          </div>
+        </div>
+
+        <button class="carousel-btn prev" onclick="rotateCarousel(-1)">❮</button>
+        <button class="carousel-btn next" onclick="rotateCarousel(1)">❯</button>
+
+        <div class="carousel-indicators">
+          <span class="indicator active" onclick="goToSlide(0)"></span>
+          <span class="indicator" onclick="goToSlide(1)"></span>
+          <span class="indicator" onclick="goToSlide(2)"></span>
+        </div>
+      </div>
+
+      <div id="animated-grid">
+        <div class="anim-item" style="animation-delay: 0s;">
+          <div class="anim-img" style="background-image: url('/public/imagini/img1.png');"></div>
+          <h3>Echipament 1</h3>
+        </div>
+        <div class="anim-item" style="animation-delay: 0.2s;">
+          <div class="anim-img" style="background-image: url('/public/imagini/img2.png');"></div>
+          <h3>Echipament 2</h3>
+        </div>
+        <div class="anim-item" style="animation-delay: 0.4s;">
+          <div class="anim-img" style="background-image: url('/public/imagini/sigla.png');"></div>
+          <h3>Sigla</h3>
+        </div>
+      </div>
+    </section>
+  </main>
+
+<%- include('../fragmente/footer') %>
+
+<style>
+#galerie-animata-pagina {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 2rem auto;
+}
+
+#carousel-galerie {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 2rem auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 66.66%;
+  background: #000;
+}
+
+.carousel-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+  display: flex;
+  align-items: flex-end;
+}
+
+.carousel-slide.active {
+  opacity: 1;
+}
+
+.carousel-content {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+  width: 100%;
+  padding: 2rem;
+  color: white;
+}
+
+.carousel-content h2 {
+  color: #ff4d00;
+  margin-bottom: 0.5rem;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 77, 0, 0.7);
+  color: white;
+  border: none;
+  font-size: 2rem;
+  padding: 1rem;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.3s;
+}
+
+.carousel-btn:hover {
+  background: rgba(255, 77, 0, 1);
+}
+
+.carousel-btn.prev {
+  left: 1rem;
+}
+
+.carousel-btn.next {
+  right: 1rem;
+}
+
+.carousel-indicators {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 10;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.indicator.active {
+  background: #ff4d00;
+  width: 30px;
+  border-radius: 6px;
+}
+
+#animated-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.anim-item {
+  text-align: center;
+  animation: slideUp 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.anim-img {
+  width: 100%;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  transition: transform 0.4s;
+}
+
+.anim-item:hover .anim-img {
+  transform: scale(1.05) rotate(2deg);
+}
+</style>
+
+<script>
+let currentSlide = 0;
+const slides = document.querySelectorAll('.carousel-slide');
+const indicators = document.querySelectorAll('.indicator');
+
+function showSlide(n) {
+  slides[currentSlide].classList.remove('active');
+  indicators[currentSlide].classList.remove('active');
+  
+  currentSlide = (n + slides.length) % slides.length;
+  
+  slides[currentSlide].classList.add('active');
+  indicators[currentSlide].classList.add('active');
+}
+
+function rotateCarousel(direction) {
+  showSlide(currentSlide + direction);
+}
+
+function goToSlide(n) {
+  showSlide(n);
+}
+
+// Auto-rotate carousel
+setInterval(() => {
+  rotateCarousel(1);
+}, 5000);
+</script>
