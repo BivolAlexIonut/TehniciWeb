@@ -22,11 +22,13 @@ $tablet-break: 992px;
   transition: all var(--transition-speed) ease;
 }
 
+// Cerinta 1: Task meniu
 nav {
   background-color: var(--nav-bg);
   position: relative;
   width: 100%;
 
+  // Cerinta 2 (Bonus): Hamburger icon creat cu divuri/span
   #ch-menu { display: none; } // Checkbox hack ascuns
 
   #hamburger {
@@ -130,6 +132,7 @@ nav {
   }
 
   // Layout Ecran Mic (Burger Menu)
+  // Cerinta 2 (Bonus): Animatie hamburgeru la aparizie pe ecran mic
   @media (max-width: $mobile-break) {
     #hamburger { display: block; }
 
@@ -168,10 +171,11 @@ nav {
   }
 }
 
+// Cerinta 3 (Bonus): Fiecare bara din hamburger cu animatie succesiva cu delay
 // Instrucțiune repetitivă pentru delay-ul animației elementelor din listă (Mobil)
 @for $i from 1 through 10 {
   .meniu li:nth-child(#{$i}) {
-    animation-delay: #{$i * 0.1}s;
+    animation-delay: #{$i * 0.1}s;  // Delay diferit pentru fiecare element
   }
 }
 
