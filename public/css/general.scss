@@ -1,13 +1,6 @@
-// ============================================================
-// GENERAL.SCSS - Main Stylesheet with CSS Effects
-// ============================================================
-
-// Import custom Bootstrap
 @import 'custom';
 
-// ============================================================
-// VARIABILE CSS PERSONALIZATE
-// ============================================================
+// Cerinta 1: Spatiere stanga dreapta cu variabile CSS
 body {
     --c-base: #ff4d00;
     --c-dark-orange: #cc3e00;
@@ -36,8 +29,11 @@ body {
     --c-orange-30: rgba(255, 77, 0, 0.3);
     --c-orange-50: rgba(255, 77, 0, 0.5);
 
+    // Cerinta 1: Spatiere stanga dreapta
     --pagina-margin: 10%;
+    // Cerinta 2: Gap pentru grid
     --grid-gap: 2rem;
+    // Cerinta 4: Padding pentru distanta textului
     --section-padding: 1.5rem;
     --border-radius: 12px;
     --box-shadow: 0 8px 32px var(--c-overlay-50);
@@ -48,6 +44,7 @@ body {
     font-family: 'Madimi One', sans-serif;
     line-height: 1.6;
     overflow-x: hidden;
+    // Cerinta 1: Aplicare spatiere laterala
     padding-left: var(--pagina-margin);
     padding-right: var(--pagina-margin);
     transition: font-size 0.3s;
@@ -87,9 +84,7 @@ a:hover {
     color: var(--c-accent-yellow);
 }
 
-// ============================================================
-// EFECT CSS: SELECTION PERSONALIZAT
-// ============================================================
+
 ::selection {
     background: var(--c-base);
     color: var(--c-text-white);
@@ -129,6 +124,7 @@ main {
     padding-bottom: 4rem;
 }
 
+// Cerinta 2: Gap pentru grid
 #grid-pagina {
     display: grid;
     gap: var(--grid-gap);
@@ -140,6 +136,7 @@ main {
         "produse index-intrebari aside";
 }
 
+// Cerinta 3: Izolarea vizuala a zonelor + Cerinta 4: Padding pentru text
 #grid-pagina > section, 
 #grid-pagina > aside {
     background: var(--c-bg-sec);
@@ -164,6 +161,7 @@ main {
 #index-intrebari { grid-area: index-intrebari; border-top: 5px solid var(--c-accent-yellow) !important; }
 aside { grid-area: aside; border-top: 5px solid var(--c-border-gray) !important; }
 
+// Cerinta 5: Imagini si videoclipuri cu min/max widths
 img, iframe, video {
     width: 100%;
     max-width: 1200px;
