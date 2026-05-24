@@ -2,25 +2,54 @@
   "cale_galerie": "/resurse/imagini/",
   "imagini": [
     {
-      "cale_galerie": "img1.png",
-      "nume_imagine": "Imagine 1",
-      "alternativ": "Echipament CrossFit profesional 1",
-      "descriere_imag": "Echipament de antrenament profesional cu greutăți și accesorii",
-      "intervale_ore": [[9, 17], [18, 22]]
+      "cale_relativa": "img1.png",
+      "nume_imag": "Haltere Olimpice",
+      "alternativ": "Haltere pentru antrenament de forță",
+      "descriere_imag": "Haltere profesionale folosite în competiții de weightlifting.",
+      "intervale_ore": [[0, 23]],
+      "licenta": "CC0"
     },
     {
-      "cale_galerie": "img2.png",
-      "nume_imagine": "Imagine 2",
-      "alternativ": "Echipament CrossFit profesional 2",
-      "descriere_imag": "Bare olimpice și discuri pentru ridicarea greutăților",
-      "intervale_ore": [[10, 18], [19, 21]]
+      "cale_relativa": "img2.png",
+      "nume_imag": "Bare CrossFit",
+      "alternativ": "Bare metalice pentru tracțiuni",
+      "descriere_imag": "Echipament esențial pentru orice box de CrossFit.",
+      "intervale_ore": [[0, 23]],
+      "licenta": "CC-BY",
+      "autor": "John Doe",
+      "sursa": "https://pixabay.com"
     },
     {
-      "cale_galerie": "sigla.png",
-      "nume_imagine": "Logo CrossFit",
-      "alternativ": "Sigla magazinului CrossFit",
-      "descriere_imag": "Sigla oficială a magazinului nostuRedirect",
-      "intervale_ore": [[8, 20]]
+      "cale_relativa": "img1.png",
+      "nume_imag": "Kettlebells",
+      "alternativ": "Greutăți tip kettlebell",
+      "descriere_imag": "Kettlebells variate pentru antrenamente de tip cardio și forță.",
+      "intervale_ore": [[0, 23]],
+      "licenta": "CC0"
+    },
+    {
+      "cale_relativa": "img2.png",
+      "nume_imag": "Discuri Bumper",
+      "alternativ": "Discuri de cauciuc pentru haltere",
+      "descriere_imag": "Discuri rezistente la impact, ideale pentru drop-uri.",
+      "intervale_ore": [[0, 23]],
+      "licenta": "CC0"
+    },
+    {
+      "cale_relativa": "img1.png",
+      "nume_imag": "Corzi de sărit",
+      "alternativ": "Speed rope pentru double unders",
+      "descriere_imag": "Coardă de viteză pentru antrenamente intensive de cardio.",
+      "intervale_ore": [[0, 23]],
+      "licenta": "CC0"
+    },
+    {
+      "cale_relativa": "img2.png",
+      "nume_imag": "Inele Gimnastică",
+      "alternativ": "Inele de lemn suspendate",
+      "descriere_imag": "Inele pentru exerciții de tip calisthenics și forță.",
+      "intervale_ore": [[0, 23]],
+      "licenta": "CC0"
     }
   ]
 }

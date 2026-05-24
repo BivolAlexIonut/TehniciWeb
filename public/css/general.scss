@@ -524,472 +524,157 @@ footer {
 }
 
 // ============================================================
-// ANIMAȚII
+// Cerinta 2: Stil printare
 // ============================================================
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-50px);
+@media print {
+    @page { margin: 3cm 3cm 1cm 1cm; }
+    @page :left { margin-left: 0.4cm; }
+    body { background-color: white; color: #000; font-size: 12pt; }
+    header#titlu { background: white; border-bottom: none; page-break-after: always; }
+    img, iframe, video { display: none; }
+}
+
+// ============================================================
+// VIDEO STYLING
+// ============================================================
+#video-container {
+    max-width: 800px;
+    min-width: 300px;
+    width: 100%;
+    margin: 2rem auto;
+}
+
+video {
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+::cue {
+    background-color: #f0f0f0; 
+    color: #333333; 
+    font-size: 1.2rem;
+}
+
+// ============================================================
+// LINK STYLING (Identificator: stilizare-linkuri)
+// ============================================================
+a:visited {
+    color: var(--c-accent-magenta); 
+}
+
+a[href^='http']::before {
+    content: '↗';
+    font-size: 1.5em; 
+    margin-right: 0.3em;
+    display: inline-block;
+    transition: color var(--transition-speed);
+}
+
+a[href^='http']:hover::before {
+    color: var(--c-accent-cyan); 
+}
+
+main a:not(.meniu a) {
+    position: relative;
+    background-image: radial-gradient(circle, var(--c-base) 0%, var(--c-base) 40%, transparent 80%, transparent 100%);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 0% 0%;
+    transition: background-size var(--transition-speed) ease-in-out;
+}
+
+main a:not(.meniu a):hover {
+    background-size: 100% 100%;
+}
+
+a:active {
+    outline: 2px solid var(--c-accent-yellow);
+}
+
+// ============================================================
+// STATIC GALLERY STYLING
+// ============================================================
+#galerie-statica {
+    padding: 2rem 0;
+    width: 100%;
+    counter-reset: index-galerie;
+}
+
+.grid-galerie {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.item-galerie {
+    position: relative;
+    margin: 0;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    background-color: var(--c-bg-sec);
+    transition: all 1.2s ease-in-out;
+}
+
+.item-galerie img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    filter: brightness(50%);
+    transition: filter 1.2s ease-in-out;
+}
+
+.item-galerie figcaption {
+    padding: 1rem;
+    text-align: center;
+    background-color: var(--c-overlay-80);
+    color: var(--c-text-white);
+    transition: all 1.2s ease-in-out;
+}
+
+.index-imagine::before {
+    counter-increment: index-galerie;
+    content: counter(index-galerie, decimal-leading-zero) '. ';
+    font-weight: bold;
+    color: var(--c-base);
+}
+
+.item-galerie:hover img {
+    filter: brightness(100%);
+}
+
+.item-galerie:hover figcaption {
+    background-color: var(--c-base);
+    color: var(--c-bg-main);
+}
+
+@media screen and (min-width: 1000px) {
+    .grid-galerie {
+        grid-template-columns: repeat(3, 1fr);
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    .item-galerie:nth-child(4n+1) { grid-column: 1; }
+    .item-galerie:nth-child(4n+2) { grid-column: 2; }
+    .item-galerie:nth-child(4n+3) { grid-column: 2; }
+    .item-galerie:nth-child(4n+4) { grid-column: 3; }
+}
+
+@media screen and (min-width: 601px) and (max-width: 999px) {
+    .grid-galerie {
+        grid-template-columns: repeat(2, 1fr);
     }
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.2); color: var(--c-accent-yellow); }
-    100% { transform: scale(1); }
-}
-
-// ============================================================
-// SCROLLBAR CUSTOM
-// ============================================================
-::-webkit-scrollbar {
-    width: 12px;
-}
-
-::-webkit-scrollbar-track {
-    background: var(--c-bg-main);
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--c-base);
-    border-radius: 6px;
-    border: 3px solid var(--c-bg-main);
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--c-accent-yellow);
-}
-
-// ============================================================
-// MEDIA QUERIES
-// ============================================================
-@media screen and (max-width: 992px) {
-    body { 
-        --pagina-margin: 5%;
-        --grid-gap: 1.5rem;
-        --section-padding: 1.2rem;
-        font-size: 1.05rem; 
-    }
-    
-    img, iframe, video { max-width: 800px; }
-    
-    #grid-pagina {
-        grid-template-columns: 1fr 1fr;
-        grid-template-areas: 
-            "welcome welcome"
-            "promotii promotii"
-            "anunturi anunturi"
-            "orar orar"
-            "produse index-intrebari"
-            "aside aside";
+    .item-galerie {
+        grid-column: auto !important;
     }
 }
 
 @media screen and (max-width: 600px) {
-    body { 
-        --pagina-margin: 2%;
-        --grid-gap: 1rem;
-        --section-padding: 1rem;
-        font-size: 0.95rem; 
-    }
-    
-    img, iframe, video { min-width: 200px; }
-    
-    #grid-pagina {
+    .grid-galerie {
         grid-template-columns: 1fr;
-        grid-template-areas: 
-            "welcome"
-            "promotii"
-            "anunturi"
-            "orar"
-            "produse"
-            "index-intrebari"
-            "aside";
     }
-    
-    *, *::before, *::after {
-        animation: none !important;
-        transition: none !important;
-    }
-}
-
-// ============================================================
-// MATH ELEMENT
-// ============================================================
-math {
-    background: var(--c-white-05);
-    padding: 1.5rem;
-    border-radius: var(--border-radius);
-    border: 1px dashed var(--c-base);
-    display: inline-block;
-    margin: 1.5rem 0;
-    box-shadow: inset 0 0 10px var(--c-overlay-50);
-}
-
-math mi {
-    color: var(--c-accent-yellow);
-    font-weight: bold;
-    font-style: italic;
-    font-size: 1.2rem;
-}
-
-math mo {
-    color: var(--c-text-white);
-    font-size: 1.5rem;
-    padding: 0 0.5rem;
-}
-
-math mfrac {
-    border-color: var(--c-base);
-}
-
-math mn {
-    color: var(--c-accent-cyan);
-    font-weight: 900;
-    font-size: 1.1rem;
-}
-
-// ============================================================
-// EFECT CSS: TEXT ÎN COLOANE - efect-css-coloane-text
-// ============================================================
-.text-coloane {
-    column-count: 3;
-    column-gap: 2rem;
-    column-rule: 2px solid var(--c-base);
-    line-height: 1.8;
-    text-align: justify;
-
-    @media screen and (max-width: 992px) {
-        column-count: 2;
-    }
-
-    @media screen and (max-width: 600px) {
-        column-count: 1;
-        column-rule: none;
-    }
-}
-
-// ============================================================
-// EFECT CSS: TEXT CARE SE MIȘCĂ - efect-css-text-animat
-// ============================================================
-.text-marquee {
-    overflow: hidden;
-    position: relative;
-    height: 3rem;
-    background: linear-gradient(135deg, var(--c-orange-10), var(--c-overlay-30));
-    border: 2px solid var(--c-base);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    padding: 0 1rem;
-
-    p {
-        animation: marquee 15s linear infinite;
-        margin: 0;
-        white-space: nowrap;
-        color: var(--c-accent-yellow);
-        font-weight: bold;
-    }
-}
-
-@keyframes marquee {
-    0% {
-        transform: translateX(100%);
-    }
-    100% {
-        transform: translateX(-100%);
-    }
-}
-
-// ============================================================
-// EFECT CSS: BACKGROUND FIX LA SCROLL
-// ============================================================
-.hero-section {
-    background: linear-gradient(var(--c-overlay-70), var(--c-overlay-50)), url('../imagini/img1.png');
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: center;
-    padding: 4rem 2rem;
-    text-align: center;
-    min-height: 400px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    animation: bgShift 8s ease-in-out infinite;
-
-    h2 {
-        color: var(--c-accent-cyan);
-        font-size: 3rem;
-        text-shadow: 2px 2px 4px var(--c-overlay-80);
-    }
-}
-
-@keyframes bgShift {
-    0%, 100% {
-        background-position: center;
-    }
-    50% {
-        background-position: center 50px;
-    }
-}
-
-// ============================================================
-// EFECT CSS: DUOTONE - efect-css-duotone
-// ============================================================
-.image-duotone {
-    filter: saturate(1.5) contrast(1.2);
-    mix-blend-mode: multiply;
-    position: relative;
-
-    &::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(135deg, rgba(255, 77, 0, 0.4), rgba(0, 212, 255, 0.4));
-        mix-blend-mode: overlay;
-        pointer-events: none;
-    }
-}
-
-// ============================================================
-// EFECT CSS: REFLEXIE TEXT - efect-css-reflexie-text
-// ============================================================
-.heading-reflexie {
-    position: relative;
-    display: inline-block;
-    font-size: 2.5rem;
-    color: var(--c-base);
-    font-family: 'Eater', cursive;
-
-    &::after {
-        content: attr(data-text);
-        position: absolute;
-        left: 0;
-        top: calc(100% + 10px);
-        width: 100%;
-        background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), transparent);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        transform: scaleY(-1);
-        opacity: 0.4;
-        letter-spacing: inherit;
-        font-family: inherit;
-        font-size: inherit;
-        font-weight: inherit;
-    }
-}
-
-// ============================================================
-// Cerinta 2: Stil printare
-// ============================================================
-@media print {
-    // Margini pagina
-    @page {
-        margin-left: 3cm;
-        margin-right: 3cm;
-        margin-top: 1cm;
-        margin-bottom: 1cm;
-    }
-
-    @page :left {
-        margin-left: 0.4cm;
-    }
-
-    // Body - ascunde culoare background, setare text negru pe alb
-    body {
-        background-color: white;
-        color: #000;
-        padding: 0;
-        margin: 0;
-        font-size: 12pt;
-    }
-
-    // Header - ascunde background image si efecte
-    header#titlu {
-        background: white;
-        border-bottom: none;
-        padding: 1.5rem 0;
-        margin-bottom: 1.5rem;
-        text-align: center;
-        page-break-after: always;
-    }
-
-    #t {
-        text-shadow: none;
-        color: #000;
-        animation: none;
-        font-size: 2.5rem;
-    }
-
-    #t span {
-        -webkit-text-stroke: none;
-        color: #000;
-    }
-
-    // Meniu - afiseaza ca lista neordonata
-    nav {
-        background-color: white;
-        border-top: 1px solid #333;
-        border-bottom: 1px solid #333;
-        padding: 1rem 0;
-        margin: 1rem 0;
-
-        .meniu {
-            display: block;
-            list-style: disc;
-            padding-left: 2rem;
-
-            li {
-                display: list-item;
-                margin: 0.5rem 0;
-
-                ul {
-                    display: none;
-                }
-
-                div, a {
-                    text-decoration: none;
-                    color: #000;
-                    display: inline;
-                    text-shadow: none;
-                    padding: 0;
-                    background-color: white;
-                }
-            }
-        }
-
-        #hamburger {
-            display: none;
-        }
-
-        #ch-menu {
-            display: none;
-        }
-    }
-
-    // Grid - dezactiveaza display grid, revine la flow normal
-    #grid-pagina {
-        display: block;
-        gap: 0;
-
-        > section, > aside {
-            background-color: white;
-            border: 1px solid #999;
-            border-top: none;
-            padding: 0.5rem;
-            margin-bottom: 1.5rem;
-            border-radius: 0;
-            box-shadow: none;
-            page-break-inside: avoid;
-        }
-    }
-
-    // Ascunde elemente media
-    img, iframe, video {
-        display: none;
-    }
-
-    #clip-video, #stil-video {
-        display: none;
-    }
-
-    .taburi-iframe {
-        display: none;
-    }
-
-    // Linkuri - fara culoare, fara subliniature
-    a {
-        color: #000;
-        text-decoration: none;
-    }
-
-    // Banner la sfarsit de pagina
-    footer {
-        background-color: white;
-        border-top: 1px solid #333;
-        border-bottom: 4px inset #000;
-        padding: 1rem;
-        text-align: center;
-        margin-top: 2rem;
-        width: 70%;
-        margin-left: auto;
-        margin-right: auto;
-        color: #000;
-        page-break-inside: avoid;
-    }
-
-    // Ascunde elementele de interactivitate
-    #link-top {
-        display: none;
-    }
-
-    details {
-        background-color: white;
-        border: 1px solid #999;
-
-        summary {
-            color: #000;
-        }
-
-        summary::before {
-            content: "[+]";
-        }
-
-        &[open] summary::before {
-            content: "[-]";
-        }
-    }
-
-    // Ascunde forum si alte sectiuni care nu se vor printa
-    .forum {
-        display: none;
-    }
-
-    // Tabele - simplificami stilurile
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    th, td {
-        border: 1px solid #999;
-        padding: 0.5rem;
-        text-align: left;
-        color: #000;
-        background-color: white;
-    }
-
-    th {
-        background-color: #f0f0f0;
-        font-weight: bold;
-    }
-
-    // Titluri - negru pe alb
-    h1, h2, h3, h4, h5, h6 {
-        color: #000;
-        text-shadow: none;
-        border: none;
-        page-break-after: avoid;
-    }
-
-    // Blocuri de text
-    p {
-        orphans: 3;
-        widows: 3;
-    }
-
-    // Ascunde animatiile
-    *, *::before, *::after {
-        animation: none !important;
-        transition: none !important;
-        box-shadow: none !important;
+    .item-galerie {
+        grid-column: auto !important;
     }
 }

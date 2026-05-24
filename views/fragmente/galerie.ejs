@@ -1,0 +1,21 @@
+<div id="galerie-statica">
+  <h2>Galerie Produse (Statică)</h2>
+  <div class="grid-galerie">
+    <% imaginiGalerie.forEach((img, index) => { %>
+      <figure class="item-galerie">
+        <picture>
+          <source srcset="<%= img.cale_mic %>" media="(max-width: 600px)">
+          <source srcset="<%= img.cale_mediu %>" media="(max-width: 1000px)">
+          <img src="<%= img.cale_mare %>" alt="<%= img.alternativ || img.nume_imag %>" title="<%= img.descriere_imag %>">
+        </picture>
+        <figcaption>
+          <span class="index-imagine"></span>
+          <%= img.nume_imag %>
+          <% if (img.licenta === 'CC-BY') { %>
+            <br><small>Autor: <%= img.autor %> | Sursă: <a href="<%= img.sursa %>" target="_blank">Link</a></small>
+          <% } %>
+        </figcaption>
+      </figure>
+    <% }); %>
+  </div>
+</div>
