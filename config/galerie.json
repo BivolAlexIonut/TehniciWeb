@@ -2,52 +2,52 @@
   "cale_galerie": "/resurse/imagini/",
   "imagini": [
     {
-      "cale_relativa": "img1.png",
+      "cale_relativa": "haltere-olimpice.png",
       "nume_imag": "Haltere Olimpice",
-      "alternativ": "Haltere pentru antrenament de forță",
-      "descriere_imag": "Haltere profesionale folosite în competiții de weightlifting.",
+      "alternativ": "Haltere profesionale pentru weightlifting",
+      "descriere_imag": "Haltere rezistente, ideale pentru antrenamente de forță și competiții.",
       "intervale_ore": [[0, 23]],
       "licenta": "CC0"
     },
     {
-      "cale_relativa": "img2.png",
+      "cale_relativa": "bare-crossfit.png",
       "nume_imag": "Bare CrossFit",
-      "alternativ": "Bare metalice pentru tracțiuni",
-      "descriere_imag": "Echipament esențial pentru orice box de CrossFit.",
+      "alternativ": "Bare metalice pentru tracțiuni și gimnastică",
+      "descriere_imag": "Sistem de bare profesionale pentru antrenamente functionale intense.",
       "intervale_ore": [[0, 23]],
       "licenta": "CC-BY",
-      "autor": "John Doe",
+      "autor": "Echipa TehniciWeb",
       "sursa": "https://pixabay.com"
     },
     {
-      "cale_relativa": "img1.png",
+      "cale_relativa": "Kettlebells.png",
       "nume_imag": "Kettlebells",
-      "alternativ": "Greutăți tip kettlebell",
-      "descriere_imag": "Kettlebells variate pentru antrenamente de tip cardio și forță.",
+      "alternativ": "Greutăți tip kettlebell din fontă",
+      "descriere_imag": "Kettlebells echilibrate perfect pentru exerciții de tip swing și snatch.",
       "intervale_ore": [[0, 23]],
       "licenta": "CC0"
     },
     {
-      "cale_relativa": "img2.png",
+      "cale_relativa": "Discuri-Bumper.png",
       "nume_imag": "Discuri Bumper",
-      "alternativ": "Discuri de cauciuc pentru haltere",
-      "descriere_imag": "Discuri rezistente la impact, ideale pentru drop-uri.",
+      "alternativ": "Discuri de cauciuc colorate",
+      "descriere_imag": "Discuri rezistente la șocuri, concepute pentru a fi aruncate în siguranță.",
       "intervale_ore": [[0, 23]],
       "licenta": "CC0"
     },
     {
-      "cale_relativa": "img1.png",
+      "cale_relativa": "jumping-rope.jpg",
       "nume_imag": "Corzi de sărit",
-      "alternativ": "Speed rope pentru double unders",
-      "descriere_imag": "Coardă de viteză pentru antrenamente intensive de cardio.",
+      "alternativ": "Coardă de viteză pentru cardio",
+      "descriere_imag": "Coardă profesională cu rulmenți pentru double-unders rapide.",
       "intervale_ore": [[0, 23]],
       "licenta": "CC0"
     },
     {
-      "cale_relativa": "img2.png",
+      "cale_relativa": "Inele-Gimnastica.png",
       "nume_imag": "Inele Gimnastică",
-      "alternativ": "Inele de lemn suspendate",
-      "descriere_imag": "Inele pentru exerciții de tip calisthenics și forță.",
+      "alternativ": "Inele de lemn suspendate pe chingi",
+      "descriere_imag": "Inele din lemn de mesteacăn pentru stabilitate și forță în partea superioară.",
       "intervale_ore": [[0, 23]],
       "licenta": "CC0"
     }

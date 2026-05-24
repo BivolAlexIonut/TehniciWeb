@@ -101,40 +101,51 @@ $bs-gutter-y: 0;
 // ============================================================
 
 // Tema 1: CrossFit Orange
-.tema-crossfit {
-  --bs-bg-opacity: 1;
-  background-color: rgba($primary-color, var(--bs-bg-opacity));
-  color: $tertiary-color;
+.card.tema-crossfit {
+  background-color: $primary-color !important;
+  color: $tertiary-color !important;
+
+  .card-body, .card-header {
+    background-color: transparent !important;
+    color: inherit !important;
+  }
 
   .btn-primary {
-    background-color: $primary-dark;
-    border-color: $primary-dark;
+    background-color: $secondary-color;
+    border-color: $secondary-color;
+    color: white;
 
     &:hover {
-      background-color: $primary-light;
-      border-color: $primary-light;
+      background-color: $primary-dark;
+      border-color: $primary-dark;
     }
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    color: $accent-color;
+  h1, h2, h3, h4, h5, h6, .card-title {
+    color: white !important;
     font-family: $font-family-heading;
     font-weight: 700;
   }
 
-  p {
-    color: $tertiary-color;
+  p, .card-text {
+    color: $tertiary-color !important;
   }
 }
 
 // Tema 2: Dark Night
-.tema-dark {
-  background-color: $secondary-color;
-  color: $tertiary-color;
+.card.tema-dark {
+  background-color: $secondary-color !important;
+  color: $tertiary-color !important;
 
-  .btn-primary {
+  .card-body, .card-header {
+    background-color: transparent !important;
+    color: inherit !important;
+  }
+
+  .btn-primary, .btn-outline-primary {
     background-color: $primary-color;
     border-color: $primary-color;
+    color: white !important;
 
     &:hover {
       background-color: $primary-light;
@@ -142,13 +153,13 @@ $bs-gutter-y: 0;
     }
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    color: $primary-color;
+  h1, h2, h3, h4, h5, h6, .card-title {
+    color: $primary-color !important;
     font-family: $font-family-heading;
   }
 
-  p {
-    color: $tertiary-color;
+  p, .card-text {
+    color: $tertiary-color !important;
   }
 }
 

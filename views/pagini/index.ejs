@@ -7,11 +7,19 @@
 
       <section id="welcome">
         <hgroup>
-          <h2>Bine ati venit</h2>
+          <h2 class="heading-reflexie" data-text="Bine ati venit">Bine ati venit</h2>
           <p class="subtitlu">Partenerul tau in performanta</p>
         </hgroup>
 
-        <p class="intro">Va multumim ca ne vizitati site-ul. Echipa noastra este gata sa va ajute sa va atingeti obiectivele de fitness prin <b>antrenament</b> intens si <b>conditionare</b> fizica superioara.</p>
+        <div class="text-coloane">
+          <p class="intro">Va multumim ca ne vizitati site-ul. Echipa noastra este gata sa va ajute sa va atingeti obiectivele de fitness prin <b>antrenament</b> intens si <b>conditionare</b> fizica superioara. Magazinul CrossFit este dedicat furnizării de echipamente de cea mai înaltă calitate pentru atleții care nu acceptă compromisuri. Indiferent dacă ești la început de drum sau ești un veteran al competițiilor, avem soluțiile potrivite pentru tine. De la haltere olimpice la sisteme complexe de rack-uri, fiecare produs este testat pentru a rezista celor mai dure antrenamente.</p>
+        </div>
+
+        <!-- Element Duotone -->
+        <div id="container-duotone">
+          <h3>Efect Duotone</h3>
+          <div id="imagine-duotone"></div>
+        </div>
 
         <blockquote cite="https://ro.wikipedia.org/wiki/CrossFit">
           "The only way to do it is to do it." - Greg Glassman, Founder of CrossFit.
@@ -33,48 +41,20 @@
         </div>
         <p class="anunt intro">Produsele noastre sunt testate de atleti de top care pun pret pe <b>forta</b>. Puteti comanda online sau ne puteti vizita la showroom-ul nostru pentru a vedea noile noastre <b>masinarii</b>.</p>
 
-        <section>
-          <h3>Formula IMC (Indice de Masa Corporala)</h3>
-          <p>Calculeaza-ti singur nivelul de fitness:</p>
-          <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-            <mi>IMC</mi>
-            <mo>=</mo>
-            <mfrac>
-              <mi>greutate</mi>
-              <msup>
-                <mi>inaltime</mi>
-                <mn>2</mn>
-              </msup>
-            </mfrac>
-          </math>
-        </section>
-
         <div id="dv-prezentare-1">
           <div id="dv-prezentare">
             <figure>
-              <picture>
-                <source srcset="/resurse/imagini/img1.png" media="(max-width:700px)" />
-                <source srcset="/resurse/imagini/img2.png" media="(max-width:1200px)" />
-                <img src="/resurse/imagini/sigla.png" alt="Echipament CrossFit" title="Vedere de ansamblu echipament profesional">
-              </picture>
-              <figcaption>Echipament de antrenament profesional</figcaption>
-            </figure>
-          </div>
-        </div>
-
-        <hr class="prajituri" />
-
-        <div id="container-video">
-          <a href="/resurse/imagini/sigla.png" target="_self">
-            <img style="width:50%" class="farfurie" src="/resurse/imagini/sigla.png" alt="Sigla CrossFit" title="Click pentru a vedea imaginea marita">
-          </a>
-          <div id="centrare-video">
-            <div id="clip-video">
-              <div id="stil-video">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/jfKfPfyJRdk?playlist=mPZkdNFkNps,L_LUpnjgPso&autoplay=1&loop=1&controls=1&mute=1" title="Playlist YouTube CrossFit" style="border: none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-                </iframe>
+              <div id="video-container">
+                <video width="640" height="360" controls poster="/resurse/imagini/sigla.png" preload="metadata">
+                  <source src="/resurse/video/echipament.mp4" type="video/mp4">
+                  <source src="/resurse/video/echipament.webm" type="video/webm">
+                  <track src="/resurse/vtt/subtitrari_ro.vtt" kind="subtitles" srclang="ro" label="Română" default>
+                  <track src="/resurse/vtt/subtitrari_en.vtt" kind="subtitles" srclang="en" label="English">
+                  Browser-ul tău nu suportă tag-ul video.
+                </video>
               </div>
-            </div>
+              <figcaption class="centrat">Echipament de antrenament profesional</figcaption>
+            </figure>
           </div>
         </div>
       </section>
@@ -224,20 +204,7 @@
         <p>Mai multe detalii despre parteneriat aici: <a href="https://www.reebok.com/c/crossfit/partnership-details">https://www.reebok.com/<wbr>c/crossfit/<wbr>partnership-details</a></p>
       </aside>
 
-        <section id="video-prezentare">
-          <h2>Prezentare Echipament</h2>
-          <div id="video-container">
-            <video width="640" height="360" controls poster="/resurse/imagini/sigla.png" preload="metadata">
-              <source src="/resurse/video/echipament.mp4" type="video/mp4">
-              <source src="/resurse/video/echipament.webm" type="video/webm">
-              <track src="/resurse/vtt/subtitrari_ro.vtt" kind="subtitles" srclang="ro" label="Română" default>
-              <track src="/resurse/vtt/subtitrari_en.vtt" kind="subtitles" srclang="en" label="English">
-              Browser-ul tău nu suportă tag-ul video.
-            </video>
-          </div>
-        </section>
-
-        <section id="anunturi">
+      <section id="anunturi">
         <h2>Anunturi Recente</h2>
         
         <!-- Element Bootstrap: Alert pentru noutăți -->

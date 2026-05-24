@@ -18,7 +18,7 @@ body {
     --c-black: #000000;
     --c-black-meter: #222222;
     --c-transparent: transparent;
-    
+
     --c-overlay-80: rgba(0, 0, 0, 0.8);
     --c-overlay-60: rgba(0, 0, 0, 0.6);
     --c-overlay-50: rgba(0, 0, 0, 0.5);
@@ -103,14 +103,13 @@ header#titlu {
     border-bottom: 5px solid var(--c-base);
     border-radius: 0 0 var(--border-radius) var(--border-radius);
     margin-bottom: 3rem;
-    box-shadow: var(--box-shadow); 
+    box-shadow: var(--box-shadow);
 }
 
 #t {
     font-size: 5rem;
     margin: 0;
     text-shadow: 3px 3px 0px var(--c-text-shadow);
-    animation: fadeInDown 1s ease-out;
 }
 
 #t span {
@@ -129,7 +128,7 @@ main {
     display: grid;
     gap: var(--grid-gap);
     grid-template-columns: repeat(3, 1fr);
-    grid-template-areas: 
+    grid-template-areas:
         "welcome welcome welcome"
         "orar promotii promotii"
         "orar anunturi anunturi"
@@ -137,7 +136,7 @@ main {
 }
 
 // Cerinta 3: Izolarea vizuala a zonelor + Cerinta 4: Padding pentru text
-#grid-pagina > section, 
+#grid-pagina > section,
 #grid-pagina > aside {
     background: var(--c-bg-sec);
     padding: var(--section-padding);
@@ -168,28 +167,6 @@ img, iframe, video {
     min-width: 300px;
     height: auto;
     border-radius: 8px;
-}
-
-#clip-video {
-    width: 80%;
-    max-width: 1000px;
-    min-width: 300px;
-    margin: 2rem auto;
-}
-
-#stil-video {
-    position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-}
-
-#stil-video iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 3px solid var(--c-base);
 }
 
 blockquote {
@@ -233,52 +210,6 @@ blockquote::before {
 
 .intro-oferte div:hover {
     transform: scale(1.1);
-}
-
-// ============================================================
-// EFECT CSS: STILIZARE HR - efect-css-stilizare-hr
-// ============================================================
-.prajituri {
-    border: none;
-    height: 4px;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        var(--c-base),
-        var(--c-accent-cyan),
-        var(--c-base),
-        transparent
-    );
-    border-radius: 2px;
-    margin: 3rem 0;
-    position: relative;
-    opacity: 1;
-    animation: hrPulse 3s ease-in-out infinite;
-
-    &::after {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 14px;
-        height: 14px;
-        background: radial-gradient(circle, var(--c-base), var(--c-accent-cyan));
-        border-radius: 50%;
-        opacity: 0;
-        box-shadow: 0 0 20px var(--c-base);
-    }
-}
-
-@keyframes hrPulse {
-    0%, 100% {
-        opacity: 1;
-        box-shadow: 0 0 5px var(--c-base);
-    }
-    50% {
-        opacity: 0.8;
-        box-shadow: 0 0 15px var(--c-accent-cyan);
-    }
 }
 
 // ============================================================
@@ -490,13 +421,6 @@ footer {
     transform: rotate(360deg);
 }
 
-#triunghi {
-    border: none;
-    width: auto;
-    height: auto;
-    margin: 0;
-}
-
 #triunghi::after {
     content: "\2191";
     font-size: 2.5rem;
@@ -552,8 +476,8 @@ video {
 }
 
 ::cue {
-    background-color: #f0f0f0; 
-    color: #333333; 
+    background-color: #f0f0f0;
+    color: #333333;
     font-size: 1.2rem;
 }
 
@@ -561,19 +485,19 @@ video {
 // LINK STYLING (Identificator: stilizare-linkuri)
 // ============================================================
 a:visited {
-    color: var(--c-accent-magenta); 
+    color: var(--c-accent-magenta);
 }
 
 a[href^='http']::before {
     content: '↗';
-    font-size: 1.5em; 
+    font-size: 1.5em;
     margin-right: 0.3em;
     display: inline-block;
     transition: color var(--transition-speed);
 }
 
 a[href^='http']:hover::before {
-    color: var(--c-accent-cyan); 
+    color: var(--c-accent-cyan);
 }
 
 main a:not(.meniu a) {
@@ -594,7 +518,7 @@ a:active {
 }
 
 // ============================================================
-// STATIC GALLERY STYLING
+// STATIC GALLERY STYLING (ZIG-ZAG)
 // ============================================================
 #galerie-statica {
     padding: 2rem 0;
@@ -604,7 +528,6 @@ a:active {
 
 .grid-galerie {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     margin: 2rem 0;
 }
@@ -677,4 +600,80 @@ a:active {
     .item-galerie {
         grid-column: auto !important;
     }
+}
+
+// ============================================================
+// EFECTE AVANSATE
+// ============================================================
+#imagine-duotone {
+    position: relative;
+    background-image: url('../imagini/img1.png');
+    background-size: cover;
+    background-position: center;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    filter: brightness(120%) grayscale(0.5);
+    transition: all 1.2s linear;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+}
+
+#imagine-duotone::before, #imagine-duotone::after {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    transition: all 1.2s ease-in-out;
+}
+
+#imagine-duotone::before {
+    left: -100%;
+    background-color: var(--c-accent-cyan);
+    mix-blend-mode: lighten;
+}
+
+#imagine-duotone::after {
+    left: 100%;
+    background-color: var(--c-accent-magenta);
+    mix-blend-mode: darken;
+}
+
+#imagine-duotone:hover::before, #imagine-duotone:hover::after { left: 0; }
+
+.heading-reflexie {
+    position: relative;
+    display: inline-block;
+}
+
+.heading-reflexie::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 100%;
+    top: 0;
+    margin-left: 20px;
+    transform: scaleX(-1);
+    opacity: 0.3;
+}
+
+.text-coloane {
+    column-count: 3;
+    column-rule: 2px solid var(--c-base);
+    column-gap: 3rem;
+}
+
+@media screen and (max-width: 999px) {
+    .text-coloane { column-count: 1; }
+}
+
+// Clasa pentru centrare descriere video
+.centrat {
+    text-align: center;
+    display: block;
+    width: 100%;
+    margin: 1rem auto 2rem auto;
+    font-weight: bold;
+    color: var(--c-base);
+    font-size: 1.3rem;
 }
