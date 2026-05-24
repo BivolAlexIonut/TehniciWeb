@@ -1,18 +1,17 @@
-// Variabile CSS în selectorul body (pentru temă cromatică)
 body {
   --nav-bg: #000;
   --nav-text: #fff;
-  --nav-accent: #ff4d00; // Portocaliu CrossFit
+  --nav-accent: #ff4d00; 
   --nav-hover-bg: #333;
   --nav-shadow: rgba(255, 77, 0, 0.7);
   --transition-speed: 0.4s;
 }
 
-// Variabile SASS pentru valori repetitive
+// variabile pentru valori repetitive
 $mobile-break: 600px;
 $tablet-break: 992px;
 
-// Extend pentru stiluri de link/buton
+// stiluri de link/buton(extend)
 %nav-item-style {
   display: block;
   padding: 15px 20px;
@@ -22,14 +21,12 @@ $tablet-break: 992px;
   transition: all var(--transition-speed) ease;
 }
 
-// Cerinta 1: Task meniu
 nav {
   background-color: var(--nav-bg);
   position: relative;
   width: 100%;
 
-  // Cerinta 2 (Bonus): Hamburger icon creat cu divuri/span
-  #ch-menu { display: none; } // Checkbox hack ascuns
+  #ch-menu { display: none; } // checkbox ascuns
 
   #hamburger {
     display: none;
@@ -46,7 +43,7 @@ nav {
     margin: 0;
     padding: 0;
 
-    // Selectori imbricați (Nesting)
+    // selectori imbricati
     li {
       position: relative;
       flex-grow: 1;
@@ -58,17 +55,17 @@ nav {
         text-shadow: 0 -50px 0 transparent; // Umbra pornește de sus (invizibilă)
       }
 
-      // Tranziție umbră și culoare pe ecran mare
+      // tranzitie pentru umbra(la hover)
       &:hover {
         background-color: var(--nav-hover-bg);
         
         > div, > a {
           color: var(--nav-accent);
-          text-shadow: 0 0 2px var(--nav-shadow); // Umbra alunecă și se aliniază
+          text-shadow: 0 0 2px var(--nav-shadow); //efect ca de fade
           transition: text-shadow 0.5s ease, color 0.3s ease;
         }
 
-        // Deschidere submeniu (Scalare verticală)
+        // Deschidere submeniu scalare verticala cu y
         ul {
           transform: scaleY(1);
         }
@@ -95,7 +92,7 @@ nav {
             padding: 12px 20px;
             position: relative;
             
-            // Subliniere treptată
+            // Subliniere (treptata)
             &::after {
               content: '';
               position: absolute;
@@ -119,7 +116,6 @@ nav {
     }
   }
 
-  // Layout Ecran Mediu (Tabletă)
   @media (max-width: $tablet-break) {
     .meniu li {
       .text-icon { display: none; } // Ascunde textul
@@ -131,13 +127,11 @@ nav {
     }
   }
 
-  // Layout Ecran Mic (Burger Menu)
-  // Cerinta 2 (Bonus): Animatie hamburgeru la aparizie pe ecran mic
   @media (max-width: $mobile-break) {
     #hamburger { display: block; }
 
-    #acasa { display: none; } // Prima opțiune (text) dispare
-    #acasa-mediu { display: block !important; } // Apare iconița căsuță
+    #acasa { display: none; }
+    #acasa-mediu { display: block !important; }
 
     .meniu {
       display: none; // Ascuns implicit
@@ -147,20 +141,20 @@ nav {
         width: 100%;
         text-align: left;
 
-        // Animație litere comprimate -> depărtate
+        //aniamtie litere comprimate
         div, a {
           animation: spreadLetters 0.6s forwards;
-          text-shadow: none !important; // Dezactivare umbră conform cerinței
+          text-shadow: none !important; //dezactivare umbra
         }
 
         &:hover {
-          background-color: var(--nav-accent); // Doar schimbare background
+          background-color: var(--nav-accent); 
           color: #000;
         }
 
         ul {
           position: static;
-          transform: scaleY(1); // Mereu vizibil sau toggle diferit pe mobil
+          transform: scaleY(1); 
         }
       }
     }
@@ -171,14 +165,13 @@ nav {
   }
 }
 
-// Cerinta 3 (Bonus): Fiecare bara din hamburger cu animatie succesiva cu delay
-// Instrucțiune repetitivă pentru delay-ul animației elementelor din listă (Mobil)
-@for $i from 1 through 10 {
-  .meniu li:nth-child(#{$i}) {
-    animation-delay: #{$i * 0.1}s;  // Delay diferit pentru fiecare element
+//delayuri progresive
+@for $i from 1 through 3 {
+  #hamburger-container .bar-#{$i} {
+    animation: hamburgerBarAnimation 0.6s ease forwards;
+    animation-delay: #{($i - 1) * 0.3}s; // delay succesiv: 0s, 300ms, 600ms
   }
 }
-
 
 @keyframes spreadLetters {
   from {
@@ -191,50 +184,21 @@ nav {
   }
 }
 
-// ============================================================
-// EFECTE CSS ADIȚIONALE
-// ============================================================
-
-// Efect DUOTONE pe butoane - efect-css-duotone
-.btn-duotone {
-  background: linear-gradient(135deg, #ff4d00 0%, #ffb366 100%);
-  mix-blend-mode: screen;
-  filter: saturate(1.2) contrast(1.1);
-  position: relative;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(255, 77, 0, 0.3) 0%, rgba(0, 0, 0, 0.3) 100%);
-    mix-blend-mode: multiply;
-    border-radius: inherit;
-    pointer-events: none;
+//keyframes cu 3 cadre cheie
+@keyframes hamburgerBarAnimation {
+  0% {
+    background-color: var(--nav-text);
+    opacity: 0;
+    transform: scaleX(0) rotateZ(-90deg);
   }
-}
-
-// Efect REFLEXIE pe text - efect-css-reflexie-text
-.text-reflexie {
-  position: relative;
-  display: inline-block;
-  
-  &::after {
-    content: attr(data-text);
-    position: absolute;
-    left: 0;
-    top: 100%;
-    width: 100%;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), transparent);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    transform: scaleY(-1);
-    opacity: 0.5;
-    letter-spacing: inherit;
-    font-family: inherit;
-    font-size: inherit;
+  50% {
+    background-color: var(--nav-accent);
+    opacity: 0.6;
+    transform: scaleX(0.7) rotateZ(-45deg);
+  }
+  100% {
+    background-color: var(--nav-text);
+    opacity: 1;
+    transform: scaleX(1) rotateZ(0deg);
   }
 }

@@ -20,11 +20,11 @@ const PORT = 8080;
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views', 'pagini'));
 
-// Static files cu prefix /public
-app.use('/public', express.static(path.join(__dirname, 'public')));
+// Static files cu prefix /resurse
+app.use('/resurse', express.static(path.join(__dirname, 'public')));
 
-// Verificare pentru /public fără fișier (TREBUIE DUPĂ express.static)
-app.use('/public', (req, res, next) => {
+// Verificare pentru /resurse fără fișier (TREBUIE DUPĂ express.static)
+app.use('/resurse', (req, res, next) => {
   // Verific dacă cererea este la un folder (fără extensie de fișier)
   const caleRequest = decodeURIComponent(req.path);
   if (caleRequest.endsWith('/')) {

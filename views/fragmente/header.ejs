@@ -1,6 +1,6 @@
   <header id="header-principal">
     <h1 id="t">Magazin <span>CrossFit</span></h1>
-    <img src="/public/imagini/sigla.png" alt="sigla" style="max-height: 50px;" usemap="#map-sigla" />
+    <img src="/resurse/imagini/sigla.png" alt="sigla" style="max-height: 50px;" usemap="#map-sigla" />
 
     <map name="map-sigla">
       <area shape="rect" coords="0,0,50,50" href="/" alt="Acasa">
@@ -8,15 +8,22 @@
 
     <nav>
       <label id="hamburger" for="ch-menu">
-        <i class="fas fa-bars"></i>
+        <div id="hamburger-container">
+          <span class="bar bar-1"></span>
+          <span class="bar bar-2"></span>
+          <span class="bar bar-3"></span>
+        </div>
       </label>
       <input type="checkbox" id="ch-menu" />
       <ul class="meniu">
         <li>
-          <div class="text-icon" id="acasa">Acasa</div>
-          <div class="imag-icon" id="acasa-mediu">
-            <span class="fas fa-regular fa-house"></span>
-          </div>
+          <label for="ch-acasa" style="cursor: pointer; width: 100%; display: block;">
+            <div class="text-icon" id="acasa">Acasa</div>
+            <div class="imag-icon" id="acasa-mediu">
+              <span class="fas fa-regular fa-house"></span>
+            </div>
+          </label>
+          <input type="checkbox" id="ch-acasa" class="ch-submeniu" />
           <ul>
             <li><a href="/#welcome">Bine ati venit</a></li>
             <li><a href="/#promotii">Promotii</a></li>
@@ -33,7 +40,8 @@
           <div class="imag-icon"><span class="fas fa-solid fa-user-plus"></span></div>
         </li>
         <li>
-          <div><a href="/despre">Despre</a></div>
+          <div><label for="ch-despre" style="cursor: pointer; width: 100%; display: block;">Despre</label></div>
+          <input type="checkbox" id="ch-despre" class="ch-submeniu" />
           <ul>
             <li><a href="/despre#prezentare">Prezentare</a></li>
             <li><a href="/despre#istoric">Istoric</a></li>
@@ -42,20 +50,13 @@
           </ul>
         </li>
         <li>
-          <div>Produse</div>
+          <div><label for="ch-produse" style="cursor: pointer; width: 100%; display: block;">Produse</label></div>
+          <input type="checkbox" id="ch-produse" class="ch-submeniu" />
           <ul>
             <li><a href="#">Toate</a></li>
             <li><a href="#">Echipament</a></li>
             <li><a href="#">Accesorii</a></li>
             <li><a href="#">Incaltaminte</a></li>
-          </ul>
-        </li>
-        <li>
-          <div><i class="fas fa-images"></i> Galerie</div>
-          <ul>
-            <li><a href="/galerie">Galeria Statica</a></li>
-            <li><a href="/galerie-animata">Galeria Animata</a></li>
-            <li><a href="/efecte-css">Efecte CSS Demo</a></li>
           </ul>
         </li>
         <li><a href="#"><i class="fa-regular fa-envelope"></i> Contact</a></li>
