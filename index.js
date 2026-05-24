@@ -438,8 +438,13 @@ app.get('/galerie', (req, res) => {
 });
 
 // Rută generică pentru pagini
-app.get('/:pagina', (req, res) => {
-  const pagina = req.params.pagina;
+app.get(/^\/(.*)$/, (req, res) => {
+  // Extrag numele paginii din grupul de captură al expresiei regulate
+  let pagina = req.params[0];
+  
+  if (pagina === '' || pagina === undefined || pagina === '/') pagina = 'index';
+  if (pagina.endsWith('/')) pagina = pagina.slice(0, -1); // Eliminăm slash-ul de la final dacă există
+
   res.render(pagina, { ipUtilizator: res.locals.ipUtilizator }, (err, html) => {
     if (err) {
       if (err.message.includes('Failed to lookup view')) {

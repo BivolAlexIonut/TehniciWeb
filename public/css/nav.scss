@@ -49,7 +49,7 @@ nav {
       flex-grow: 1;
       text-align: center;
 
-      div, a {
+      div, a, label {
         @extend %nav-item-style;
         font-weight: bold;
         text-shadow: 0 -50px 0 transparent; // Umbra pornește de sus (invizibilă)
@@ -59,7 +59,7 @@ nav {
       &:hover {
         background-color: var(--nav-hover-bg);
         
-        > div, > a {
+        > div, > a, > label, > label > div, > div > a, > div > span, > label > span {
           color: var(--nav-accent);
           text-shadow: 0 0 2px var(--nav-shadow); //efect ca de fade
           transition: text-shadow 0.5s ease, color 0.3s ease;
@@ -123,7 +123,7 @@ nav {
         display: block; 
         font-size: 1.2rem;
       }
-      div, a { font-size: 0.9rem; }
+      div, a, label { font-size: 0.9rem; }
     }
   }
 
@@ -142,7 +142,7 @@ nav {
         text-align: left;
 
         //aniamtie litere comprimate
-        div, a {
+        div, a, label {
           animation: spreadLetters 0.6s forwards;
           text-shadow: none !important; //dezactivare umbra
         }
@@ -162,6 +162,10 @@ nav {
     #ch-menu:checked ~ .meniu {
       display: flex;
     }
+  }
+
+  .ch-submeniu {
+    display: none;
   }
 }
 

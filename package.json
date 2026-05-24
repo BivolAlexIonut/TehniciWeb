@@ -1,7 +1,7 @@
 {
-  "name": "magazin-crossfit",
+  "name": "tehnici-web-proiect",
   "version": "1.0.0",
-  "description": "Magazin dedicat antrenamentelor functionale cu echipament CrossFit",
+  "description": "Proiect pentru disciplina Tehnici Web - Magazin CrossFit",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -12,10 +12,11 @@
     "url": "git+https://github.com/BivolAlexIonut/TehniciWeb.git"
   },
   "keywords": [
+    "Tehnici Web",
+    "EJS",
+    "Express",
     "CrossFit",
-    "fitness",
-    "echipament",
-    "antrenament"
+    "Proiect Scolar"
   ],
   "author": "Bivol Alexandru-Ionut",
   "license": "ISC",
