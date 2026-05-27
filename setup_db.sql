@@ -84,7 +84,22 @@ INSERT INTO produse (nume, descriere, imagine, categorie, tip_livrare, pret, gre
 ('SkiErg Concept2', 'Simulator de schi Concept2 cu monitor PM5, antrenament complet pentru partea superioara.', '/resurse/imagini/skierg-c2.png', 'Echipamente', 'Curier', 5800.00, 21.00, '2025-06-01', 'Negru', 'Otel,Aluminiu,Plastic', true),
 ('Wall Ball 4kg', 'Minge medicinala de 4kg pentru wall balls, cusuta manual, umplutura moale.', '/resurse/imagini/wallball-4kg.png', 'Echipamente', 'Curier', 85.00, 4.00, '2025-07-10', 'Negru', 'Piele sintetica,Nisip', false),
 ('Wall Ball 9kg', 'Minge medicinala de 9kg pentru wall balls, dimensiuni reglementate competitie.', '/resurse/imagini/wallball-9kg.png', 'Echipamente', 'Curier', 120.00, 9.00, '2025-07-10', 'Gri', 'Piele sintetica,Nisip', true),
-('Palmare CrossFit', 'Palmare de protectie pentru CrossFit cu 3 gauri, previn bataturile la tractiuni si muscle-ups.', '/resurse/imagini/palmare-crossfit.png', 'Accesorii', 'Posta', 95.00, 0.08, '2025-08-01', 'Negru', 'Carbon,Piele,Nylon', true);
+('Palmare CrossFit', 'Palmare de protectie pentru CrossFit cu 3 gauri, previn bataturile la tractiuni si muscle-ups.', '/resurse/imagini/palmare-crossfit.png', 'Accesorii', 'Posta', 95.00, 0.08, '2025-08-01', 'Negru', 'Carbon,Piele,Nylon', true),
+('Ashwagandha 500mg', 'Supliment pe baza de plante pentru reducerea stresului si recuperare.', '/resurse/imagini/ashwagandha.png', 'Suplimente', 'Curier', 45.00, 0.10, '2023-10-01', 'Alb', 'Extract de Ashwagandha', false),
+('Beta-Alanina 300g', 'Supliment pre-workout pentru cresterea rezistentei musculare.', '/resurse/imagini/beta-alanine-supplement.png', 'Suplimente', 'Curier', 65.00, 0.30, '2023-09-15', 'Alb', 'Beta-Alanina pura', false),
+('Pantaloni scurti CrossFit', 'Pantaloni scurti usori, elastici, perfecti pentru mobilitate in WOD-uri.', '/resurse/imagini/crossfit-pants.png', 'Imbracaminte', 'Curier', 120.00, 0.20, '2023-08-20', 'Negru', 'Poliester,Elastan', false),
+('Set Haltere Olimpice', 'Haltere cu greutati interschimbabile, standard olimpic.', '/resurse/imagini/haltere-olimpice.png', 'Echipamente', 'Curier', 850.00, 50.00, '2022-11-10', 'Argintiu', 'Otel', true),
+('Supliment Fier 30 tablete', 'Sustine formarea normala a globulelor rosii si a hemoglobinei.', '/resurse/imagini/iron-supplement.png', 'Suplimente', 'Posta', 30.00, 0.05, '2023-05-05', 'Alb', 'Fier', false),
+('Coarda de sarit Viteza', 'Coarda de viteza ajustabila pentru double unders perfecte.', '/resurse/imagini/jumping-rope.jpg', 'Accesorii', 'Posta', 45.00, 0.15, '2023-03-25', 'Negru', 'Cablu otel,Plastic', true),
+('Magneziu + B6', 'Sustine functionarea normala a sistemului nervos si muscular.', '/resurse/imagini/magnesium.png', 'Suplimente', 'Posta', 40.00, 0.05, '2023-04-12', 'Alb', 'Magneziu', false),
+('Incaltaminte Nike Romaleos', 'Pantofi de haltere ofera stabilitate maxima in timpul ridicarilor.', '/resurse/imagini/nike-squa-shoes romaleos.png', 'Incaltaminte', 'Curier', 950.00, 1.20, '2023-02-18', 'Alb,Negru', 'Piele sintetica,Cauciuc,TPU', true),
+('Omega 3 Ulei de Peste', 'Supliment cu acizi grasi esentiali pentru sanatatea inimii si articulatiilor.', '/resurse/imagini/omega3.png', 'Suplimente', 'Curier', 55.00, 0.10, '2023-01-10', 'Galben', 'Ulei de peste', false),
+('Incaltaminte Reebok Nano X', 'Pantofi versatili pentru alergare, ridicari si WOD-uri intense.', '/resurse/imagini/reebook-crossfit-shoes.png', 'Incaltaminte', 'Curier', 550.00, 0.80, '2022-07-22', 'Negru,Rosu', 'Textil,Cauciuc', true),
+('Tricou CrossFit', 'Tricou respirabil pentru confort sporit in timpul antrenamentului.', '/resurse/imagini/tricou-crossfit.png', 'Imbracaminte', 'Posta', 85.00, 0.15, '2023-06-30', 'Gri', 'Bumbac,Poliester', false),
+('Incaltaminte TYR CXT-1', 'Stabilitate exceptionala si suport pentru ridicari si antrenamente functionale.', '/resurse/imagini/tyr-crossfit-shoes.png', 'Incaltaminte', 'Curier', 680.00, 0.85, '2023-08-05', 'Albastru', 'Nylon,Cauciuc', true),
+('Incaltaminte U-Form', 'Model customizabil prin incalzire pentru a se mula perfect pe picior.', '/resurse/imagini/u-form-crossfit-shoes.png', 'Incaltaminte', 'Curier', 600.00, 0.90, '2022-10-14', 'Negru', 'Sintetic,Cauciuc', true),
+('Incaltaminte Velites', 'Usori si rezistenti, perfecti pentru viteza in WOD-uri de metcon.', '/resurse/imagini/velites-crossfit-shoes.png', 'Incaltaminte', 'Curier', 520.00, 0.75, '2023-05-18', 'Verde', 'Textil,Cauciuc', false),
+('Vitamina K2 100mcg', 'Sustine metabolismul osos si sanatea cardiovasculara.', '/resurse/imagini/vitamin-k2.png', 'Suplimente', 'Posta', 35.00, 0.05, '2023-11-20', 'Alb', 'Vitamina K2', false);
 
 -- 6. Inserare seturi si asocieri (Bonus 17)
 INSERT INTO seturi (nume_set, descriere_set) VALUES
