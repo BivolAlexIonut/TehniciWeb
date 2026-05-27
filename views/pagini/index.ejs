@@ -88,6 +88,31 @@
         </section>
       </section>
 
+      <section id="produse-noi" class="mb-5 mt-4 pt-4 border-top">
+        <h2 class="text-center mb-4 text-primary"><i class="fa-solid fa-fire text-danger"></i> Cele mai noi apariții</h2>
+        <% if(locals.produseNoi && produseNoi.length > 0) { %>
+          <div class="row row-cols-1 row-cols-md-3 g-4">
+            <% produseNoi.forEach(p => { %>
+              <div class="col">
+                <a href="/produs/<%- p.id %>" class="text-decoration-none text-dark">
+                  <div class="card h-100 shadow-sm border-0 position-relative transition">
+                    <span class="badge bg-danger position-absolute top-0 start-0 m-2 px-3 py-2 fs-6" style="z-index:2;">NOU</span>
+                    <div class="card-img-top-container p-3 d-flex align-items-center justify-content-center bg-light rounded-top" style="height: 220px;">
+                      <img src="<%- p.imagine %>" class="img-fluid transition" alt="<%- p.nume %>" style="max-height: 100%; object-fit: contain;">
+                    </div>
+                    <div class="card-body text-center bg-white rounded-bottom">
+                      <h5 class="card-title text-truncate"><%- p.nume %></h5>
+                      <span class="badge bg-secondary mb-2"><%- p.categorie %></span>
+                      <p class="text-success fw-bold fs-5 mb-0"><%- p.pret %> RON</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            <% }) %>
+          </div>
+        <% } %>
+      </section>
+
       <section id="produse">
         <h2>Produsele noastre</h2>
         <p>Popularitatea magazinului în acest moment:</p>

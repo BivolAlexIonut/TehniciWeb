@@ -6,14 +6,14 @@
 // ============================================================
 // 1. VARIABILE PERSONALIZATE - CULORI
 // ============================================================
-$primary-color: #ff4d00;      // Portocal principal
-$primary-dark: #cc3d00;       // Portocal închis
-$primary-light: #ff6d1a;      // Portocal deschis
-$secondary-color: #1a1a1a;    // Negru/Dark
-$tertiary-color: #f0f0f0;     // Gri deschis
-$accent-color: #00d4ff;       // Cyan accent
-$success-color: #28a745;      // Verde
-$danger-color: #dc3545;       // Roșu
+$primary-color: #dc2626;      // Rosu principal
+$primary-dark: #991b1b;       // Rosu inchis
+$primary-light: #ef4444;      // Rosu deschis
+$secondary-color: #0a0a0a;    // Negru pur/Dark
+$tertiary-color: #f8fafc;     // Alb/Off-white
+$accent-color: #fca5a5;       // Rosu accent luminos
+$success-color: #10b981;      // Verde
+$danger-color: #ef4444;       // Rosu modern
 
 // ============================================================
 // 2. VARIABILE PERSONALIZATE - DIMENSIUNI FONT
@@ -29,8 +29,8 @@ $font-size-h6: 1rem;
 // ============================================================
 // 3. VARIABILE PERSONALIZATE - FAMILY FONT
 // ============================================================
-$font-family-base: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-$font-family-heading: 'Madimi One', 'Eater', display;
+$font-family-base: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+$font-family-heading: 'Montserrat', sans-serif;
 $font-family-monospace: 'Courier New', monospace;
 
 // ============================================================
@@ -91,10 +91,94 @@ $bs-border-radius-sm: $border-radius-sm;
 $bs-gutter-x: 1.5rem;
 $bs-gutter-y: 0;
 
+// Form Range Variables (Bonus)
+$form-range-thumb-width: 1.5rem;  // 50% mai mare (de la 1rem default)
+$form-range-thumb-height: 1.5rem; 
+$form-range-thumb-bg: #28a745;     // Culoare bulina (Verde - success)
+$form-range-track-bg: #e9ecef;     // Culoare slider background
+$form-range-thumb-active-bg: #198754;
+
 // ============================================================
 // 7. IMPORT BOOTSTRAP
 // ============================================================
 @import 'bootstrap/scss/bootstrap';
+
+// Teme Globale (Theme switcher) - Redefinire variabile pentru general.css
+body.theme-light {
+    // Redefinim CSS Variables pentru a se aplica in tot layout-ul din general.css
+    --c-bg-main: #f8fafc;
+    --c-bg-sec: #ffffff;
+    --c-text-white: #171717;
+    --c-text-gray: #525252;
+    --c-border-dark: #e5e5e5;
+    --c-border-light: #d4d4d4;
+    --c-border-gray: #a3a3a3;
+    --c-black: #ffffff;
+    --c-overlay-80: rgba(255, 255, 255, 0.9);
+    --c-overlay-60: rgba(255, 255, 255, 0.7);
+    --c-overlay-50: rgba(255, 255, 255, 0.5);
+    --c-overlay-30: rgba(255, 255, 255, 0.3);
+    --c-white-05: rgba(0, 0, 0, 0.05);
+    
+    background-color: var(--c-bg-main);
+    color: var(--c-text-white);
+    
+    .bg-light { background-color: #f5f5f5 !important; color: #171717 !important; }
+    .card { background-color: #ffffff; color: #171717; border-color: #e5e5e5; }
+    .text-muted { color: #525252 !important; }
+}
+
+body.theme-dark {
+    --c-bg-main: #0a0a0a;
+    --c-bg-sec: #171717;
+    --c-text-white: #f8fafc;
+    --c-text-gray: #a3a3a3;
+    --c-border-dark: #262626;
+    --c-border-light: #404040;
+    --c-border-gray: #737373;
+    --c-black: #000000;
+    --c-overlay-80: rgba(0, 0, 0, 0.8);
+    --c-overlay-60: rgba(0, 0, 0, 0.6);
+    --c-overlay-50: rgba(0, 0, 0, 0.5);
+    --c-overlay-30: rgba(0, 0, 0, 0.3);
+    --c-white-05: rgba(255, 255, 255, 0.05);
+
+    background-color: var(--c-bg-main);
+    color: var(--c-text-white);
+    
+    .bg-light { background-color: #171717 !important; color: #fff !important; }
+    .card { background-color: #171717; color: #fff; border-color: #262626; }
+    .text-muted { color: #a3a3a3 !important; }
+}
+
+body.theme-crossfit {
+    // Warm - Bej / Galben cald
+    --c-base: #d4a017;
+    --c-dark-orange: #b8860b;
+    --c-accent-yellow: #f0c040;
+    --c-bg-main: #fdf6e3;
+    --c-bg-sec: #f5edd6;
+    --c-text-white: #3d2b1f;
+    --c-text-gray: #6b5b4f;
+    --c-border-dark: #e0d5c1;
+    --c-border-light: #d4c9b5;
+    --c-border-gray: #a89880;
+    --c-black: #fdf6e3;
+    --c-overlay-80: rgba(253, 246, 227, 0.9);
+    --c-overlay-60: rgba(253, 246, 227, 0.7);
+    --c-overlay-50: rgba(253, 246, 227, 0.5);
+    --c-overlay-30: rgba(253, 246, 227, 0.3);
+    --c-white-05: rgba(0, 0, 0, 0.04);
+    
+    background-color: var(--c-bg-main);
+    color: var(--c-text-white);
+    
+    .bg-light { background-color: #f5edd6 !important; color: #3d2b1f !important; }
+    .text-primary { color: #d4a017 !important; }
+    .btn-primary { background-color: #d4a017; border-color: #d4a017; color: #fff; }
+    .card { border: 1px solid #e0d5c1; background-color: #f5edd6; color: #3d2b1f; }
+    .text-muted { color: #6b5b4f !important; }
+}
 
 // ============================================================
 // 8. TEME PERSONALIZATE

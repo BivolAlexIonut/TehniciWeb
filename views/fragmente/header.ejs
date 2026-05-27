@@ -1,10 +1,12 @@
   <header id="header-principal">
-    <h1 id="t">Magazin <span>CrossFit</span></h1>
-    <img src="/resurse/imagini/sigla.png" alt="sigla" style="max-height: 50px;" usemap="#map-sigla" />
-
-    <map name="map-sigla">
-      <area shape="rect" coords="0,0,50,50" href="/" alt="Acasa">
-    </map>
+    <div id="header-top-bar">
+      <h1 id="t">Magazin <span>CrossFit</span></h1>
+      <select id="select-tema" aria-label="Schimba Tema">
+        <option value="light">☀ Light</option>
+        <option value="dark">🌙 Dark</option>
+        <option value="crossfit">🌅 Warm</option>
+      </select>
+    </div>
 
     <nav>
       <div id="info-utilizator">
@@ -56,12 +58,16 @@
           <div><label for="ch-produse" style="cursor: pointer; width: 100%; display: block;">Produse</label></div>
           <input type="checkbox" id="ch-produse" class="ch-submeniu" />
           <ul>
-            <li><a href="#">Toate</a></li>
-            <li><a href="#">Echipament</a></li>
-            <li><a href="#">Accesorii</a></li>
-            <li><a href="#">Incaltaminte</a></li>
+            <li><a href="/produse">Toate</a></li>
+            <% if(locals.optiuniMeniu) { %>
+                <% for(let categ of optiuniMeniu) { %>
+                    <li><a href="/produse?categorie=<%- encodeURIComponent(categ) %>"><%- categ %></a></li>
+                <% } %>
+            <% } %>
+            <li><a href="/seturi">Seturi (Oferte)</a></li>
           </ul>
         </li>
+
         <li><a href="#"><i class="fa-regular fa-envelope"></i> Contact</a></li>
       </ul>
     </nav>

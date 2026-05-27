@@ -3,3 +3,4 @@ temp/
 logs/
 backup/
 fisiere_uploadate/
+*.exe

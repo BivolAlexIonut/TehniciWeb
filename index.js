@@ -3,6 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const sass = require('sass');
 const sharp = require('sharp');
+const db = require('./util/db'); // Modul baza de date
 const app = express();
 
 // ============================================================
@@ -276,9 +277,14 @@ function getGalerieData() {
 // ============================================================
 // MIDDLEWARE PENTRU DATE GLOBALE
 // ============================================================
-app.use((req, res, next) => {
+app.use(async (req, res, next) => {
   res.locals.ipUtilizator = req.ip || '::1';
   res.locals.imaginiGalerie = getGalerieData();
+  try {
+      res.locals.optiuniMeniu = await db.getCategorii(); // Pentru meniul de produse
+  } catch(e) {
+      res.locals.optiuniMeniu = [];
+  }
   next();
 });
 
@@ -286,15 +292,26 @@ app.use((req, res, next) => {
 // RUTELE EXPRESS
 // ============================================================
 
-app.get(['/', '/index', '/home'], (req, res) => {
-  res.render('index', (err, html) => {
-    if (err) {
-      console.error('❌ EROARE la randare index:', err);
-      afisareEroare(res);
-    } else {
-      res.send(html);
-    }
-  });
+app.get(['/', '/index', '/home'], async (req, res) => {
+  try {
+      const produse = await db.getProduse();
+      // Produse noi (Bonus 18) - sortate invers cronologic
+      const produseNoi = produse.sort((a, b) => new Date(b.data_adaugare) - new Date(a.data_adaugare)).slice(0, 3);
+      
+      res.render('index', {
+          produseNoi: produseNoi
+      }, (err, html) => {
+          if (err) {
+              console.error('❌ EROARE la randare index:', err);
+              afisareEroare(res);
+          } else {
+              res.send(html);
+          }
+      });
+  } catch(err) {
+      console.error('Eroare pe ruta index:', err);
+      afisareEroare(res, 500);
+  }
 });
 
 app.get('/favicon.ico', (req, res) => {
@@ -303,6 +320,121 @@ app.get('/favicon.ico', (req, res) => {
 
 app.get(/.*\.ejs$/, (req, res) => {
   afisareEroare(res, 400);
+});
+
+// ============================================================
+// RUTĂ PENTRU PAGINA DE PRODUSE
+// ============================================================
+app.get('/produse', async (req, res) => {
+    try {
+        let produse = await db.getProduse();
+        
+        // Logica pentru filtrare server-side (Bonus 10a/10b)
+        // Daca exista query params, filtram:
+        if (Object.keys(req.query).length > 0) {
+            let nume = req.query.nume || '';
+            let categorie = req.query.categorie || 'oricare';
+            // Poti adauga mai multe filtre aici daca utilizatorul opteaza pentru filtrare backend
+            produse = produse.filter(p => p.nume.toLowerCase().includes(nume.toLowerCase()));
+            if (categorie !== 'oricare') {
+                produse = produse.filter(p => p.categorie === categorie);
+            }
+        }
+
+        // Extragere min/max pret pentru range input (Bonus 1)
+        let minPret = 0, maxPret = 0;
+        if (produse.length > 0) {
+            minPret = Math.min(...produse.map(p => parseFloat(p.pret)));
+            maxPret = Math.max(...produse.map(p => parseFloat(p.pret)));
+        }
+
+        res.render('produse', {
+            produse: produse,
+            minPret: minPret,
+            maxPret: maxPret
+        });
+    } catch (err) {
+        console.error('Eroare la preluare produse pentru ruta /produse', err);
+        afisareEroare(res, 500, 'Eroare Baza de Date', 'Nu am putut prelua produsele din baza de date.');
+    }
+});
+
+// ============================================================
+// RUTĂ PENTRU PAGINA UNICĂ A UNUI PRODUS
+// ============================================================
+app.get('/produs/:id', async (req, res) => {
+    try {
+        const id = parseInt(req.params.id);
+        const produs = await db.getProdusById(id);
+        if (!produs) {
+            afisareEroare(res, 404, 'Produs Inexistent', 'Produsul cerut nu a fost gasit in baza de date.');
+            return;
+        }
+
+        const seturi = await db.getSeturiPentruProdus(id);
+        
+        // Produse similare (Bonus 16) - ex. produse din aceeasi categorie
+        let produse = await db.getProduse();
+        const produseSimilare = produse.filter(p => p.categorie === produs.categorie && p.id !== produs.id).slice(0, 3);
+
+        res.render('produs', {
+            produs: produs,
+            seturi: seturi,
+            produseSimilare: produseSimilare
+        });
+    } catch (err) {
+        console.error('Eroare la preluare produs unic', err);
+        afisareEroare(res, 500);
+    }
+});
+
+// ============================================================
+// RUTĂ API PENTRU OFERTA CURENTĂ (Bonus 12)
+// ============================================================
+app.get('/api/oferta', (req, res) => {
+    const ofertePath = path.join(__dirname, 'config', 'oferte.json');
+    if (fs.existsSync(ofertePath)) {
+        try {
+            const data = JSON.parse(fs.readFileSync(ofertePath, 'utf8'));
+            if (data && data.oferte && data.oferte.length > 0) {
+                // Prima oferta este cea mai noua
+                let oferta = data.oferte[0];
+                let now = new Date().getTime();
+                if (now < oferta["data-finalizare"]) {
+                    return res.json(oferta);
+                }
+            }
+        } catch(e) {}
+    }
+    res.json(null);
+});
+
+// ============================================================
+// RUTĂ API PENTRU COMPARARE PRODUS (Bonus 20)
+// ============================================================
+app.get('/api/produs_complet/:id', async (req, res) => {
+    try {
+        const id = parseInt(req.params.id);
+        const produs = await db.getProdusById(id);
+        res.json(produs || {});
+    } catch(err) {
+        res.json({});
+    }
+});
+
+// ============================================================
+// RUTĂ PENTRU PAGINA SETURI (Bonus 17)
+// ============================================================
+app.get('/seturi', async (req, res) => {
+    try {
+        const seturi = await db.getToateSeturile();
+        res.render('seturi', {
+            seturi: seturi
+        });
+    } catch (err) {
+        console.error('Eroare la preluare seturi pentru ruta /seturi', err);
+        afisareEroare(res, 500, 'Eroare Baza de Date', 'Nu am putut prelua seturile din baza de date.');
+    }
 });
 
 app.get('/galerie', (req, res) => {
@@ -344,6 +476,9 @@ function pornireServer() {
   compilareInitialaScss();
   monitorizareScss();
   initErori();
+  
+  // Initiere intervale pentru oferte si curatare backup
+  require('./util/oferte').initIntervale();
 
   app.listen(PORT, () => {
     console.log(`✅ Server pornit pe http://localhost:${PORT}`);

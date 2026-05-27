@@ -1,0 +1,34 @@
+{
+  "oferte": [
+    {
+      "categorie": "Echipamente",
+      "data-incepere": 1779888437477,
+      "data-finalizare": 1779888557477,
+      "reducere": 50
+    },
+    {
+      "categorie": "Suplimente",
+      "data-incepere": 1779888317455,
+      "data-finalizare": 1779888437455,
+      "reducere": 40
+    },
+    {
+      "categorie": "Incaltaminte",
+      "data-incepere": 1779888197565,
+      "data-finalizare": 1779888317565,
+      "reducere": 45
+    },
+    {
+      "categorie": "Echipamente",
+      "data-incepere": 1779888077425,
+      "data-finalizare": 1779888197425,
+      "reducere": 15
+    },
+    {
+      "categorie": "Imbracaminte",
+      "data-incepere": 1779888031188,
+      "data-finalizare": 1779888151188,
+      "reducere": 25
+    }
+  ]
+}

@@ -1,9 +1,9 @@
 body {
-  --nav-bg: #000;
-  --nav-text: #fff;
-  --nav-accent: #ff4d00; 
-  --nav-hover-bg: #333;
-  --nav-shadow: rgba(255, 77, 0, 0.7);
+  --nav-bg: #0a0a0a;
+  --nav-text: #f8fafc;
+  --nav-accent: #dc2626; 
+  --nav-hover-bg: #1a1a1a;
+  --nav-shadow: rgba(220, 38, 38, 0.7);
   --transition-speed: 0.4s;
 }
 
@@ -59,7 +59,7 @@ nav {
       &:hover {
         background-color: var(--nav-hover-bg);
         
-        > div, > a, > label, > label > div, > div > a, > div > span, > label > span {
+        > div, > a, > label, > label > div, > div > a, > div > label, > div > span, > label > span {
           color: var(--nav-accent);
           text-shadow: 0 0 2px var(--nav-shadow); //efect ca de fade
           transition: text-shadow 0.5s ease, color 0.3s ease;

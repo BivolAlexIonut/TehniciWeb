@@ -10,28 +10,28 @@
       "licenta": "CC0"
     },
     {
-      "cale_relativa": "bare-crossfit.png",
-      "nume_imag": "Bare CrossFit",
-      "alternativ": "Bare metalice pentru tracțiuni și gimnastică",
-      "descriere_imag": "Sistem de bare profesionale pentru antrenamente functionale intense.",
+      "cale_relativa": "bara-olimpica-20kg.png",
+      "nume_imag": "Bara Olimpica",
+      "alternativ": "Bara olimpica din otel pentru haltere",
+      "descriere_imag": "Bara olimpica cu rulmenti, ideala pentru ridicari grele si antrenamente de forta.",
       "intervale_ore": [[0, 23]],
       "licenta": "CC-BY",
       "autor": "Echipa TehniciWeb",
       "sursa": "https://pixabay.com"
     },
     {
-      "cale_relativa": "Kettlebells.png",
-      "nume_imag": "Kettlebells",
-      "alternativ": "Greutăți tip kettlebell din fontă",
-      "descriere_imag": "Kettlebells echilibrate perfect pentru exerciții de tip swing și snatch.",
+      "cale_relativa": "kettlebell-16kg.png",
+      "nume_imag": "Kettlebell",
+      "alternativ": "Kettlebell din fontă de 16kg",
+      "descriere_imag": "Kettlebell echilibrat perfect pentru exerciții de tip swing și snatch.",
       "intervale_ore": [[0, 23]],
       "licenta": "CC0"
     },
     {
-      "cale_relativa": "Discuri-Bumper.png",
+      "cale_relativa": "set-discuri-bumper.png",
       "nume_imag": "Discuri Bumper",
-      "alternativ": "Discuri de cauciuc colorate",
-      "descriere_imag": "Discuri rezistente la șocuri, concepute pentru a fi aruncate în siguranță.",
+      "alternativ": "Set discuri bumper olimpice colorate",
+      "descriere_imag": "Set complet de discuri bumper rezistente la șocuri, pentru antrenamente intense.",
       "intervale_ore": [[0, 23]],
       "licenta": "CC0"
     },
@@ -44,7 +44,7 @@
       "licenta": "CC0"
     },
     {
-      "cale_relativa": "Inele-Gimnastica.png",
+      "cale_relativa": "inele-gimnastica-set.png",
       "nume_imag": "Inele Gimnastică",
       "alternativ": "Inele de lemn suspendate pe chingi",
       "descriere_imag": "Inele din lemn de mesteacăn pentru stabilitate și forță în partea superioară.",
