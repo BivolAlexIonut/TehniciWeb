@@ -118,16 +118,16 @@ document.addEventListener("DOMContentLoaded", function() {
             const pPret = parseFloat(prod.dataset.pret);
             const pLivrare = prod.querySelector('.val-livrare').innerText.toLowerCase();
             const pCateg = prod.dataset.categorie;
-            const pCuloare = prod.querySelector('.list-group-item:nth-child(3)').innerText.split(':')[1].trim();
-            const pMateriale = prod.querySelector('.list-group-item:nth-child(4)').innerText.split(':')[1].trim();
+            const pCuloare = prod.querySelector('.val-culoare').innerText.trim();
+            const pMateriale = prod.querySelector('.val-materiale').innerText.trim();
             const pComp = prod.querySelector('.val-competitie').innerText.toLowerCase();
-            const isNou = prod.querySelector('.badge') !== null;
+            const isNou = prod.querySelector('.badge-nou') !== null;
 
             if (vNume && !pNume.startsWith(vNume)) show = false;
             if (vDesc && !pDescText.includes(vDesc)) show = false;
             if (pPret > vPretMax) show = false;
             if (vLivrare && !pLivrare.includes(vLivrare)) show = false;
-            if (vCateg !== "oricare" && pCateg !== vCateg) show = false;
+            if (vCateg !== "oricare" && pCateg.trim().toLowerCase() !== vCateg.trim().toLowerCase()) show = false;
             if (optsCuloare.length > 0 && !optsCuloare.includes(pCuloare)) show = false;
             if (vComp !== "oricare") {
                 if (vComp === "da" && pComp !== "da") show = false;
@@ -233,17 +233,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // ----------------------------------------------------
     // Evenimente (Bonus 4 onchange)
-    // ----------------------------------------------------
-    const allInputs = [inputNume, inputDescriere, inputPret, inputLivrare, inputCategorie, inputCuloare, inputNoutati];
-    document.querySelectorAll('.chk-material, input[name="rad-competitii"]').forEach(i => allInputs.push(i));
-
-    allInputs.forEach(inp => {
-        inp.addEventListener("change", filtreaza);
-        if (inp.type === "text" || inp.tagName === "TEXTAREA") {
-            inp.addEventListener("keyup", filtreaza);
-        }
-    });
-
+    // Preluam toate inputurile de filtrare
+    const allInputs = [inputNume, inputDescriere, inputPret, inputLivrare, inputCategorie, inputCuloare, inputNoutati, ...document.querySelectorAll('.chk-material'), ...document.querySelectorAll('input[name="rad-competitii"]')];
+    
+    // Filtrarea se va face DOAR la apasarea butonului "Filtreaza"
+    // allInputs.forEach(inp => {
+    //     inp.addEventListener("change", filtreaza);
+    //     if (inp.type === "text" || inp.tagName === "TEXTAREA") {
+    //         inp.addEventListener("keyup", filtreaza);
+    //     }
+    // });
+    
+    // ====================================================
     btnFiltrare.addEventListener("click", filtreaza);
 
     function suntInputuriValide() {
@@ -375,13 +376,13 @@ document.addEventListener("DOMContentLoaded", function() {
             const modal = new bootstrap.Modal(document.getElementById('produsModal'));
             
             document.getElementById('modalNumeProdus').innerText = prod.dataset.nume;
-            document.getElementById('modalImagine').src = prod.querySelector('.card-img-top').src;
+            document.getElementById('modalImagine').src = prod.querySelector('img.img-fluid').src;
             document.getElementById('modalPret').innerText = prod.dataset.pret;
             document.getElementById('modalDescriere').innerText = prod.querySelector('.descriere-produs').innerText;
             document.getElementById('modalCategorie').innerText = prod.dataset.categorie;
             document.getElementById('modalGreutate').innerText = prod.dataset.greutate;
-            document.getElementById('modalCuloare').innerText = prod.querySelector('.list-group-item:nth-child(3)').innerText.split(':')[1].trim();
-            document.getElementById('modalMateriale').innerText = prod.querySelector('.list-group-item:nth-child(4)').innerText.split(':')[1].trim();
+            document.getElementById('modalCuloare').innerText = prod.querySelector('.val-culoare').innerText.trim();
+            document.getElementById('modalMateriale').innerText = prod.querySelector('.val-materiale').innerText.trim();
             document.getElementById('modalLink').href = `/produs/${prod.id.split('-')[1]}`;
 
             modal.show();

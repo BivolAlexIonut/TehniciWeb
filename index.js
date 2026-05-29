@@ -337,7 +337,7 @@ app.get('/produse', async (req, res) => {
             // Poti adauga mai multe filtre aici daca utilizatorul opteaza pentru filtrare backend
             produse = produse.filter(p => p.nume.toLowerCase().includes(nume.toLowerCase()));
             if (categorie !== 'oricare') {
-                produse = produse.filter(p => p.categorie === categorie);
+                produse = produse.filter(p => p.categorie.toLowerCase() === categorie.toLowerCase());
             }
         }
 

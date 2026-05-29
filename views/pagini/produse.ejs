@@ -4,8 +4,8 @@
     <%- include('../fragmente/head') %>
     <title>Produse - Magazin CrossFit</title>
     <!-- Adaugam scripturile noastre -->
-    <script src="/js/produse.js" defer></script>
-    <script src="/js/comparare.js" defer></script>
+    <script src="/resurse/js/produse.js" defer></script>
+    <script src="/resurse/js/comparare.js" defer></script>
 </head>
 <body>
     <%- include('../fragmente/header') %>
@@ -169,7 +169,7 @@
         <div class="d-flex justify-content-between mb-3">
             <h5 class="text-muted">Total produse afișate: <span id="numar-produse"><%= produse.length %></span></h5>
             <!-- Paginare (Bonus 5) Container -->
-            <nav aria-label="Pagina produse">
+            <nav aria-label="Pagina produse" class="bg-transparent" style="background-color: transparent !important;">
                 <ul class="pagination pagination-sm m-0" id="paginare-container">
                     <!-- Linkurile for fi generate prin JS -->
                 </ul>
@@ -210,7 +210,7 @@
                         }
                     %>
                     <% if(isNou) { %>
-                        <span class="badge bg-danger position-absolute top-0 start-0 m-2 px-3 py-2 fs-6 z-index-1">NOU</span>
+                        <span class="badge badge-nou bg-danger position-absolute top-0 start-0 m-2 px-3 py-2 fs-6 z-index-1">NOU</span>
                     <% } %>
 
                     <!-- Butoane vizibilitate produs (Bonus 6) -->
@@ -233,8 +233,8 @@
                             <ul class="list-unstyled small mb-0">
                                 <li class="mb-1"><span class="fw-bold bg-light px-1 rounded">Pret:</span> <span class="val-pret fw-bold text-success fs-6"><%- p.pret %></span> RON</li>
                                 <li class="mb-1"><span class="fw-bold bg-light px-1 rounded">Greutate:</span> <%- p.greutate %> kg</li>
-                                <li class="mb-1"><span class="fw-bold bg-light px-1 rounded">Culoare:</span> <%- p.culoare %></li>
-                                <li class="mb-1"><span class="fw-bold bg-light px-1 rounded">Materiale:</span> <%- p.materiale %></li>
+                                <li class="mb-1"><span class="fw-bold bg-light px-1 rounded">Culoare:</span> <span class="val-culoare"><%- p.culoare %></span></li>
+                                <li class="mb-1"><span class="fw-bold bg-light px-1 rounded">Materiale:</span> <span class="val-materiale"><%- p.materiale %></span></li>
                                 <li class="mb-1"><span class="fw-bold bg-light px-1 rounded">Tip Livrare:</span> <span class="val-livrare"><%- p.tip_livrare %></span></li>
                                 <li class="mb-1"><span class="fw-bold bg-light px-1 rounded">Pentru Competitii:</span> <span class="val-competitie"><%- p.pentru_competitii ? 'Da' : 'Nu' %></span></li>
                                 <li class="mb-1"><span class="fw-bold bg-light px-1 rounded">Data adaugare:</span> <time datetime="<%- p.data_adaugare %>"><%- dataFormata %></time></li>
