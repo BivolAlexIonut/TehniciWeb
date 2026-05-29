@@ -4,7 +4,7 @@
     <%- include('../fragmente/head') %>
     <title><%- produs.nume %> - Magazin CrossFit</title>
     <!-- Adaugam script pentru comparare si orar etc -->
-    <script src="/js/comparare.js" defer></script>
+    <script src="/resurse/js/comparare.js" defer></script>
 </head>
 <body>
     <%- include('../fragmente/header') %>
@@ -24,18 +24,19 @@
             <div class="col-md-6 mb-4 mb-md-0">
                 <div id="caruselProdus" class="carousel slide carousel-dark shadow-sm rounded overflow-hidden" data-bs-ride="carousel">
                     <div class="carousel-inner bg-light d-flex align-items-center" style="height: 400px;">
-                        <!-- Imagine principala -->
-                        <div class="carousel-item active w-100 h-100 text-center">
-                            <img src="<%- produs.imagine %>" class="d-block w-100 h-100" style="object-fit: contain; padding: 20px;" alt="<%- produs.nume %> 1">
-                        </div>
-                        <!-- Imagini simulate (Bonus 9 - simulare carusel din aceeasi imagine pentru exemplificare daca nu exista variante) -->
-                        <div class="carousel-item w-100 h-100 text-center">
-                            <img src="<%- produs.imagine %>" class="d-block w-100 h-100" style="object-fit: contain; padding: 20px; filter: grayscale(100%);" alt="<%- produs.nume %> 2">
-                        </div>
-                        <div class="carousel-item w-100 h-100 text-center">
-                            <img src="<%- produs.imagine %>" class="d-block w-100 h-100" style="object-fit: contain; padding: 20px; filter: sepia(100%);" alt="<%- produs.nume %> 3">
-                        </div>
+                        <% if(locals.imaginiProdus && imaginiProdus.length > 0) { %>
+                            <% imaginiProdus.forEach((imgUrl, idx) => { %>
+                                <div class="carousel-item <%- idx === 0 ? 'active' : '' %> w-100 h-100 text-center">
+                                    <img src="<%- imgUrl %>" class="d-block w-100 h-100" style="object-fit: contain; padding: 20px;" alt="<%- produs.nume %> <%- idx + 1 %>">
+                                </div>
+                            <% }) %>
+                        <% } else { %>
+                            <div class="carousel-item active w-100 h-100 text-center">
+                                <img src="<%- produs.imagine %>" class="d-block w-100 h-100" style="object-fit: contain; padding: 20px;" alt="<%- produs.nume %>">
+                            </div>
+                        <% } %>
                     </div>
+                    <% if(locals.imaginiProdus && imaginiProdus.length > 1) { %>
                     <button class="carousel-control-prev" type="button" data-bs-target="#caruselProdus" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
@@ -44,6 +45,7 @@
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
+                    <% } %>
                 </div>
             </div>
 

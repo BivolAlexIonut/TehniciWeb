@@ -2,9 +2,11 @@
 
 document.addEventListener("DOMContentLoaded", function() {
 
-    // ========================================================
-    // BONUS 12: OFERTE SPECIALE
-    // ========================================================
+    /**
+     * Sectiunea pentru Oferte Speciale (Bonus 12).
+     * Cere de la server oferta actuala si, daca exista, modifica pretul produselor in timp real.
+     * Include si un cronometru care arata cat timp mai este pana expira.
+     */
     function incarcaOferta() {
         fetch('/api/oferta')
             .then(r => r.json())
@@ -70,9 +72,11 @@ document.addEventListener("DOMContentLoaded", function() {
     incarcaOferta();
 
 
-    // ========================================================
-    // BONUS 20: COMPARARE 2 PRODUSE
-    // ========================================================
+    /**
+     * Sistemul de Comparare a Produselor (Bonus 20).
+     * Salveaza pana la 2 produse in browser (localStorage) pentru a nu se pierde la refresh.
+     * Deschide o fereastra noua cu un tabel de comparare intre cele doua produse alese.
+     */
     let listaComparare = JSON.parse(localStorage.getItem('produseComparare') || '[]');
     let ultimaModificare = parseInt(localStorage.getItem('produseComparareTime') || '0');
 
@@ -106,9 +110,11 @@ document.addEventListener("DOMContentLoaded", function() {
             btnComparaToate.forEach(btn => {
                 if (listaComparare.length >= 2) {
                     btn.disabled = true;
+                    btn.style.pointerEvents = 'auto'; // Fortam hover-ul pentru a aparea mesajul title
                     btn.title = "Ștergeți un produs din lista de comparare";
                 } else {
                     btn.disabled = false;
+                    btn.style.pointerEvents = '';
                     btn.title = "";
                 }
             });

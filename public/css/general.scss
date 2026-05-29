@@ -94,9 +94,7 @@ a:hover {
     text-shadow: 0 0 10px var(--c-base);
 }
 
-// ============================================================
-// HEADER SECTION
-// ============================================================
+/* --- Header section --- */
 header#titlu {
     background: linear-gradient(var(--c-overlay-80), var(--c-overlay-60)), url('../imagini/img1.png');
     background-size: cover;
@@ -234,9 +232,7 @@ blockquote::before {
     transform: scale(1.1);
 }
 
-// ============================================================
-// TABEL RESPONSIVE
-// ============================================================
+/* --- Tabel responsive --- */
 #tab-orar {
     width: 100%;
     margin: 1.5rem 0;
@@ -285,9 +281,7 @@ blockquote::before {
     box-shadow: inset 0 0 20px var(--c-base);
 }
 
-// ============================================================
-// IFRAME CONTAINER
-// ============================================================
+/* --- Iframe container --- */
 .container-iframe {
     margin-top: 2rem;
     display: flex;
@@ -333,9 +327,7 @@ iframe[name="ifr-video"] {
     position: relative;
 }
 
-// ============================================================
-// METER ELEMENT
-// ============================================================
+/* --- Meter element --- */
 meter {
     width: 100%;
     height: 25px;
@@ -353,9 +345,7 @@ meter::-webkit-meter-optimum-value {
     border-radius: 12px;
 }
 
-// ============================================================
-// DETAILS/SUMMARY
-// ============================================================
+/* --- Details/summary --- */
 details {
     background: var(--c-overlay-30);
     margin-bottom: 1rem;
@@ -394,9 +384,7 @@ details p {
     margin: 0;
 }
 
-// ============================================================
-// FOOTER
-// ============================================================
+/* --- Footer --- */
 footer {
     background: var(--c-black);
     padding: 4rem 2rem;
@@ -469,9 +457,7 @@ footer {
     opacity: 1;
 }
 
-// ============================================================
-// Cerinta 2: Stil printare
-// ============================================================
+/* --- Cerinta 2: stil printare --- */
 @media print {
     @page { margin: 3cm 3cm 1cm 1cm; }
     @page :left { margin-left: 0.4cm; }
@@ -480,9 +466,7 @@ footer {
     img, iframe, video { display: none; }
 }
 
-// ============================================================
-// VIDEO STYLING
-// ============================================================
+/* --- Video styling --- */
 #video-container {
     max-width: 800px;
     min-width: 300px;
@@ -503,9 +487,7 @@ video {
     font-size: 1.2rem;
 }
 
-// ============================================================
-// LINK STYLING (Identificator: stilizare-linkuri)
-// ============================================================
+/* --- Link styling (identificator: stilizare-linkuri) --- */
 a:visited {
     color: var(--c-accent-magenta);
 }
@@ -539,9 +521,7 @@ a:active {
     outline: 2px solid var(--c-accent-yellow);
 }
 
-// ============================================================
-// STATIC GALLERY STYLING (ZIG-ZAG)
-// ============================================================
+/* --- Static gallery styling (zig-zag) --- */
 #galerie-statica {
     padding: 2rem 0;
     width: 100%;
@@ -624,9 +604,7 @@ a:active {
     }
 }
 
-// ============================================================
-// EFECTE AVANSATE
-// ============================================================
+/* --- Efecte avansate --- */
 #imagine-duotone {
     position: relative;
     background-image: url('../imagini/img1.png');
@@ -664,9 +642,7 @@ a:active {
 
 #imagine-duotone:hover::before, #imagine-duotone:hover::after { left: 0; }
 
-// ============================================================
-// EFFECT: TEXT REFLECTION (Identificator: efect-css-reflexie-text)
-// ============================================================
+/* --- Effect: text reflection (identificator: efect-css-reflexie-text) --- */
 .heading-reflexie {
     position: relative;
     display: inline-block;
@@ -713,9 +689,7 @@ a:active {
     font-size: 1.3rem;
 }
 
-// ============================================================
-// STILIZARE SELECT TEMA (Theme Selector)
-// ============================================================
+/* --- Stilizare select tema (theme selector) --- */
 #select-tema {
     background-color: var(--c-bg-sec);
     color: var(--c-text-white);

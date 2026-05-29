@@ -3,9 +3,7 @@
 // Tema cromatică CrossFit: Portocal (#ff4d00) + Dark (#1a1a1a)
 // ============================================================
 
-// ============================================================
-// 1. VARIABILE PERSONALIZATE - CULORI
-// ============================================================
+/* --- 1. variabile personalizate - culori --- */
 $primary-color: #dc2626;      // Rosu principal
 $primary-dark: #991b1b;       // Rosu inchis
 $primary-light: #ef4444;      // Rosu deschis
@@ -15,9 +13,7 @@ $accent-color: #fca5a5;       // Rosu accent luminos
 $success-color: #10b981;      // Verde
 $danger-color: #ef4444;       // Rosu modern
 
-// ============================================================
-// 2. VARIABILE PERSONALIZATE - DIMENSIUNI FONT
-// ============================================================
+/* --- 2. variabile personalizate - dimensiuni font --- */
 $font-size-base: 1rem;
 $font-size-h1: 3rem;
 $font-size-h2: 2.5rem;
@@ -26,23 +22,17 @@ $font-size-h4: 1.5rem;
 $font-size-h5: 1.25rem;
 $font-size-h6: 1rem;
 
-// ============================================================
-// 3. VARIABILE PERSONALIZATE - FAMILY FONT
-// ============================================================
+/* --- 3. variabile personalizate - family font --- */
 $font-family-base: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 $font-family-heading: 'Montserrat', sans-serif;
 $font-family-monospace: 'Courier New', monospace;
 
-// ============================================================
-// 4. VARIABILE PERSONALIZATE - BORDER RADIUS
-// ============================================================
+/* --- 4. variabile personalizate - border radius --- */
 $border-radius: 0.5rem;
 $border-radius-lg: 1rem;
 $border-radius-sm: 0.25rem;
 
-// ============================================================
-// 5. VARIABILE PERSONALIZATE - BREAKPOINTS
-// ============================================================
+/* --- 5. variabile personalizate - breakpoints --- */
 $grid-breakpoints: (
   xs: 0,
   sm: 576px,
@@ -56,9 +46,7 @@ $grid-breakpoints: (
 $breakpoint-md: 768px;
 $breakpoint-lg: 992px;
 
-// ============================================================
-// 6. OVERRIDE VARIABILE BOOTSTRAP
-// ============================================================
+/* --- 6. override variabile bootstrap --- */
 $bs-primary: $primary-color;
 $bs-secondary: $secondary-color;
 $bs-success: $success-color;
@@ -98,9 +86,7 @@ $form-range-thumb-bg: #28a745;     // Culoare bulina (Verde - success)
 $form-range-track-bg: #e9ecef;     // Culoare slider background
 $form-range-thumb-active-bg: #198754;
 
-// ============================================================
-// 7. IMPORT BOOTSTRAP
-// ============================================================
+/* --- 7. import bootstrap --- */
 @import 'bootstrap/scss/bootstrap';
 
 // Teme Globale (Theme switcher) - Redefinire variabile pentru general.css
@@ -180,9 +166,7 @@ body.theme-crossfit {
     .text-muted { color: #6b5b4f !important; }
 }
 
-// ============================================================
-// 8. TEME PERSONALIZATE
-// ============================================================
+/* --- 8. teme personalizate --- */
 
 // Tema 1: CrossFit Orange
 .card.tema-crossfit {
@@ -247,9 +231,7 @@ body.theme-crossfit {
   }
 }
 
-// ============================================================
-// 9. RESPONSIVE STYLES
-// ============================================================
+/* --- 9. responsive styles --- */
 
 // Ecrane medii (768px - 991px)
 @media (min-width: $breakpoint-md) and (max-width: 991px) {
@@ -297,9 +279,7 @@ body.theme-crossfit {
   }
 }
 
-// ============================================================
-// 10. COMPONENTE BOOTSTRAP PERSONALIZATE
-// ============================================================
+/* --- 10. componente bootstrap personalizate --- */
 
 // Butoane personalizate
 .btn {
@@ -391,9 +371,7 @@ body.theme-crossfit {
   }
 }
 
-// ============================================================
-// 11. STILIZARE HR PERSONALIZATĂ (EFECT CSS)
-// ============================================================
+/* --- 11. stilizare hr personalizată (efect css) --- */
 hr {
   border: none;
   height: 4px;

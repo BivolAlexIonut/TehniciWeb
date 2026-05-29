@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const inputNoutati = document.getElementById("chk-noutati");
     
     const btnFiltrare = document.getElementById("btn-filtrare");
+    const btnFiltrareServer = document.getElementById("btn-filtrare-server");
     const btnReset = document.getElementById("btn-reset");
     const btnSortAsc = document.getElementById("btn-sort-asc");
     const btnSortDesc = document.getElementById("btn-sort-desc");
@@ -38,9 +39,10 @@ document.addEventListener("DOMContentLoaded", function() {
         valPret.innerText = this.value;
     });
 
-    // ----------------------------------------------------
-    // Bonus 6: Butoane vizibilitate
-    // ----------------------------------------------------
+    /**
+     * Setari pentru vizibilitatea produselor (Bonus 6).
+     * Controleaza butoanele de "Pastreaza permanent", "Ascunde temporar" si "Ascunde pe toata sesiunea".
+     */
     function initButoaneVizibilitate() {
         const ascunseSesiune = JSON.parse(sessionStorage.getItem('produseAscunse') || '[]');
 
@@ -78,9 +80,10 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // ----------------------------------------------------
-    // FUNCTIA DE FILTRARE
-    // ----------------------------------------------------
+    /**
+     * Functia principala de filtrare a produselor.
+     * Verifica fiecare input de pe pagina si ascunde produsele care nu se potrivesc cu filtrele alese.
+     */
     function filtreaza() {
         // Validare inputuri
         if (inputNume.value.match(/^[0-9]+$/)) {
@@ -155,9 +158,10 @@ document.addEventListener("DOMContentLoaded", function() {
         actualizeazaAfisare();
     }
 
-    // ----------------------------------------------------
-    // Bonus 14: Cel mai ieftin
-    // ----------------------------------------------------
+    /**
+     * Evidentierea celui mai ieftin produs (Bonus 14).
+     * Gaseste produsul cu pretul cel mai mic din fiecare categorie vizibila si ii adauga un chenar verde.
+     */
     function marcheazaCelMaiIeftin(produse) {
         // Stergem marcajele vechi
         document.querySelectorAll('.ieftin-badge').forEach(b => b.remove());
@@ -181,9 +185,10 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // ----------------------------------------------------
-    // Paginare si Afisare (Bonus 5, Bonus 15, Bonus 3)
-    // ----------------------------------------------------
+    /**
+     * Paginarea si afisarea finala (Bonus 5, Bonus 15, Bonus 3).
+     * Afiseaza doar produsele de pe pagina curenta (cate 6 pe pagina) si genereaza butoanele de navigare (1, 2, 3...).
+     */
     function actualizeazaAfisare() {
         produseInitiale.forEach(p => p.classList.add("d-none"));
 
@@ -236,16 +241,69 @@ document.addEventListener("DOMContentLoaded", function() {
     // Preluam toate inputurile de filtrare
     const allInputs = [inputNume, inputDescriere, inputPret, inputLivrare, inputCategorie, inputCuloare, inputNoutati, ...document.querySelectorAll('.chk-material'), ...document.querySelectorAll('input[name="rad-competitii"]')];
     
-    // Filtrarea se va face DOAR la apasarea butonului "Filtreaza"
-    // allInputs.forEach(inp => {
-    //     inp.addEventListener("change", filtreaza);
-    //     if (inp.type === "text" || inp.tagName === "TEXTAREA") {
-    //         inp.addEventListener("keyup", filtreaza);
-    //     }
-    // });
+    // Filtrare instanta (Bonus 4 onchange)
+    allInputs.forEach(inp => {
+        inp.addEventListener("change", filtreaza);
+        if (inp.type === "text" || inp.tagName === "TEXTAREA") {
+            inp.addEventListener("keyup", filtreaza);
+        }
+    });
     
     // ====================================================
     btnFiltrare.addEventListener("click", filtreaza);
+
+    if (btnFiltrareServer) {
+        btnFiltrareServer.addEventListener("click", async () => {
+            if (!suntInputuriValide()) return;
+
+            // 1. Colectare materiale bifate
+            const materialeSelectate = Array.from(document.querySelectorAll('.chk-material:checked')).map(c => c.value);
+
+            // 2. Colectare radio (pentru competitii)
+            const radChecked = document.querySelector('input[name="rad-competitii"]:checked');
+            const competitiiVal = radChecked ? radChecked.value : 'oricare';
+
+            // 3. Colectare select culoare
+            const culoriSelectate = Array.from(inputCuloare.selectedOptions).map(o => o.value);
+
+            // 4. Construire Query String
+            const params = new URLSearchParams({
+                nume: inputNume.value,
+                descriere: inputDescriere.value,
+                pret: inputPret.value,
+                categorie: inputCategorie.value,
+                livrare: inputLivrare.value,
+                competitii: competitiiVal
+            });
+
+            if (materialeSelectate.length > 0) {
+                params.append('materiale', materialeSelectate.join(','));
+            }
+            
+            culoriSelectate.forEach(c => {
+                params.append('culoare', c);
+            });
+
+            try {
+                // 5. Apel fetch (Bonus 10b)
+                const response = await fetch(`/api/filtrare-server?${params.toString()}`);
+                if (!response.ok) throw new Error("Filtrarea pe server a esuat.");
+                const data = await response.json();
+
+                // 6. Actualizare UI
+                // Filtram elementele produseInitiale care corespund cu cele returnate de server
+                const serverIds = new Set(data.map(p => `artc-${p.id}`));
+                
+                produseFiltrate = produseInitiale.filter(pDOM => serverIds.has(pDOM.id));
+                currentPage = 1;
+                actualizeazaAfisare();
+
+            } catch (err) {
+                console.error("Eroare la filtrare server:", err);
+                alert("A aparut o eroare la filtrarea pe server: " + err.message);
+            }
+        });
+    }
 
     function suntInputuriValide() {
         if (inputNume.value.match(/^[0-9]+$/)) {
@@ -257,9 +315,10 @@ document.addEventListener("DOMContentLoaded", function() {
         return true;
     }
 
-    // ----------------------------------------------------
-    // SORTARE (Bonus 8 - 2 chei)
-    // ----------------------------------------------------
+    /**
+     * Sortarea produselor (Bonus 8 - 2 criterii).
+     * Rearanjeaza produsele in pagina in functie de cele doua filtre de sortare selectate (ex: pret si apoi nume).
+     */
     function sorteaza(semn) {
         if (!suntInputuriValide()) return;
 
@@ -301,9 +360,10 @@ document.addEventListener("DOMContentLoaded", function() {
     btnSortAsc.addEventListener("click", () => sorteaza(1));
     btnSortDesc.addEventListener("click", () => sorteaza(-1));
 
-    // ----------------------------------------------------
-    // CALCUL (Div plutitor creat dinamic)
-    // ----------------------------------------------------
+    /**
+     * Calcularea sumei (Div plutitor creat dinamic).
+     * Aduna pretul tuturor produselor filtrate si afiseaza o notificare pe ecran timp de 2 secunde.
+     */
     btnCalcul.addEventListener("click", () => {
         if (!suntInputuriValide()) return;
 
@@ -329,9 +389,10 @@ document.addEventListener("DOMContentLoaded", function() {
         }, 2000);
     });
 
-    // ----------------------------------------------------
-    // RESETARE
-    // ----------------------------------------------------
+    /**
+     * Resetarea tuturor filtrelor.
+     * Goleste casutele text, debifeaza optiunile si readuce toate produsele in starea si ordinea initiala.
+     */
     btnReset.addEventListener("click", () => {
         if (confirm("Sunteți sigur că doriți resetarea filtrelor?")) {
             inputNume.value = "";
@@ -365,9 +426,10 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // ----------------------------------------------------
-    // BONUS 11: Modal la click pe container
-    // ----------------------------------------------------
+    /**
+     * Fereastra Modal la click (Bonus 11).
+     * Cand dam click pe un produs (dar nu pe butoanele lui), se deschide fereastra tip pop-up cu mai multe detalii.
+     */
     produseInitiale.forEach(prod => {
         prod.addEventListener('click', (e) => {
             // Nu declansam modalul daca click-ul s-a facut pe butoanele de actiuni

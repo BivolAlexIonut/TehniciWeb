@@ -2,13 +2,14 @@
 <style>
     #buton-orar {
         position: fixed;
-        left: -40px;
+        left: -10px;
         top: 50%;
         transform: translateY(-50%) rotate(90deg);
         z-index: 1040;
         transform-origin: left bottom;
-        box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
     }
+
     #container-orar {
         position: fixed;
         left: 0;
@@ -19,13 +20,15 @@
         z-index: 1050;
         transform: translateX(-100%);
         transition: transform 0.3s ease-in-out;
-        box-shadow: 2px 0 15px rgba(0,0,0,0.3);
+        box-shadow: 2px 0 15px rgba(0, 0, 0, 0.3);
         padding: 20px;
         overflow-y: auto;
     }
+
     #container-orar.activ {
         transform: translateX(0);
     }
+
     .zi-curenta {
         background-color: #ffeeba;
         font-weight: bold;
@@ -48,13 +51,34 @@
             </tr>
         </thead>
         <tbody>
-            <tr data-zi="1"><td>Luni</td><td>08:00 - 20:00</td></tr>
-            <tr data-zi="2"><td>Marti</td><td>08:00 - 20:00</td></tr>
-            <tr data-zi="3"><td>Miercuri</td><td>08:00 - 20:00</td></tr>
-            <tr data-zi="4"><td>Joi</td><td>08:00 - 20:00</td></tr>
-            <tr data-zi="5"><td>Vineri</td><td>08:00 - 18:00</td></tr>
-            <tr data-zi="6"><td>Sambata</td><td>10:00 - 14:00</td></tr>
-            <tr data-zi="0"><td>Duminica</td><td>Inchis</td></tr>
+            <tr data-zi="1">
+                <td>Luni</td>
+                <td>08:00 - 20:00</td>
+            </tr>
+            <tr data-zi="2">
+                <td>Marti</td>
+                <td>08:00 - 20:00</td>
+            </tr>
+            <tr data-zi="3">
+                <td>Miercuri</td>
+                <td>08:00 - 20:00</td>
+            </tr>
+            <tr data-zi="4">
+                <td>Joi</td>
+                <td>08:00 - 20:00</td>
+            </tr>
+            <tr data-zi="5">
+                <td>Vineri</td>
+                <td>08:00 - 18:00</td>
+            </tr>
+            <tr data-zi="6">
+                <td>Sambata</td>
+                <td>10:00 - 14:00</td>
+            </tr>
+            <tr data-zi="0">
+                <td>Duminica</td>
+                <td>Inchis</td>
+            </tr>
         </tbody>
     </table>
 
@@ -64,7 +88,7 @@
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
         const btnOrar = document.getElementById("buton-orar");
         const containerOrar = document.getElementById("container-orar");
         const btnInchide = document.getElementById("btn-inchide-orar");
@@ -95,7 +119,7 @@
                 row.classList.remove("zi-curenta");
                 if (parseInt(row.getAttribute("data-zi")) === ziCurenta) {
                     row.classList.add("zi-curenta");
-                    
+
                     if (ziCurenta >= 1 && ziCurenta <= 4) { // Luni - Joi: 8-20
                         if (oraCurenta >= 8 && oraCurenta < 20) isOpen = true;
                     } else if (ziCurenta === 5) { // Vineri: 8-18
