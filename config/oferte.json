@@ -1,28 +1,28 @@
 {
   "oferte": [
     {
-      "categorie": "Accesorii",
-      "data-incepere": 1780047866440,
-      "data-finalizare": 1780047986440,
-      "reducere": 20
-    },
-    {
       "categorie": "Imbracaminte",
-      "data-incepere": 1780047746450,
-      "data-finalizare": 1780047866450,
-      "reducere": 40
-    },
-    {
-      "categorie": "Echipamente",
-      "data-incepere": 1780047654463,
-      "data-finalizare": 1780047774463,
-      "reducere": 15
+      "data-incepere": 1780049186504,
+      "data-finalizare": 1780049306504,
+      "reducere": 50
     },
     {
       "categorie": "Suplimente",
-      "data-incepere": 1780047534350,
-      "data-finalizare": 1780047654350,
-      "reducere": 25
+      "data-incepere": 1780049066495,
+      "data-finalizare": 1780049186495,
+      "reducere": 45
+    },
+    {
+      "categorie": "Incaltaminte",
+      "data-incepere": 1780048946497,
+      "data-finalizare": 1780049066497,
+      "reducere": 45
+    },
+    {
+      "categorie": "Echipamente",
+      "data-incepere": 1780048826493,
+      "data-finalizare": 1780048946493,
+      "reducere": 15
     }
   ]
 }

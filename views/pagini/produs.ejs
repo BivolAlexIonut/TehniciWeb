@@ -5,6 +5,61 @@
     <title><%- produs.nume %> - Magazin CrossFit</title>
     <!-- Adaugam script pentru comparare si orar etc -->
     <script src="/resurse/js/comparare.js" defer></script>
+    
+    <style>
+        /* Corectare si stilizare breadcrumb (evitam coliziunea cu stilul global 'nav' din nav.css) */
+        nav[aria-label="breadcrumb"] {
+            background-color: transparent !important;
+            position: static !important;
+            width: auto !important;
+            padding: 0 !important;
+            margin: 0 0 1.5rem 0 !important;
+            box-shadow: none !important;
+        }
+
+        nav[aria-label="breadcrumb"] .breadcrumb {
+            background-color: transparent !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            font-size: 0.95rem;
+            display: flex;
+            flex-wrap: wrap;
+            list-style: none;
+        }
+
+        nav[aria-label="breadcrumb"] .breadcrumb-item {
+            display: flex;
+            align-items: center;
+            color: #6c757d; /* Culoare neutra pentru elementul activ */
+        }
+
+        /* Adaugam un separator elegant tip sageata */
+        nav[aria-label="breadcrumb"] .breadcrumb-item + .breadcrumb-item::before {
+            content: "\f105" !important; /* FontAwesome angle-right */
+            font-family: "Font Awesome 6 Free" !important;
+            font-weight: 900 !important;
+            padding: 0 10px !important;
+            color: #adb5bd !important;
+            font-size: 0.8rem;
+        }
+
+        nav[aria-label="breadcrumb"] .breadcrumb-item a {
+            color: #495057 !important; /* Culoare inchisa/neutral pentru link-uri */
+            text-decoration: none !important;
+            font-weight: 500;
+            transition: color 0.2s ease-in-out;
+        }
+
+        nav[aria-label="breadcrumb"] .breadcrumb-item a:hover {
+            color: #dc2626 !important; /* Accent rosu specific site-ului la hover */
+            text-decoration: none !important;
+        }
+
+        nav[aria-label="breadcrumb"] .breadcrumb-item.active {
+            color: #212529 !important;
+            font-weight: 600;
+        }
+    </style>
 </head>
 <body>
     <%- include('../fragmente/header') %>

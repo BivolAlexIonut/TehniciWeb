@@ -57,26 +57,43 @@ document.addEventListener("DOMContentLoaded", function() {
             const btnAscundeTemp = prod.querySelector('.btn-ascunde-temp');
             const btnAscundeSesiune = prod.querySelector('.btn-ascunde-sesiune');
 
-            btnPastreaza.addEventListener('click', (e) => {
-                e.stopPropagation();
-                prod.classList.toggle("pastrat-permanent");
-                btnPastreaza.classList.toggle("btn-success");
-                btnPastreaza.classList.toggle("btn-light");
-            });
+            if (btnPastreaza) {
+                btnPastreaza.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const isPinned = prod.classList.contains("pastrat-permanent");
+                    if (isPinned) {
+                        prod.classList.remove("pastrat-permanent");
+                        btnPastreaza.classList.remove("btn-success", "text-white");
+                        btnPastreaza.classList.add("btn-light");
+                    } else {
+                        prod.classList.add("pastrat-permanent");
+                        btnPastreaza.classList.remove("btn-light");
+                        btnPastreaza.classList.add("btn-success", "text-white");
+                    }
+                    filtreaza(); 
+                });
+            }
 
-            btnAscundeTemp.addEventListener('click', (e) => {
-                e.stopPropagation();
-                prod.classList.add("d-none", "ascuns-temporar");
-                actualizeazaAfisare();
-            });
+            if (btnAscundeTemp) {
+                btnAscundeTemp.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    prod.classList.add("ascuns-temporar");
+                    filtreaza(); 
+                });
+            }
 
-            btnAscundeSesiune.addEventListener('click', (e) => {
-                e.stopPropagation();
-                prod.classList.add("d-none", "ascuns-sesiune");
-                ascunseSesiune.push(id);
-                sessionStorage.setItem('produseAscunse', JSON.stringify(ascunseSesiune));
-                actualizeazaAfisare();
-            });
+            if (btnAscundeSesiune) {
+                btnAscundeSesiune.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    prod.classList.add("ascuns-sesiune");
+                    ascunseSesiune.push(id);
+                    sessionStorage.setItem('produseAscunse', JSON.stringify(ascunseSesiune));
+                    filtreaza(); 
+                });
+            }
         });
     }
 
@@ -110,46 +127,58 @@ document.addEventListener("DOMContentLoaded", function() {
         produseFiltrate = [];
 
         produseInitiale.forEach(prod => {
-            // Daca produsul e ascuns temporar sau pe sesiune, ignoram (cu exceptia pastrat-permanent care suprascrie temporar)
-            if (prod.classList.contains("ascuns-sesiune")) return;
-            if (prod.classList.contains("ascuns-temporar") && !prod.classList.contains("pastrat-permanent")) return;
+            try {
+                // Daca produsul e ascuns temporar sau pe sesiune, ignoram (cu exceptia pastrat-permanent care suprascrie temporar)
+                if (prod.classList.contains("ascuns-sesiune")) return;
+                if (prod.classList.contains("ascuns-temporar") && !prod.classList.contains("pastrat-permanent")) return;
 
-            let show = true;
+                let show = true;
 
-            const pNume = eliminaDiacritice(prod.dataset.nume);
-            const pDescText = eliminaDiacritice(prod.querySelector('.descriere-produs').innerText);
-            const pPret = parseFloat(prod.dataset.pret);
-            const pLivrare = prod.querySelector('.val-livrare').innerText.toLowerCase();
-            const pCateg = prod.dataset.categorie;
-            const pCuloare = prod.querySelector('.val-culoare').innerText.trim();
-            const pMateriale = prod.querySelector('.val-materiale').innerText.trim();
-            const pComp = prod.querySelector('.val-competitie').innerText.toLowerCase();
-            const isNou = prod.querySelector('.badge-nou') !== null;
+                const pNume = eliminaDiacritice(prod.dataset.nume || '');
+                const pDescEl = prod.querySelector('.descriere-produs');
+                const pDescText = pDescEl ? eliminaDiacritice(pDescEl.innerText) : '';
+                const pPret = parseFloat(prod.dataset.pret || 0);
+                const pLivrareEl = prod.querySelector('.val-livrare');
+                const pLivrare = pLivrareEl ? pLivrareEl.innerText.toLowerCase() : '';
+                const pCateg = prod.dataset.categorie || '';
+                const pCuloareEl = prod.querySelector('.val-culoare');
+                const pCuloare = pCuloareEl ? pCuloareEl.innerText.trim() : '';
+                const pMaterialeEl = prod.querySelector('.val-materiale');
+                const pMateriale = pMaterialeEl ? pMaterialeEl.innerText.trim() : '';
+                const pCompEl = prod.querySelector('.val-competitie');
+                const pComp = pCompEl ? pCompEl.innerText.toLowerCase() : '';
+                const isNou = prod.querySelector('.badge-nou') !== null;
 
-            if (vNume && !pNume.startsWith(vNume)) show = false;
-            if (vDesc && !pDescText.includes(vDesc)) show = false;
-            if (pPret > vPretMax) show = false;
-            if (vLivrare && !pLivrare.includes(vLivrare)) show = false;
-            if (vCateg !== "oricare" && pCateg.trim().toLowerCase() !== vCateg.trim().toLowerCase()) show = false;
-            if (optsCuloare.length > 0 && !optsCuloare.includes(pCuloare)) show = false;
-            if (vComp !== "oricare") {
-                if (vComp === "da" && pComp !== "da") show = false;
-                if (vComp === "nu" && pComp !== "nu") show = false;
-            }
-            if (bNoutati && !isNou) show = false;
+                if (vNume && !pNume.startsWith(vNume)) show = false;
+                if (vDesc && !pDescText.includes(vDesc)) show = false;
+                if (pPret > vPretMax) show = false;
+                if (vLivrare && !pLivrare.includes(vLivrare)) show = false;
+                if (vCateg !== "oricare" && pCateg.trim().toLowerCase() !== vCateg.trim().toLowerCase()) show = false;
+                if (optsCuloare.length > 0 && !optsCuloare.includes(pCuloare)) show = false;
+                if (vComp !== "oricare") {
+                    if (vComp === "da" && pComp !== "da") show = false;
+                    if (vComp === "nu" && pComp !== "nu") show = false;
+                }
+                if (bNoutati && !isNou) show = false;
 
-            if (chkMateriale.length > 0) {
-                let hasMat = chkMateriale.some(m => pMateriale.includes(m));
-                if (!hasMat) show = false;
-            }
+                if (chkMateriale.length > 0) {
+                    let hasMat = chkMateriale.some(m => pMateriale.includes(m));
+                    if (!hasMat) show = false;
+                }
 
-            // Daca e pastrat permanent il aratam indiferent de filtre (suprascrie)
-            if (prod.classList.contains("pastrat-permanent")) {
-                show = true;
-            }
+                // Salvam daca produsul a potrivit criteriile de filtrare
+                prod.dataset.potrivesteFiltru = show ? "true" : "false";
 
-            if (show) {
-                produseFiltrate.push(prod);
+                // Daca e pastrat permanent il aratam indiferent de filtre (suprascrie)
+                if (prod.classList.contains("pastrat-permanent")) {
+                    show = true;
+                }
+
+                if (show) {
+                    produseFiltrate.push(prod);
+                }
+            } catch (err) {
+                console.error("Eroare la filtrarea produsului:", prod, err);
             }
         });
 
@@ -163,25 +192,40 @@ document.addEventListener("DOMContentLoaded", function() {
      * Gaseste produsul cu pretul cel mai mic din fiecare categorie vizibila si ii adauga un chenar verde.
      */
     function marcheazaCelMaiIeftin(produse) {
-        // Stergem marcajele vechi
-        document.querySelectorAll('.ieftin-badge').forEach(b => b.remove());
-        document.querySelectorAll('.card-img-top-container').forEach(c => c.style.border = 'none');
+        try {
+            // Stergem marcajele vechi
+            document.querySelectorAll('.ieftin-badge').forEach(b => b.remove());
+            document.querySelectorAll('.card-img-top-container').forEach(c => {
+                if (c) c.style.border = 'none';
+            });
 
-        const categoriiProduse = {};
-        produse.forEach(p => {
-            const c = p.dataset.categorie;
-            if (!categoriiProduse[c]) categoriiProduse[c] = [];
-            categoriiProduse[c].push(p);
-        });
+            // Consideram doar produsele care se potrivesc cu filtrele curente (nu cele fortate doar prin 'pin')
+            const produseValide = produse.filter(p => p && (p.dataset.potrivesteFiltru === undefined || p.dataset.potrivesteFiltru === "true"));
 
-        for (let c in categoriiProduse) {
-            let prds = categoriiProduse[c];
-            prds.sort((a,b) => parseFloat(a.dataset.pret) - parseFloat(b.dataset.pret));
-            const celMaiIeftin = prds[0];
-            
-            const imgContainer = celMaiIeftin.querySelector('.card-img-top-container');
-            imgContainer.style.border = '3px solid #198754';
-            imgContainer.innerHTML += '<span class="ieftin-badge badge bg-success position-absolute m-2 top-0 start-50 translate-middle-x z-index-2">CEL MAI IEFTIN</span>';
+            const categoriiProduse = {};
+            produseValide.forEach(p => {
+                const c = p.dataset.categorie;
+                if (c) {
+                    if (!categoriiProduse[c]) categoriiProduse[c] = [];
+                    categoriiProduse[c].push(p);
+                }
+            });
+
+            for (let c in categoriiProduse) {
+                let prds = categoriiProduse[c];
+                prds.sort((a,b) => parseFloat(a.dataset.pret) - parseFloat(b.dataset.pret));
+                const celMaiIeftin = prds[0];
+                
+                if (celMaiIeftin) {
+                    const imgContainer = celMaiIeftin.querySelector('.card-img-top-container');
+                    if (imgContainer) {
+                        imgContainer.style.border = '3px solid #198754';
+                        imgContainer.insertAdjacentHTML('beforeend', '<span class="ieftin-badge badge bg-success position-absolute m-2 top-0 start-50 translate-middle-x z-index-2">CEL MAI IEFTIN</span>');
+                    }
+                }
+            }
+        } catch (e) {
+            console.error("Eroare in marcheazaCelMaiIeftin:", e);
         }
     }
 
@@ -294,7 +338,21 @@ document.addEventListener("DOMContentLoaded", function() {
                 // Filtram elementele produseInitiale care corespund cu cele returnate de server
                 const serverIds = new Set(data.map(p => `artc-${p.id}`));
                 
-                produseFiltrate = produseInitiale.filter(pDOM => serverIds.has(pDOM.id));
+                produseInitiale.forEach(pDOM => {
+                    const matchesServer = serverIds.has(pDOM.id);
+                    pDOM.dataset.potrivesteFiltru = matchesServer ? "true" : "false";
+                });
+
+                produseFiltrate = produseInitiale.filter(pDOM => {
+                    // Daca e pastrat permanent il aratam indiferent de filtre (suprascrie)
+                    if (pDOM.classList.contains("pastrat-permanent")) {
+                        return true;
+                    }
+                    if (pDOM.classList.contains("ascuns-sesiune")) return false;
+                    if (pDOM.classList.contains("ascuns-temporar")) return false;
+                    
+                    return serverIds.has(pDOM.id);
+                });
                 currentPage = 1;
                 actualizeazaAfisare();
 
@@ -409,6 +467,7 @@ document.addEventListener("DOMContentLoaded", function() {
             // Re-afisam si curatam perm/temp
             produseInitiale.forEach(p => {
                 p.classList.remove("pastrat-permanent", "ascuns-temporar");
+                delete p.dataset.potrivesteFiltru; // stergem starea de potrivire la reset
                 const btnP = p.querySelector('.btn-pastreaza');
                 if(btnP) {
                     btnP.classList.remove("btn-success");
