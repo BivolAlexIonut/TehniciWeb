@@ -191,7 +191,6 @@
                 <nav aria-label="Pagina produse" class="bg-transparent"
                     style="background-color: transparent !important;">
                     <ul class="pagination pagination-sm m-0" id="paginare-container">
-                        <!-- Linkurile for fi generate prin JS -->
                     </ul>
                 </nav>
             </div>
@@ -210,14 +209,11 @@
             <div id="mesaj-lipsa" class="alert alert-danger d-none">Nu exista produse conform filtrarii curente.</div>
 
             <div class="row row-cols-1 row-cols-lg-2 g-4" id="produse-grid">
-                <% 
-                for(let i=0; i<produse.length; i++) { 
-                    let p = produse[i]; 
-                    let d = new Date(p.data_adaugare); 
-                    const zile = ['Duminica', 'Luni', 'Marti', 'Miercuri', 'Joi', 'Vineri', 'Sambata']; 
-                    const luni = ['Ianuarie', 'Februarie', 'Martie', 'Aprilie', 'Mai', 'Iunie', 'Iulie', 'August', 'Septembrie', 'Octombrie', 'Noiembrie', 'Decembrie']; 
-                    let dataFormata = `${zile[d.getDay()]}, ${d.getDate()} ${luni[d.getMonth()]} ${d.getFullYear()}`; 
-                %>
+                <% for(let i=0; i<produse.length; i++) { let p=produse[i]; let d=new Date(p.data_adaugare); const
+                    zile=['Duminica', 'Luni' , 'Marti' , 'Miercuri' , 'Joi' , 'Vineri' , 'Sambata' ]; const
+                    luni=['Ianuarie', 'Februarie' , 'Martie' , 'Aprilie' , 'Mai' , 'Iunie' , 'Iulie' , 'August'
+                    , 'Septembrie' , 'Octombrie' , 'Noiembrie' , 'Decembrie' ]; let dataFormata=`${zile[d.getDay()]},
+                    ${d.getDate()} ${luni[d.getMonth()]} ${d.getFullYear()}`; %>
                     <article class="col produs <%- p.categorie.replace(/\s/g, '') %>" id="artc-<%- p.id %>"
                         data-categorie="<%- p.categorie %>" data-pret="<%- p.pret %>" data-nume="<%- p.nume %>"
                         data-greutate="<%- p.greutate %>" data-data="<%- p.data_adaugare %>">
@@ -277,7 +273,8 @@
                                                             class="val-culoare"><%- p.culoare %></span></li>
                                                     <li class="mb-1"><span
                                                             class="fw-bold bg-light px-1 rounded">Materiale:</span>
-                                                        <span class="val-materiale"><%- p.materiale %></span></li>
+                                                        <span class="val-materiale"><%- p.materiale %></span>
+                                                    </li>
                                                     <li class="mb-1"><span class="fw-bold bg-light px-1 rounded">Tip
                                                             Livrare:</span> <span class="val-livrare"><%- p.tip_livrare
                                                                 %></span></li>
@@ -315,7 +312,7 @@
 
         </main>
 
-        <!-- MODAL PRODUS (Bonus 11) -->
+        <!-- MODAL PRODUS (Bonus 11) -- >
         <div class="modal fade" id="produsModal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">

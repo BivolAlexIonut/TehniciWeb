@@ -41,7 +41,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /**
      * Setari pentru vizibilitatea produselor (Bonus 6).
-     * Controleaza butoanele de "Pastreaza permanent", "Ascunde temporar" si "Ascunde pe toata sesiunea".
      */
     function initButoaneVizibilitate() {
         const ascunseSesiune = JSON.parse(sessionStorage.getItem('produseAscunse') || '[]');
@@ -99,7 +98,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /**
      * Functia principala de filtrare a produselor.
-     * Verifica fiecare input de pe pagina si ascunde produsele care nu se potrivesc cu filtrele alese.
      */
     function filtreaza() {
         // Validare inputuri
@@ -139,14 +137,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 const pDescText = pDescEl ? eliminaDiacritice(pDescEl.innerText) : '';
                 const pPret = parseFloat(prod.dataset.pret || 0);
                 const pLivrareEl = prod.querySelector('.val-livrare');
-                const pLivrare = pLivrareEl ? pLivrareEl.innerText.toLowerCase() : '';
+                const pLivrare = pLivrareEl ? pLivrareEl.innerText.trim().toLowerCase() : '';
                 const pCateg = prod.dataset.categorie || '';
                 const pCuloareEl = prod.querySelector('.val-culoare');
                 const pCuloare = pCuloareEl ? pCuloareEl.innerText.trim() : '';
                 const pMaterialeEl = prod.querySelector('.val-materiale');
                 const pMateriale = pMaterialeEl ? pMaterialeEl.innerText.trim() : '';
                 const pCompEl = prod.querySelector('.val-competitie');
-                const pComp = pCompEl ? pCompEl.innerText.toLowerCase() : '';
+                const pComp = pCompEl ? pCompEl.innerText.trim().toLowerCase() : '';
                 const isNou = prod.querySelector('.badge-nou') !== null;
 
                 if (vNume && !pNume.startsWith(vNume)) show = false;
@@ -223,7 +221,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /**
      * Paginarea si afisarea finala (Bonus 5, Bonus 15, Bonus 3).
-     * Afiseaza doar produsele de pe pagina curenta (cate 6 pe pagina) si genereaza butoanele de navigare (1, 2, 3...).
      */
     function actualizeazaAfisare() {
         produseInitiale.forEach(p => p.classList.add("d-none"));
@@ -273,7 +270,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Evenimente (Bonus 4 onchange)
-    // Preluam toate inputurile de filtrare
+    // Preluezz toate inputurile de filtrare
     const allInputs = [inputNume, inputDescriere, inputPret, inputLivrare, inputCategorie, inputCuloare, inputNoutati, ...document.querySelectorAll('.chk-material'), ...document.querySelectorAll('input[name="rad-competitii"]')];
 
     // Filtrare instanta (Bonus 4 onchange)
@@ -391,6 +388,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const val1a = extrageValoare(a, c1);
             const val1b = extrageValoare(b, c1);
 
+            //in caz de produsele sunt identice se trece la sortarea secundara
             if (val1a === val1b) {
                 const val2a = extrageValoare(a, c2);
                 const val2b = extrageValoare(b, c2);
@@ -410,7 +408,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /**
      * Calcularea sumei (Div plutitor creat dinamic).
-     * Aduna pretul tuturor produselor filtrate si afiseaza o notificare pe ecran timp de 2 secunde.
      */
     btnCalcul.addEventListener("click", () => {
         if (!suntInputuriValide()) return;
@@ -477,7 +474,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /**
      * Fereastra Modal la click (Bonus 11).
-     * Cand dam click pe un produs (dar nu pe butoanele lui), se deschide fereastra tip pop-up cu mai multe detalii.
      */
     produseInitiale.forEach(prod => {
         prod.addEventListener('click', (e) => {

@@ -1,79 +1,95 @@
 <%- include('../fragmente/head') %>
 
-<%- include('../fragmente/header') %>
+    <%- include('../fragmente/header') %>
 
-<main>
-    <div class="container py-5">
-        <h1 class="mb-4 text-primary border-bottom pb-2">Seturi și Oferte Pachet</h1>
-        <p class="lead text-muted mb-5">Achiziționați echipamente în set și beneficiați de reduceri substanțiale! Oferim până la 25% reducere în funcție de mărimea pachetului.</p>
+        <main>
+            <div class="container py-5">
+                <h1 class="mb-4 text-primary border-bottom pb-2">Seturi și Oferte Pachet</h1>
+                <p class="lead text-muted mb-5">Achiziționați echipamente în set și beneficiați de reduceri
+                    substanțiale! Oferim până la 25% reducere în funcție de mărimea pachetului.</p>
 
-        <% if (seturi && seturi.length > 0) { %>
-            <div class="row row-cols-1 g-5">
-                <% seturi.forEach(set => { %>
-                    <div class="col">
-                        <div class="card shadow border-0 overflow-hidden h-100">
-                            <div class="card-header bg-dark text-white p-4">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h3 class="mb-0"><%- set.nume_set %></h3>
-                                    <span class="badge bg-danger fs-5"><%- set.numar_produse %> Produse</span>
-                                </div>
-                            </div>
-                            <div class="card-body p-4 bg-light">
-                                <p class="card-text text-secondary fs-5 mb-4 fst-italic"><%- set.descriere_set %></p>
-                                
-                                <h5 class="border-bottom pb-2 mb-3">Conținut Pachet:</h5>
-                                <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3 mb-4">
-                                    <% set.produse.forEach(p => { %>
-                                        <div class="col text-center">
-                                            <a href="/produs/<%- p.id %>" class="text-decoration-none text-dark">
-                                                <div class="card h-100 border-0 shadow-sm produs-set-card transition">
-                                                    <div class="p-2 bg-white rounded" style="height: 120px; display: flex; align-items: center; justify-content: center;">
-                                                        <img src="<%- p.imagine %>" alt="<%- p.nume %>" class="img-fluid" style="max-height: 100px; object-fit: contain;">
-                                                    </div>
-                                                    <div class="card-body p-2 bg-white">
-                                                        <h6 class="card-title text-truncate mb-1"><%- p.nume %></h6>
-                                                        <span class="badge bg-secondary mb-1"><%- p.categorie %></span>
-                                                        <p class="text-success fw-bold m-0"><%- p.pret %> RON</p>
-                                                    </div>
-                                                </div>
-                                            </a>
+                <% if (seturi && seturi.length> 0) { %>
+                    <div class="row row-cols-1 g-5">
+                        <% seturi.forEach(set=> { %>
+                            <div class="col">
+                                <div class="card shadow border-0 overflow-hidden h-100">
+                                    <div class="card-header bg-dark text-white p-4">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <h3 class="mb-0"><%- set.nume_set %></h3>
+                                            <span class="badge bg-danger fs-5"><%- set.numar_produse %> Produse</span>
                                         </div>
-                                    <% }) %>
+                                    </div>
+                                    <div class="card-body p-4 bg-light">
+                                        <p class="card-text text-secondary fs-5 mb-4 fst-italic"><%- set.descriere_set
+                                                %></p>
+
+                                        <h5 class="border-bottom pb-2 mb-3">Conținut Pachet:</h5>
+                                        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3 mb-4">
+                                            <% set.produse.forEach(p=> { %>
+                                                <div class="col text-center">
+                                                    <a href="/produs/<%- p.id %>"
+                                                        class="text-decoration-none text-dark">
+                                                        <div
+                                                            class="card h-100 border-0 shadow-sm produs-set-card transition">
+                                                            <div class="p-2 bg-white rounded"
+                                                                style="height: 120px; display: flex; align-items: center; justify-content: center;">
+                                                                <img src="<%- p.imagine %>" alt="<%- p.nume %>"
+                                                                    class="img-fluid"
+                                                                    style="max-height: 100px; object-fit: contain;">
+                                                            </div>
+                                                            <div class="card-body p-2 bg-white">
+                                                                <h6 class="card-title text-truncate mb-1"><%- p.nume %>
+                                                                </h6>
+                                                                <span class="badge bg-secondary mb-1"><%- p.categorie
+                                                                        %></span>
+                                                                <p class="text-success fw-bold m-0"><%- p.pret %> RON
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <% }) %>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer bg-white p-4 border-top">
+                                        <div
+                                            class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+                                            <div class="text-center text-md-start mb-3 mb-md-0">
+                                                <span class="text-muted d-block">Preț achiziționate separat:</span>
+                                                <span class="text-muted text-decoration-line-through fs-5"><%-
+                                                        Number(set.pret_total).toFixed(2) %> RON</span>
+                                            </div>
+                                            <div class="text-center text-md-end">
+                                                <span class="text-danger fw-bold d-block">Preț Pachet Special:</span>
+                                                <span class="text-success fw-bolder fs-3"><%-
+                                                        Number(set.pret_redus).toFixed(2) %> RON</span>
+                                                <span class="badge bg-success ms-2">Economisești <%-
+                                                        (Number(set.pret_total) - Number(set.pret_redus)).toFixed(2) %>
+                                                        RON</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="card-footer bg-white p-4 border-top">
-                                <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
-                                    <div class="text-center text-md-start mb-3 mb-md-0">
-                                        <span class="text-muted d-block">Preț achiziționate separat:</span>
-                                        <span class="text-muted text-decoration-line-through fs-5"><%- Number(set.pret_total).toFixed(2) %> RON</span>
-                                    </div>
-                                    <div class="text-center text-md-end">
-                                        <span class="text-danger fw-bold d-block">Preț Pachet Special:</span>
-                                        <span class="text-success fw-bolder fs-3"><%- Number(set.pret_redus).toFixed(2) %> RON</span>
-                                        <span class="badge bg-success ms-2">Economisești <%- (Number(set.pret_total) - Number(set.pret_redus)).toFixed(2) %> RON</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            <% }) %>
                     </div>
-                <% }) %>
+                    <% } else { %>
+                        <div class="alert alert-info fs-5">
+                            Momentan nu avem oferte tip set disponibile. Vă rugăm reveniți!
+                        </div>
+                        <% } %>
             </div>
-        <% } else { %>
-            <div class="alert alert-info fs-5">
-                Momentan nu avem oferte tip set disponibile. Vă rugăm reveniți!
-            </div>
-        <% } %>
-    </div>
-</main>
+        </main>
 
-<style>
-    .produs-set-card {
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .produs-set-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
-    }
-</style>
+        <style>
+            .produs-set-card {
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+            }
 
-<%- include('../fragmente/footer') %>
+            .produs-set-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+            }
+        </style>
+
+        <%- include('../fragmente/footer') %>
