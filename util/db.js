@@ -1,19 +1,18 @@
 const { Pool } = require('pg');
 
 // Configurare conexiune la baza de date
-// Se recomanda utilizarea variabilelor de mediu in productie, dar pentru proiect folosim hardcoded
 const pool = new Pool({
-  user: 'proiect_user',
-  host: 'localhost',
-  database: 'magazin_crossfit',
-  password: 'proiect_pass',
-  port: 5432,
+    user: 'proiect_user',
+    host: 'localhost',
+    database: 'magazin_crossfit',
+    password: 'proiect_pass',
+    port: 5432,
 });
 
-// Verificare conectare (optional)
+// Verificare conectare 
 pool.connect()
-  .then(() => console.log('✅ Conectat cu succes la baza de date PostgreSQL (magazin_crossfit).'))
-  .catch(err => console.error('❌ EROARE la conectarea la baza de date:', err.stack));
+    .then(() => console.log('✅ Conectat cu succes la baza de date PostgreSQL (magazin_crossfit).'))
+    .catch(err => console.error('❌ EROARE la conectarea la baza de date:', err.stack));
 
 // Functie pentru obtinerea categoriilor (pentru meniu)
 async function getCategorii() {
@@ -63,13 +62,23 @@ async function getSeturiPentruProdus(id_produs) {
             JOIN asociere_set as1 ON s.id = as1.id_set
             WHERE as1.id_produs = $1
         `, [id_produs]);
-        
-        // Calcul reducere
-        return res.rows.map(set => {
+
+        const seturi = res.rows;
+        for (let set of seturi) {
             let reducereProcent = Math.min(5, set.numar_produse) * 5;
             set.pret_redus = set.pret_total - (set.pret_total * reducereProcent / 100);
-            return set;
-        });
+
+            // Produsele din set
+            const queryProduse = `
+                SELECT p.id, p.nume, p.imagine, p.pret, p.categorie
+                FROM produse p
+                JOIN asociere_set a ON p.id = a.id_produs
+                WHERE a.id_set = $1
+            `;
+            const resProduse = await pool.query(queryProduse, [set.id]);
+            set.produse = resProduse.rows;
+        }
+        return seturi;
     } catch (err) {
         console.error('Eroare la preluarea seturilor', err);
         return [];

@@ -1,6 +1,6 @@
 // js/produse.js
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
 
     // Helper: Eliminare diacritice (Bonus 7)
     function eliminaDiacritice(text) {
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const inputCategorie = document.getElementById("inp-categorie");
     const inputCuloare = document.getElementById("inp-culoare");
     const inputNoutati = document.getElementById("chk-noutati");
-    
+
     const btnFiltrare = document.getElementById("btn-filtrare");
     const btnFiltrareServer = document.getElementById("btn-filtrare-server");
     const btnReset = document.getElementById("btn-reset");
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let currentPage = 1;
 
     // Actualizare pret range afisat
-    inputPret.addEventListener("input", function() {
+    inputPret.addEventListener("input", function () {
         valPret.innerText = this.value;
     });
 
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         produseInitiale.forEach(prod => {
             const id = prod.id;
-            
+
             if (ascunseSesiune.includes(id)) {
                 prod.classList.add("d-none", "ascuns-sesiune");
             }
@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         btnPastreaza.classList.remove("btn-light");
                         btnPastreaza.classList.add("btn-success", "text-white");
                     }
-                    filtreaza(); 
+                    filtreaza();
                 });
             }
 
@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     e.preventDefault();
                     e.stopPropagation();
                     prod.classList.add("ascuns-temporar");
-                    filtreaza(); 
+                    filtreaza();
                 });
             }
 
@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     prod.classList.add("ascuns-sesiune");
                     ascunseSesiune.push(id);
                     sessionStorage.setItem('produseAscunse', JSON.stringify(ascunseSesiune));
-                    filtreaza(); 
+                    filtreaza();
                 });
             }
         });
@@ -116,10 +116,10 @@ document.addEventListener("DOMContentLoaded", function() {
         const vLivrare = inputLivrare.value.toLowerCase();
         const vCateg = inputCategorie.value;
         const optsCuloare = Array.from(inputCuloare.selectedOptions).map(o => o.value);
-        
+
         const radCompChecked = document.querySelector('input[name="rad-competitii"]:checked');
         const vComp = radCompChecked ? radCompChecked.value : "oricare";
-        
+
         const bNoutati = inputNoutati.checked;
 
         const chkMateriale = Array.from(document.querySelectorAll('.chk-material:checked')).map(c => c.value);
@@ -188,8 +188,8 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     /**
-     * Evidentierea celui mai ieftin produs (Bonus 14).
-     * Gaseste produsul cu pretul cel mai mic din fiecare categorie vizibila si ii adauga un chenar verde.
+     * Evidentierea celui mai ieftin produs.
+     * Gaseste produsul cu pretul cel mai mic si ii adauga un chenar verde.
      */
     function marcheazaCelMaiIeftin(produse) {
         try {
@@ -202,26 +202,18 @@ document.addEventListener("DOMContentLoaded", function() {
             // Consideram doar produsele care se potrivesc cu filtrele curente (nu cele fortate doar prin 'pin')
             const produseValide = produse.filter(p => p && (p.dataset.potrivesteFiltru === undefined || p.dataset.potrivesteFiltru === "true"));
 
-            const categoriiProduse = {};
-            produseValide.forEach(p => {
-                const c = p.dataset.categorie;
-                if (c) {
-                    if (!categoriiProduse[c]) categoriiProduse[c] = [];
-                    categoriiProduse[c].push(p);
-                }
-            });
+            if (produseValide.length === 0) return;
 
-            for (let c in categoriiProduse) {
-                let prds = categoriiProduse[c];
-                prds.sort((a,b) => parseFloat(a.dataset.pret) - parseFloat(b.dataset.pret));
-                const celMaiIeftin = prds[0];
-                
-                if (celMaiIeftin) {
-                    const imgContainer = celMaiIeftin.querySelector('.card-img-top-container');
-                    if (imgContainer) {
-                        imgContainer.style.border = '3px solid #198754';
-                        imgContainer.insertAdjacentHTML('beforeend', '<span class="ieftin-badge badge bg-success position-absolute m-2 top-0 start-50 translate-middle-x z-index-2">CEL MAI IEFTIN</span>');
-                    }
+            // Sortam toate produsele valide crescator dupa pret
+            produseValide.sort((a, b) => parseFloat(a.dataset.pret) - parseFloat(b.dataset.pret));
+            const celMaiIeftin = produseValide[0];
+
+            if (celMaiIeftin) {
+                const imgContainer = celMaiIeftin.querySelector('.card-img-top-container');
+                if (imgContainer) {
+                    imgContainer.style.border = '3px solid #198754';
+                    imgContainer.classList.add('position-relative');
+                    imgContainer.insertAdjacentHTML('beforeend', '<span class="ieftin-badge badge bg-success position-absolute m-2 top-0 end-0 z-index-2">CEL MAI IEFTIN</span>');
                 }
             }
         } catch (e) {
@@ -259,7 +251,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function genereazaPaginare() {
         const paginareContainer = document.getElementById("paginare-container");
         paginareContainer.innerHTML = "";
-        
+
         const nPagini = Math.ceil(produseFiltrate.length / ITEMS_PER_PAGE);
         if (nPagini <= 1) return;
 
@@ -280,11 +272,10 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // ----------------------------------------------------
     // Evenimente (Bonus 4 onchange)
     // Preluam toate inputurile de filtrare
     const allInputs = [inputNume, inputDescriere, inputPret, inputLivrare, inputCategorie, inputCuloare, inputNoutati, ...document.querySelectorAll('.chk-material'), ...document.querySelectorAll('input[name="rad-competitii"]')];
-    
+
     // Filtrare instanta (Bonus 4 onchange)
     allInputs.forEach(inp => {
         inp.addEventListener("change", filtreaza);
@@ -292,8 +283,7 @@ document.addEventListener("DOMContentLoaded", function() {
             inp.addEventListener("keyup", filtreaza);
         }
     });
-    
-    // ====================================================
+
     btnFiltrare.addEventListener("click", filtreaza);
 
     if (btnFiltrareServer) {
@@ -323,7 +313,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if (materialeSelectate.length > 0) {
                 params.append('materiale', materialeSelectate.join(','));
             }
-            
+
             culoriSelectate.forEach(c => {
                 params.append('culoare', c);
             });
@@ -337,7 +327,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 // 6. Actualizare UI
                 // Filtram elementele produseInitiale care corespund cu cele returnate de server
                 const serverIds = new Set(data.map(p => `artc-${p.id}`));
-                
+
                 produseInitiale.forEach(pDOM => {
                     const matchesServer = serverIds.has(pDOM.id);
                     pDOM.dataset.potrivesteFiltru = matchesServer ? "true" : "false";
@@ -350,7 +340,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     }
                     if (pDOM.classList.contains("ascuns-sesiune")) return false;
                     if (pDOM.classList.contains("ascuns-temporar")) return false;
-                    
+
                     return serverIds.has(pDOM.id);
                 });
                 currentPage = 1;
@@ -410,7 +400,7 @@ document.addEventListener("DOMContentLoaded", function() {
             return (val1a > val1b ? 1 : -1) * semn;
         });
 
-        // Reordonare DOM in grid
+        // Rearanjare in pagina
         produseFiltrate.forEach(p => produseGrid.appendChild(p));
         actualizeazaAfisare();
     }
@@ -429,7 +419,7 @@ document.addEventListener("DOMContentLoaded", function() {
         produseFiltrate.forEach(p => {
             suma += parseFloat(p.dataset.pret);
         });
-        
+
         // Cerinta: Creare dinamica cu document.createElement
         const divCalcul = document.createElement("div");
         divCalcul.className = "alert alert-success fw-bold text-center position-fixed shadow-lg";
@@ -439,7 +429,7 @@ document.addEventListener("DOMContentLoaded", function() {
         divCalcul.style.zIndex = "9999";
         divCalcul.style.minWidth = "300px";
         divCalcul.innerText = `Suma produselor afisate: ${suma.toFixed(2)} RON`;
-        
+
         document.body.appendChild(divCalcul);
 
         setTimeout(() => {
@@ -469,14 +459,14 @@ document.addEventListener("DOMContentLoaded", function() {
                 p.classList.remove("pastrat-permanent", "ascuns-temporar");
                 delete p.dataset.potrivesteFiltru; // stergem starea de potrivire la reset
                 const btnP = p.querySelector('.btn-pastreaza');
-                if(btnP) {
+                if (btnP) {
                     btnP.classList.remove("btn-success");
                     btnP.classList.add("btn-light");
                 }
             });
 
             // Reordonare originala DOM (sortam dupa id - indexare)
-            produseInitiale.sort((a,b) => parseInt(a.id.split('-')[1]) - parseInt(b.id.split('-')[1]));
+            produseInitiale.sort((a, b) => parseInt(a.id.split('-')[1]) - parseInt(b.id.split('-')[1]));
             produseInitiale.forEach(p => produseGrid.appendChild(p));
 
             produseFiltrate = [...produseInitiale];
@@ -492,10 +482,10 @@ document.addEventListener("DOMContentLoaded", function() {
     produseInitiale.forEach(prod => {
         prod.addEventListener('click', (e) => {
             // Nu declansam modalul daca click-ul s-a facut pe butoanele de actiuni
-            if(e.target.closest('button') || e.target.closest('a')) return;
+            if (e.target.closest('button') || e.target.closest('a')) return;
 
             const modal = new bootstrap.Modal(document.getElementById('produsModal'));
-            
+
             document.getElementById('modalNumeProdus').innerText = prod.dataset.nume;
             document.getElementById('modalImagine').src = prod.querySelector('img.img-fluid').src;
             document.getElementById('modalPret').innerText = prod.dataset.pret;

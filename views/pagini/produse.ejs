@@ -1,303 +1,359 @@
 <!DOCTYPE html>
 <html lang="ro">
+
 <head>
     <%- include('../fragmente/head') %>
-    <title>Produse - Magazin CrossFit</title>
-    <!-- Adaugam scripturile noastre -->
-    <script src="/resurse/js/produse.js" defer></script>
-    <script src="/resurse/js/comparare.js" defer></script>
+        <title>Produse - Magazin CrossFit</title>
+        <!-- Adaugam scripturile noastre -->
+        <script src="/resurse/js/produse.js" defer></script>
+        <script src="/resurse/js/comparare.js" defer></script>
 </head>
+
 <body>
     <%- include('../fragmente/header') %>
 
-    <main class="container my-5" id="main-produse">
-        <h2 class="text-center mb-4">Produse Magazin CrossFit</h2>
+        <main class="container my-5" id="main-produse">
+            <h2 class="text-center mb-4">Produse Magazin CrossFit</h2>
 
-        <!-- OFERTA CURENTA (Bonus 12) -->
-        <div id="oferta-container" class="alert alert-warning text-center d-none" role="alert">
-            <h4 class="alert-heading">OFERTA SPECIALA! <span id="oferta-categorie"></span></h4>
-            <p>Reducere de <strong id="oferta-reducere"></strong>% la toate produsele din aceasta categorie!</p>
-            <hr>
-            <p class="mb-0">Expira in: <span id="oferta-timer" class="fw-bold fs-4"></span></p>
-        </div>
-
-        <!-- FILTRE -->
-        <section id="filtre" class="bg-light p-4 rounded mb-5 shadow-sm">
-            <h4 class="mb-3">Filtreaza Produsele</h4>
-            <div class="row g-3">
-                <!-- 1. Textarea (Nume produs) cu Floating label -->
-                <div class="col-md-4">
-                    <div class="form-floating">
-                        <textarea class="form-control" id="inp-nume" placeholder="Nume produs"></textarea>
-                        <label for="inp-nume">Nume Produs (cauta partial)</label>
-                    </div>
-                </div>
-
-                <!-- 2. Text input (Descriere) -->
-                <div class="col-md-4">
-                    <label for="inp-descriere" class="form-label">Cuvant in descriere:</label>
-                    <input type="text" class="form-control" id="inp-descriere" placeholder="Ex: haltere">
-                </div>
-
-                <!-- 3. Range (Pret sau Greutate) -->
-                <div class="col-md-4">
-                    <label for="inp-pret" class="form-label">Pret Maxim: <span id="val-pret"><%= maxPret %></span> RON</label>
-                    <input type="range" class="form-range" id="inp-pret" min="<%= minPret %>" max="<%= maxPret %>" step="1" value="<%= maxPret %>">
-                </div>
-
-                <!-- 4. Datalist (Tip Livrare) -->
-                <div class="col-md-4">
-                    <label for="inp-livrare" class="form-label">Tip Livrare:</label>
-                    <input class="form-control" list="livrare-options" id="inp-livrare" placeholder="Scrie pentru a cauta...">
-                    <datalist id="livrare-options">
-                        <option value="Curier">
-                        <option value="Ridicare">
-                        <option value="Posta">
-                    </datalist>
-                </div>
-
-                <!-- 5. Select Simplu (Categorie) -->
-                <div class="col-md-4">
-                    <label for="inp-categorie" class="form-label">Categorie:</label>
-                    <select class="form-select" id="inp-categorie">
-                        <option value="oricare" selected>Toate categoriile</option>
-                        <% if(locals.optiuniMeniu) { %>
-                            <% for(let categ of optiuniMeniu) { %>
-                                <option value="<%- categ %>"><%- categ %></option>
-                            <% } %>
-                        <% } %>
-                    </select>
-                </div>
-
-                <!-- 6. Select Multiplu (Culoare) -->
-                <div class="col-md-4">
-                    <label for="inp-culoare" class="form-label">Culoare (Select Multiplu):</label>
-                    <select class="form-select" id="inp-culoare" multiple>
-                        <option value="Negru">Negru</option>
-                        <option value="Alb">Alb</option>
-                        <option value="Argintiu">Argintiu</option>
-                        <option value="Maro">Maro</option>
-                        <option value="Gri">Gri</option>
-                    </select>
-                    <small class="text-muted">Ctrl+Click pt selectii multiple</small>
-                </div>
-
-                <!-- 7. Radio Buttons (Pentru Competitii) - Toggle Buttons (Bootstrap) -->
-                <div class="col-md-6 mt-4">
-                    <label class="form-label d-block">Aprobat Competitii:</label>
-                    <div class="btn-group" role="group" aria-label="Aprobat competitii">
-                        <input type="radio" class="btn-check" name="rad-competitii" id="rad-toate" value="oricare" checked>
-                        <label class="btn btn-outline-primary" for="rad-toate">Oricare</label>
-
-                        <input type="radio" class="btn-check" name="rad-competitii" id="rad-da" value="da">
-                        <label class="btn btn-outline-success" for="rad-da">Da</label>
-
-                        <input type="radio" class="btn-check" name="rad-competitii" id="rad-nu" value="nu">
-                        <label class="btn btn-outline-danger" for="rad-nu">Nu</label>
-                    </div>
-                </div>
-
-                <!-- 8. Checkbox simplu (Noutati) -->
-                <div class="col-md-2 mt-4">
-                    <label class="form-label d-block">Filtru Extra:</label>
-                    <div class="form-check form-switch mt-2">
-                        <input class="form-check-input" type="checkbox" id="chk-noutati">
-                        <label class="form-check-label fw-bold" for="chk-noutati">Noutăți</label>
-                    </div>
-                </div>
-
-                <!-- 9. Checkbox Group (Materiale) -->
-                <div class="col-md-4 mt-4">
-                    <label class="form-label d-block">Materiale:</label>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input chk-material" type="checkbox" id="mat-otel" value="Otel">
-                        <label class="form-check-label" for="mat-otel">Otel</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input chk-material" type="checkbox" id="mat-cauciuc" value="Cauciuc">
-                        <label class="form-check-label" for="mat-cauciuc">Cauciuc</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input chk-material" type="checkbox" id="mat-lemn" value="Lemn">
-                        <label class="form-check-label" for="mat-lemn">Lemn</label>
-                    </div>
-                </div>
-
-            </div> <!-- end row -->
-
-            <hr class="my-4">
-
-            <!-- SORTARE & BUTOANE -->
-            <div class="row g-2 align-items-center">
-                <div class="col-auto">
-                    <label for="sort-cheia1" class="form-label mb-0">Sortare 1:</label>
-                    <select class="form-select form-select-sm" id="sort-cheia1">
-                        <option value="nume" selected>Nume</option>
-                        <option value="pret">Pret</option>
-                        <option value="greutate">Greutate</option>
-                        <option value="categorie">Categorie</option>
-                        <option value="data">Data Adaugare</option>
-                        <option value="raport">Greutate / Preț</option>
-                    </select>
-                </div>
-                <div class="col-auto">
-                    <label for="sort-cheia2" class="form-label mb-0">Sortare 2:</label>
-                    <select class="form-select form-select-sm" id="sort-cheia2">
-                        <option value="pret" selected>Pret</option>
-                        <option value="nume">Nume</option>
-                        <option value="greutate">Greutate</option>
-                        <option value="categorie">Categorie</option>
-                        <option value="data">Data Adaugare</option>
-                        <option value="raport">Greutate / Preț</option>
-                    </select>
-                </div>
-
-                <div class="col-auto mt-4 pt-1">
-                    <button id="btn-sort-asc" class="btn btn-secondary btn-sm"><i class="fa-solid fa-arrow-up-a-z"></i> <span class="d-none d-md-inline">Ascendent</span></button>
-                    <button id="btn-sort-desc" class="btn btn-secondary btn-sm"><i class="fa-solid fa-arrow-down-z-a"></i> <span class="d-none d-md-inline">Descendent</span></button>
-                </div>
-
-                <div class="col-auto mt-4 pt-1 ms-auto">
-                    <button id="btn-filtrare" class="btn btn-primary"><i class="fa-solid fa-filter"></i> <span class="d-none d-md-inline">Filtreaza</span></button>
-                    <button id="btn-filtrare-server" class="btn btn-warning"><i class="fa-solid fa-server"></i> <span class="d-none d-md-inline">Filtrare Server (Fetch)</span></button>
-                    <button id="btn-reset" class="btn btn-outline-danger"><i class="fa-solid fa-rotate-left"></i> <span class="d-none d-md-inline">Resetare</span></button>
-                    <button id="btn-calcul" class="btn btn-success"><i class="fa-solid fa-calculator"></i> <span class="d-none d-md-inline">Calculeaza</span></button>
-                </div>
+            <!-- OFERTA CURENTA (Bonus 12) -->
+            <div id="oferta-container" class="alert alert-warning text-center d-none" role="alert">
+                <h4 class="alert-heading">OFERTA SPECIALA! <span id="oferta-categorie"></span></h4>
+                <p>Reducere de <strong id="oferta-reducere"></strong>% la toate produsele din aceasta categorie!</p>
+                <hr>
+                <p class="mb-0">Expira in: <span id="oferta-timer" class="fw-bold fs-4"></span></p>
             </div>
-        </section>
 
-        <!-- INFO -->
-        <div class="d-flex justify-content-between mb-3">
-            <h5 class="text-muted">Total produse afișate: <span id="numar-produse"><%= produse.length %></span></h5>
-            <!-- Paginare (Bonus 5) Container -->
-            <nav aria-label="Pagina produse" class="bg-transparent" style="background-color: transparent !important;">
-                <ul class="pagination pagination-sm m-0" id="paginare-container">
-                    <!-- Linkurile for fi generate prin JS -->
-                </ul>
-            </nav>
-        </div>
+            <!-- FILTRE -->
+            <section id="filtre" class="bg-light p-4 rounded mb-5 shadow-sm">
+                <h4 class="mb-3">Filtreaza Produsele</h4>
+                <div class="row g-3">
+                    <!-- 1. Textarea (Nume produs) cu Floating label -->
+                    <div class="col-md-4">
+                        <div class="form-floating">
+                            <textarea class="form-control" id="inp-nume" placeholder="Nume produs"></textarea>
+                            <label for="inp-nume">Nume Produs (cauta partial)</label>
+                        </div>
+                    </div>
 
-        <!-- CONTAINER COMPARARE (Bonus 20) -->
-        <div id="container-comparare" class="position-fixed bottom-0 end-0 p-3 bg-dark text-white rounded shadow-lg d-none" style="z-index: 1050;">
-            <h6 class="border-bottom border-secondary pb-2">Comparare Produse</h6>
-            <div id="lista-comparare" class="mb-2"></div>
-            <button id="btn-afiseaza-comparare" class="btn btn-primary btn-sm w-100" disabled>Afișează Comparația</button>
-        </div>
+                    <!-- 2. Text input (Descriere) -->
+                    <div class="col-md-4">
+                        <label for="inp-descriere" class="form-label">Cuvant in descriere:</label>
+                        <input type="text" class="form-control" id="inp-descriere" placeholder="Ex: haltere">
+                    </div>
 
-        <!-- GRID PRODUSE -->
-        <div id="mesaj-lipsa" class="alert alert-danger d-none">Nu exista produse conform filtrarii curente.</div>
-        
-        <div class="row row-cols-1 row-cols-lg-2 g-4" id="produse-grid">
-            <% for(let i=0; i<produse.length; i++) { 
-                let p = produse[i]; 
-                // Formatare data
-                let d = new Date(p.data_adaugare);
-                const zile = ['Duminica', 'Luni', 'Marti', 'Miercuri', 'Joi', 'Vineri', 'Sambata'];
-                const luni = ['Ianuarie', 'Februarie', 'Martie', 'Aprilie', 'Mai', 'Iunie', 'Iulie', 'August', 'Septembrie', 'Octombrie', 'Noiembrie', 'Decembrie'];
-                let dataFormata = `${zile[d.getDay()]}, ${d.getDate()} ${luni[d.getMonth()]} ${d.getFullYear()}`;
-            %>
-            <article class="col produs <%- p.categorie.replace(/\s/g, '') %>" id="artc-<%- p.id %>" data-categorie="<%- p.categorie %>" data-pret="<%- p.pret %>" data-nume="<%- p.nume %>" data-greutate="<%- p.greutate %>" data-data="<%- p.data_adaugare %>">
-                <div class="card h-100 shadow-sm border-0 position-relative p-3">
-                    
-                    <h4 class="card-title text-primary border-bottom pb-2 mb-3"><%- p.nume %></h4>
+                    <!-- 3. Range (Pret sau Greutate) -->
+                    <div class="col-md-4">
+                        <label for="inp-pret" class="form-label">Pret Maxim: <span id="val-pret">
+                                <%= maxPret %>
+                            </span> RON</label>
+                        <input type="range" class="form-range" id="inp-pret" min="<%= minPret %>" max="<%= maxPret %>"
+                            step="1" value="<%= maxPret %>">
+                    </div>
 
-                    <!-- Bonus 18: Produs Nou -->
-                    <% 
-                        let isNou = false;
-                        let unAnInUrma = new Date();
-                        unAnInUrma.setFullYear(unAnInUrma.getFullYear() - 1);
-                        if (d >= unAnInUrma) {
-                            isNou = true;
-                        }
-                    %>
-                    <% if(isNou) { %>
-                        <span class="badge badge-nou bg-danger position-absolute top-0 start-0 m-2 px-3 py-2 fs-6 z-index-1">NOU</span>
+                    <!-- 4. Datalist (Tip Livrare) -->
+                    <div class="col-md-4">
+                        <label for="inp-livrare" class="form-label">Tip Livrare:</label>
+                        <input class="form-control" list="livrare-options" id="inp-livrare"
+                            placeholder="Scrie pentru a cauta...">
+                        <datalist id="livrare-options">
+                            <option value="Curier">
+                            <option value="Ridicare">
+                            <option value="Posta">
+                        </datalist>
+                    </div>
+
+                    <!-- 5. Select Simplu (Categorie) -->
+                    <div class="col-md-4">
+                        <label for="inp-categorie" class="form-label">Categorie:</label>
+                        <select class="form-select" id="inp-categorie">
+                            <option value="oricare" selected>Toate categoriile</option>
+                            <% if(locals.optiuniMeniu) { %>
+                                <% for(let categ of optiuniMeniu) { %>
+                                    <option value="<%- categ %>"><%- categ %></option>
+                                    <% } %>
+                                        <% } %>
+                        </select>
+                    </div>
+
+                    <!-- 6. Select Multiplu (Culoare) -->
+                    <div class="col-md-4">
+                        <label for="inp-culoare" class="form-label">Culoare (Select Multiplu):</label>
+                        <select class="form-select" id="inp-culoare" multiple>
+                            <option value="Negru">Negru</option>
+                            <option value="Alb">Alb</option>
+                            <option value="Argintiu">Argintiu</option>
+                            <option value="Maro">Maro</option>
+                            <option value="Gri">Gri</option>
+                        </select>
+                        <small class="text-muted">Ctrl+Click pt selectii multiple</small>
+                    </div>
+
+                    <!-- 7. Radio Buttons (Pentru Competitii) - Toggle Buttons (Bootstrap) -->
+                    <div class="col-md-6 mt-4">
+                        <label class="form-label d-block">Aprobat Competitii:</label>
+                        <div class="btn-group" role="group" aria-label="Aprobat competitii">
+                            <input type="radio" class="btn-check" name="rad-competitii" id="rad-toate" value="oricare"
+                                checked>
+                            <label class="btn btn-outline-primary" for="rad-toate">Oricare</label>
+
+                            <input type="radio" class="btn-check" name="rad-competitii" id="rad-da" value="da">
+                            <label class="btn btn-outline-success" for="rad-da">Da</label>
+
+                            <input type="radio" class="btn-check" name="rad-competitii" id="rad-nu" value="nu">
+                            <label class="btn btn-outline-danger" for="rad-nu">Nu</label>
+                        </div>
+                    </div>
+
+                    <!-- 8. Checkbox simplu (Noutati) -->
+                    <div class="col-md-2 mt-4">
+                        <label class="form-label d-block">Filtru Extra:</label>
+                        <div class="form-check form-switch mt-2">
+                            <input class="form-check-input" type="checkbox" id="chk-noutati">
+                            <label class="form-check-label fw-bold" for="chk-noutati">Noutăți</label>
+                        </div>
+                    </div>
+
+                    <!-- 9. Checkbox Group (Materiale) -->
+                    <div class="col-md-4 mt-4">
+                        <label class="form-label d-block">Materiale:</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input chk-material" type="checkbox" id="mat-otel" value="Otel">
+                            <label class="form-check-label" for="mat-otel">Otel</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input chk-material" type="checkbox" id="mat-cauciuc"
+                                value="Cauciuc">
+                            <label class="form-check-label" for="mat-cauciuc">Cauciuc</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input chk-material" type="checkbox" id="mat-lemn" value="Lemn">
+                            <label class="form-check-label" for="mat-lemn">Lemn</label>
+                        </div>
+                    </div>
+
+                </div> <!-- end row -->
+
+                <hr class="my-4">
+
+                <!-- SORTARE & BUTOANE -->
+                <div class="row g-2 align-items-center">
+                    <div class="col-auto">
+                        <label for="sort-cheia1" class="form-label mb-0">Sortare 1:</label>
+                        <select class="form-select form-select-sm" id="sort-cheia1">
+                            <option value="nume" selected>Nume</option>
+                            <option value="pret">Pret</option>
+                            <option value="greutate">Greutate</option>
+                            <option value="categorie">Categorie</option>
+                            <option value="data">Data Adaugare</option>
+                            <option value="raport">Greutate / Preț</option>
+                        </select>
+                    </div>
+                    <div class="col-auto">
+                        <label for="sort-cheia2" class="form-label mb-0">Sortare 2:</label>
+                        <select class="form-select form-select-sm" id="sort-cheia2">
+                            <option value="pret" selected>Pret</option>
+                            <option value="nume">Nume</option>
+                            <option value="greutate">Greutate</option>
+                            <option value="categorie">Categorie</option>
+                            <option value="data">Data Adaugare</option>
+                            <option value="raport">Greutate / Preț</option>
+                        </select>
+                    </div>
+
+                    <div class="col-auto mt-4 pt-1">
+                        <button id="btn-sort-asc" class="btn btn-secondary btn-sm"><i
+                                class="fa-solid fa-arrow-up-a-z"></i> <span
+                                class="d-none d-md-inline">Ascendent</span></button>
+                        <button id="btn-sort-desc" class="btn btn-secondary btn-sm"><i
+                                class="fa-solid fa-arrow-down-z-a"></i> <span
+                                class="d-none d-md-inline">Descendent</span></button>
+                    </div>
+
+                    <div class="col-auto mt-4 pt-1 ms-auto">
+                        <button id="btn-filtrare" class="btn btn-primary"><i class="fa-solid fa-filter"></i> <span
+                                class="d-none d-md-inline">Filtreaza</span></button>
+                        <button id="btn-filtrare-server" class="btn btn-warning"><i class="fa-solid fa-server"></i>
+                            <span class="d-none d-md-inline">Filtrare Server (Fetch)</span></button>
+                        <button id="btn-reset" class="btn btn-outline-danger"><i class="fa-solid fa-rotate-left"></i>
+                            <span class="d-none d-md-inline">Resetare</span></button>
+                        <button id="btn-calcul" class="btn btn-success"><i class="fa-solid fa-calculator"></i> <span
+                                class="d-none d-md-inline">Calculeaza</span></button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- INFO -->
+            <div class="d-flex justify-content-between mb-3">
+                <h5 class="text-muted">Total produse afișate: <span id="numar-produse">
+                        <%= produse.length %>
+                    </span></h5>
+                <!-- Paginare (Bonus 5) Container -->
+                <nav aria-label="Pagina produse" class="bg-transparent"
+                    style="background-color: transparent !important;">
+                    <ul class="pagination pagination-sm m-0" id="paginare-container">
+                        <!-- Linkurile for fi generate prin JS -->
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- CONTAINER COMPARARE (Bonus 20) -->
+            <div id="container-comparare"
+                class="position-fixed bottom-0 end-0 p-3 bg-dark text-white rounded shadow-lg d-none"
+                style="z-index: 1050;">
+                <h6 class="border-bottom border-secondary pb-2">Comparare Produse</h6>
+                <div id="lista-comparare" class="mb-2"></div>
+                <button id="btn-afiseaza-comparare" class="btn btn-primary btn-sm w-100" disabled>Afișează
+                    Comparația</button>
+            </div>
+
+            <!-- GRID PRODUSE -->
+            <div id="mesaj-lipsa" class="alert alert-danger d-none">Nu exista produse conform filtrarii curente.</div>
+
+            <div class="row row-cols-1 row-cols-lg-2 g-4" id="produse-grid">
+                <% 
+                for(let i=0; i<produse.length; i++) { 
+                    let p = produse[i]; 
+                    let d = new Date(p.data_adaugare); 
+                    const zile = ['Duminica', 'Luni', 'Marti', 'Miercuri', 'Joi', 'Vineri', 'Sambata']; 
+                    const luni = ['Ianuarie', 'Februarie', 'Martie', 'Aprilie', 'Mai', 'Iunie', 'Iulie', 'August', 'Septembrie', 'Octombrie', 'Noiembrie', 'Decembrie']; 
+                    let dataFormata = `${zile[d.getDay()]}, ${d.getDate()} ${luni[d.getMonth()]} ${d.getFullYear()}`; 
+                %>
+                    <article class="col produs <%- p.categorie.replace(/\s/g, '') %>" id="artc-<%- p.id %>"
+                        data-categorie="<%- p.categorie %>" data-pret="<%- p.pret %>" data-nume="<%- p.nume %>"
+                        data-greutate="<%- p.greutate %>" data-data="<%- p.data_adaugare %>">
+                        <div class="card h-100 shadow-sm border-0 position-relative p-3">
+
+                            <h4 class="card-title text-primary border-bottom pb-2 mb-3"><%- p.nume %></h4>
+
+                            <!-- Bonus 18: Produs Nou -->
+                            <% let isNou=false; let unAnInUrma=new Date();
+                                unAnInUrma.setFullYear(unAnInUrma.getFullYear() - 1); if (d>= unAnInUrma) {
+                                isNou = true;
+                                }
+                                %>
+                                <% if(isNou) { %>
+                                    <span
+                                        class="badge badge-nou bg-danger position-absolute top-0 start-0 m-2 px-3 py-2 fs-6 z-index-1">NOU</span>
+                                    <% } %>
+
+                                        <!-- Butoane vizibilitate produs (Bonus 6) -->
+                                        <div class="position-absolute top-0 end-0 m-2 d-flex gap-1" style="z-index: 2;">
+                                            <button class="btn btn-sm btn-light btn-pastreaza"
+                                                title="Pastreaza permanent"><i
+                                                    class="fa-solid fa-thumbtack"></i></button>
+                                            <button class="btn btn-sm btn-light btn-ascunde-temp"
+                                                title="Ascunde temporar"><i class="fa-solid fa-eye-slash"></i></button>
+                                            <button class="btn btn-sm btn-light btn-ascunde-sesiune"
+                                                title="Ascunde in aceasta sesiune"><i
+                                                    class="fa-solid fa-trash-can"></i></button>
+                                        </div>
+
+                                        <!-- Buton Compara (Bonus 20) -->
+                                        <button class="btn btn-sm btn-info position-absolute m-2 btn-compara text-white"
+                                            style="bottom: 10px; right: 10px; z-index: 2;" data-id="<%- p.id %>"
+                                            data-nume="<%- p.nume %>"><i class="fa-solid fa-scale-balanced"></i>
+                                            Compară</button>
+
+                                        <div class="row flex-grow-1">
+                                            <!-- Coloana 1: Imagine și listă caracteristici -->
+                                            <div class="col-sm-6 border-end">
+                                                <div class="card-img-top-container overflow-hidden bg-light d-flex align-items-center justify-content-center mb-3 rounded"
+                                                    style="height: 200px;">
+                                                    <img src="<%- p.imagine %>" class="img-fluid p-2"
+                                                        alt="<%- p.nume %>"
+                                                        style="max-height: 100%; object-fit: contain;">
+                                                </div>
+
+                                                <ul class="list-unstyled small mb-0">
+                                                    <li class="mb-1"><span
+                                                            class="fw-bold bg-light px-1 rounded">Pret:</span> <span
+                                                            class="val-pret fw-bold text-success fs-6"><%- p.pret
+                                                                %></span> RON</li>
+                                                    <li class="mb-1"><span
+                                                            class="fw-bold bg-light px-1 rounded">Greutate:</span> <%-
+                                                            p.greutate %> kg</li>
+                                                    <li class="mb-1"><span
+                                                            class="fw-bold bg-light px-1 rounded">Culoare:</span> <span
+                                                            class="val-culoare"><%- p.culoare %></span></li>
+                                                    <li class="mb-1"><span
+                                                            class="fw-bold bg-light px-1 rounded">Materiale:</span>
+                                                        <span class="val-materiale"><%- p.materiale %></span></li>
+                                                    <li class="mb-1"><span class="fw-bold bg-light px-1 rounded">Tip
+                                                            Livrare:</span> <span class="val-livrare"><%- p.tip_livrare
+                                                                %></span></li>
+                                                    <li class="mb-1"><span class="fw-bold bg-light px-1 rounded">Pentru
+                                                            Competitii:</span> <span class="val-competitie"><%-
+                                                                p.pentru_competitii ? 'Da' : 'Nu' %></span></li>
+                                                    <li class="mb-1"><span class="fw-bold bg-light px-1 rounded">Data
+                                                            adaugare:</span> <time datetime="<%- p.data_adaugare %>"><%-
+                                                                dataFormata %></time></li>
+                                                </ul>
+                                            </div>
+
+                                            <!-- Coloana 2: Categorie și descriere -->
+                                            <div class="col-sm-6 d-flex flex-column">
+                                                <h6 class="text-muted categ-text mb-3">Categorie: <span
+                                                        class="badge bg-secondary"><%- p.categorie %></span></h6>
+
+                                                <div
+                                                    class="descriere-produs flex-grow-1 fst-italic text-secondary small mb-3">
+                                                    <%- p.descriere %>
+                                                </div>
+
+                                                <div class="mt-auto mb-4">
+                                                    <a href="/produs/<%- p.id %>"
+                                                        class="btn btn-outline-primary btn-sm w-100 mb-2">Vezi Pagina
+                                                        Dedicata</a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                        </div>
+                    </article>
                     <% } %>
+            </div>
 
-                    <!-- Butoane vizibilitate produs (Bonus 6) -->
-                    <div class="position-absolute top-0 end-0 m-2 d-flex gap-1" style="z-index: 2;">
-                        <button class="btn btn-sm btn-light btn-pastreaza" title="Pastreaza permanent"><i class="fa-solid fa-thumbtack"></i></button>
-                        <button class="btn btn-sm btn-light btn-ascunde-temp" title="Ascunde temporar"><i class="fa-solid fa-eye-slash"></i></button>
-                        <button class="btn btn-sm btn-light btn-ascunde-sesiune" title="Ascunde in aceasta sesiune"><i class="fa-solid fa-trash-can"></i></button>
+        </main>
+
+        <!-- MODAL PRODUS (Bonus 11) -->
+        <div class="modal fade" id="produsModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title" id="modalNumeProdus">Nume Produs</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                     </div>
-
-                    <!-- Buton Compara (Bonus 20) -->
-                    <button class="btn btn-sm btn-info position-absolute m-2 btn-compara text-white" style="bottom: 10px; right: 10px; z-index: 2;" data-id="<%- p.id %>" data-nume="<%- p.nume %>"><i class="fa-solid fa-scale-balanced"></i> Compară</button>
-
-                    <div class="row flex-grow-1">
-                        <!-- Coloana 1: Imagine și listă caracteristici -->
-                        <div class="col-sm-6 border-end">
-                            <div class="card-img-top-container overflow-hidden bg-light d-flex align-items-center justify-content-center mb-3 rounded" style="height: 200px;">
-                                <img src="<%- p.imagine %>" class="img-fluid p-2" alt="<%- p.nume %>" style="max-height: 100%; object-fit: contain;">
-                            </div>
-                            
-                            <ul class="list-unstyled small mb-0">
-                                <li class="mb-1"><span class="fw-bold bg-light px-1 rounded">Pret:</span> <span class="val-pret fw-bold text-success fs-6"><%- p.pret %></span> RON</li>
-                                <li class="mb-1"><span class="fw-bold bg-light px-1 rounded">Greutate:</span> <%- p.greutate %> kg</li>
-                                <li class="mb-1"><span class="fw-bold bg-light px-1 rounded">Culoare:</span> <span class="val-culoare"><%- p.culoare %></span></li>
-                                <li class="mb-1"><span class="fw-bold bg-light px-1 rounded">Materiale:</span> <span class="val-materiale"><%- p.materiale %></span></li>
-                                <li class="mb-1"><span class="fw-bold bg-light px-1 rounded">Tip Livrare:</span> <span class="val-livrare"><%- p.tip_livrare %></span></li>
-                                <li class="mb-1"><span class="fw-bold bg-light px-1 rounded">Pentru Competitii:</span> <span class="val-competitie"><%- p.pentru_competitii ? 'Da' : 'Nu' %></span></li>
-                                <li class="mb-1"><span class="fw-bold bg-light px-1 rounded">Data adaugare:</span> <time datetime="<%- p.data_adaugare %>"><%- dataFormata %></time></li>
+                    <div class="modal-body row">
+                        <div class="col-md-5 d-flex align-items-center justify-content-center">
+                            <img id="modalImagine" src="" class="img-fluid rounded shadow-sm" alt="img">
+                        </div>
+                        <div class="col-md-7">
+                            <h4 class="text-success mb-3"><span id="modalPret"></span> RON</h4>
+                            <p id="modalDescriere" class="fst-italic"></p>
+                            <hr>
+                            <ul class="list-unstyled">
+                                <li><strong>Categorie:</strong> <span id="modalCategorie"></span></li>
+                                <li><strong>Greutate:</strong> <span id="modalGreutate"></span> kg</li>
+                                <li><strong>Culoare:</strong> <span id="modalCuloare"></span></li>
+                                <li><strong>Materiale:</strong> <span id="modalMateriale"></span></li>
                             </ul>
+                            <a id="modalLink" href="#" class="btn btn-outline-primary w-100 mt-3">Spre pagina
+                                dedicată</a>
                         </div>
-                        
-                        <!-- Coloana 2: Categorie și descriere -->
-                        <div class="col-sm-6 d-flex flex-column">
-                            <h6 class="text-muted categ-text mb-3">Categorie: <span class="badge bg-secondary"><%- p.categorie %></span></h6>
-                            
-                            <div class="descriere-produs flex-grow-1 fst-italic text-secondary small mb-3">
-                                <%- p.descriere %>
-                            </div>
-
-                            <div class="mt-auto mb-4">
-                                <a href="/produs/<%- p.id %>" class="btn btn-outline-primary btn-sm w-100 mb-2">Vezi Pagina Dedicata</a>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </article>
-            <% } %>
-        </div>
-
-    </main>
-
-    <!-- MODAL PRODUS (Bonus 11) -->
-    <div class="modal fade" id="produsModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header bg-primary text-white">
-                    <h5 class="modal-title" id="modalNumeProdus">Nume Produs</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body row">
-                    <div class="col-md-5 d-flex align-items-center justify-content-center">
-                        <img id="modalImagine" src="" class="img-fluid rounded shadow-sm" alt="img">
-                    </div>
-                    <div class="col-md-7">
-                        <h4 class="text-success mb-3"><span id="modalPret"></span> RON</h4>
-                        <p id="modalDescriere" class="fst-italic"></p>
-                        <hr>
-                        <ul class="list-unstyled">
-                            <li><strong>Categorie:</strong> <span id="modalCategorie"></span></li>
-                            <li><strong>Greutate:</strong> <span id="modalGreutate"></span> kg</li>
-                            <li><strong>Culoare:</strong> <span id="modalCuloare"></span></li>
-                            <li><strong>Materiale:</strong> <span id="modalMateriale"></span></li>
-                        </ul>
-                        <a id="modalLink" href="#" class="btn btn-outline-primary w-100 mt-3">Spre pagina dedicată</a>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- MEMENTO CALCUL DIV -->
-    <div id="div-calcul" class="position-fixed top-50 start-50 translate-middle p-4 bg-success text-white rounded shadow-lg d-none fw-bold fs-4 z-index-3 text-center">
-        <!-- Generat dinamic prin javascript -->
-    </div>
+        <!-- MEMENTO CALCUL DIV -->
+        <div id="div-calcul"
+            class="position-fixed top-50 start-50 translate-middle p-4 bg-success text-white rounded shadow-lg d-none fw-bold fs-4 z-index-3 text-center">
+            <!-- Generat dinamic prin javascript -->
+        </div>
 
-    <%- include('../fragmente/footer') %>
-    <%- include('../fragmente/orar') %>
+        <%- include('../fragmente/footer') %>
+            <%- include('../fragmente/orar') %>
 </body>
+
 </html>

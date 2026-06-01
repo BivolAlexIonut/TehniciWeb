@@ -1,19 +1,13 @@
-// ============================================================
-// CUSTOM.SCSS - Bootstrap Customization
-// Tema cromatică CrossFit: Portocal (#ff4d00) + Dark (#1a1a1a)
-// ============================================================
+/* ---variabile personalizate  */
+$primary-color: #dc2626;
+$primary-dark: #991b1b;
+$primary-light: #ef4444;
+$secondary-color: #0a0a0a;
+$tertiary-color: #f8fafc;
+$accent-color: #fca5a5;
+$success-color: #10b981;
+$danger-color: #ef4444;
 
-/* --- 1. variabile personalizate - culori --- */
-$primary-color: #dc2626;      // Rosu principal
-$primary-dark: #991b1b;       // Rosu inchis
-$primary-light: #ef4444;      // Rosu deschis
-$secondary-color: #0a0a0a;    // Negru pur/Dark
-$tertiary-color: #f8fafc;     // Alb/Off-white
-$accent-color: #fca5a5;       // Rosu accent luminos
-$success-color: #10b981;      // Verde
-$danger-color: #ef4444;       // Rosu modern
-
-/* --- 2. variabile personalizate - dimensiuni font --- */
 $font-size-base: 1rem;
 $font-size-h1: 3rem;
 $font-size-h2: 2.5rem;
@@ -22,17 +16,14 @@ $font-size-h4: 1.5rem;
 $font-size-h5: 1.25rem;
 $font-size-h6: 1rem;
 
-/* --- 3. variabile personalizate - family font --- */
 $font-family-base: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 $font-family-heading: 'Montserrat', sans-serif;
 $font-family-monospace: 'Courier New', monospace;
 
-/* --- 4. variabile personalizate - border radius --- */
 $border-radius: 0.5rem;
 $border-radius-lg: 1rem;
 $border-radius-sm: 0.25rem;
 
-/* --- 5. variabile personalizate - breakpoints --- */
 $grid-breakpoints: (
   xs: 0,
   sm: 576px,
@@ -80,100 +71,140 @@ $bs-gutter-x: 1.5rem;
 $bs-gutter-y: 0;
 
 // Form Range Variables (Bonus)
-$form-range-thumb-width: 1.5rem;  // 50% mai mare (de la 1rem default)
-$form-range-thumb-height: 1.5rem; 
-$form-range-thumb-bg: #28a745;     // Culoare bulina (Verde - success)
-$form-range-track-bg: #e9ecef;     // Culoare slider background
+$form-range-thumb-width: 1.5rem; // 50% mai mare (de la 1rem default)
+$form-range-thumb-height: 1.5rem;
+$form-range-thumb-bg: #28a745; // Culoare bulina (Verde - success)
+$form-range-track-bg: #e9ecef; // Culoare slider background
 $form-range-thumb-active-bg: #198754;
 
 /* --- 7. import bootstrap --- */
 @import 'bootstrap/scss/bootstrap';
 
-// Teme Globale (Theme switcher) - Redefinire variabile pentru general.css
+// Teme Globale
 body.theme-light {
-    // Redefinim CSS Variables pentru a se aplica in tot layout-ul din general.css
-    --c-bg-main: #f8fafc;
-    --c-bg-sec: #ffffff;
-    --c-text-white: #171717;
-    --c-text-gray: #525252;
-    --c-border-dark: #e5e5e5;
-    --c-border-light: #d4d4d4;
-    --c-border-gray: #a3a3a3;
-    --c-black: #ffffff;
-    --c-overlay-80: rgba(255, 255, 255, 0.9);
-    --c-overlay-60: rgba(255, 255, 255, 0.7);
-    --c-overlay-50: rgba(255, 255, 255, 0.5);
-    --c-overlay-30: rgba(255, 255, 255, 0.3);
-    --c-white-05: rgba(0, 0, 0, 0.05);
-    
-    background-color: var(--c-bg-main);
-    color: var(--c-text-white);
-    
-    .bg-light { background-color: #f5f5f5 !important; color: #171717 !important; }
-    .card { background-color: #ffffff; color: #171717; border-color: #e5e5e5; }
-    .text-muted { color: #525252 !important; }
+  --c-bg-main: #f8fafc;
+  --c-bg-sec: #ffffff;
+  --c-text-white: #171717;
+  --c-text-gray: #525252;
+  --c-border-dark: #e5e5e5;
+  --c-border-light: #d4d4d4;
+  --c-border-gray: #a3a3a3;
+  --c-black: #ffffff;
+  --c-overlay-80: rgba(255, 255, 255, 0.9);
+  --c-overlay-60: rgba(255, 255, 255, 0.7);
+  --c-overlay-50: rgba(255, 255, 255, 0.5);
+  --c-overlay-30: rgba(255, 255, 255, 0.3);
+  --c-white-05: rgba(0, 0, 0, 0.05);
+
+  background-color: var(--c-bg-main);
+  color: var(--c-text-white);
+
+  .bg-light {
+    background-color: #f5f5f5 !important;
+    color: #171717 !important;
+  }
+
+  .card {
+    background-color: #ffffff;
+    color: #171717;
+    border-color: #e5e5e5;
+  }
+
+  .text-muted {
+    color: #525252 !important;
+  }
 }
 
 body.theme-dark {
-    --c-bg-main: #0a0a0a;
-    --c-bg-sec: #171717;
-    --c-text-white: #f8fafc;
-    --c-text-gray: #a3a3a3;
-    --c-border-dark: #262626;
-    --c-border-light: #404040;
-    --c-border-gray: #737373;
-    --c-black: #000000;
-    --c-overlay-80: rgba(0, 0, 0, 0.8);
-    --c-overlay-60: rgba(0, 0, 0, 0.6);
-    --c-overlay-50: rgba(0, 0, 0, 0.5);
-    --c-overlay-30: rgba(0, 0, 0, 0.3);
-    --c-white-05: rgba(255, 255, 255, 0.05);
+  --c-bg-main: #0a0a0a;
+  --c-bg-sec: #171717;
+  --c-text-white: #f8fafc;
+  --c-text-gray: #a3a3a3;
+  --c-border-dark: #262626;
+  --c-border-light: #404040;
+  --c-border-gray: #737373;
+  --c-black: #000000;
+  --c-overlay-80: rgba(0, 0, 0, 0.8);
+  --c-overlay-60: rgba(0, 0, 0, 0.6);
+  --c-overlay-50: rgba(0, 0, 0, 0.5);
+  --c-overlay-30: rgba(0, 0, 0, 0.3);
+  --c-white-05: rgba(255, 255, 255, 0.05);
 
-    background-color: var(--c-bg-main);
-    color: var(--c-text-white);
-    
-    .bg-light { background-color: #171717 !important; color: #fff !important; }
-    .card { background-color: #171717; color: #fff; border-color: #262626; }
-    .text-muted { color: #a3a3a3 !important; }
+  background-color: var(--c-bg-main);
+  color: var(--c-text-white);
+
+  .bg-light {
+    background-color: #171717 !important;
+    color: #fff !important;
+  }
+
+  .card {
+    background-color: #171717;
+    color: #fff;
+    border-color: #262626;
+  }
+
+  .text-muted {
+    color: #a3a3a3 !important;
+  }
 }
 
 body.theme-crossfit {
-    // Warm - Bej / Galben cald
-    --c-base: #d4a017;
-    --c-dark-orange: #b8860b;
-    --c-accent-yellow: #f0c040;
-    --c-bg-main: #fdf6e3;
-    --c-bg-sec: #f5edd6;
-    --c-text-white: #3d2b1f;
-    --c-text-gray: #6b5b4f;
-    --c-border-dark: #e0d5c1;
-    --c-border-light: #d4c9b5;
-    --c-border-gray: #a89880;
-    --c-black: #fdf6e3;
-    --c-overlay-80: rgba(253, 246, 227, 0.9);
-    --c-overlay-60: rgba(253, 246, 227, 0.7);
-    --c-overlay-50: rgba(253, 246, 227, 0.5);
-    --c-overlay-30: rgba(253, 246, 227, 0.3);
-    --c-white-05: rgba(0, 0, 0, 0.04);
-    
-    background-color: var(--c-bg-main);
-    color: var(--c-text-white);
-    
-    .bg-light { background-color: #f5edd6 !important; color: #3d2b1f !important; }
-    .text-primary { color: #d4a017 !important; }
-    .btn-primary { background-color: #d4a017; border-color: #d4a017; color: #fff; }
-    .card { border: 1px solid #e0d5c1; background-color: #f5edd6; color: #3d2b1f; }
-    .text-muted { color: #6b5b4f !important; }
+  --c-base: #d4a017;
+  --c-dark-orange: #b8860b;
+  --c-accent-yellow: #f0c040;
+  --c-bg-main: #fdf6e3;
+  --c-bg-sec: #f5edd6;
+  --c-text-white: #3d2b1f;
+  --c-text-gray: #6b5b4f;
+  --c-border-dark: #e0d5c1;
+  --c-border-light: #d4c9b5;
+  --c-border-gray: #a89880;
+  --c-black: #fdf6e3;
+  --c-overlay-80: rgba(253, 246, 227, 0.9);
+  --c-overlay-60: rgba(253, 246, 227, 0.7);
+  --c-overlay-50: rgba(253, 246, 227, 0.5);
+  --c-overlay-30: rgba(253, 246, 227, 0.3);
+  --c-white-05: rgba(0, 0, 0, 0.04);
+
+  background-color: var(--c-bg-main);
+  color: var(--c-text-white);
+
+  .bg-light {
+    background-color: #f5edd6 !important;
+    color: #3d2b1f !important;
+  }
+
+  .text-primary {
+    color: #d4a017 !important;
+  }
+
+  .btn-primary {
+    background-color: #d4a017;
+    border-color: #d4a017;
+    color: #fff;
+  }
+
+  .card {
+    border: 1px solid #e0d5c1;
+    background-color: #f5edd6;
+    color: #3d2b1f;
+  }
+
+  .text-muted {
+    color: #6b5b4f !important;
+  }
 }
 
 /* --- 8. teme personalizate --- */
 
-// Tema 1: CrossFit Orange
+// Tema 1
 .card.tema-crossfit {
   background-color: $primary-color !important;
   color: $tertiary-color !important;
 
-  .card-body, .card-header {
+  .card-body,
+  .card-header {
     background-color: transparent !important;
     color: inherit !important;
   }
@@ -189,13 +220,20 @@ body.theme-crossfit {
     }
   }
 
-  h1, h2, h3, h4, h5, h6, .card-title {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .card-title {
     color: white !important;
     font-family: $font-family-heading;
     font-weight: 700;
   }
 
-  p, .card-text {
+  p,
+  .card-text {
     color: $tertiary-color !important;
   }
 }
@@ -205,12 +243,14 @@ body.theme-crossfit {
   background-color: $secondary-color !important;
   color: $tertiary-color !important;
 
-  .card-body, .card-header {
+  .card-body,
+  .card-header {
     background-color: transparent !important;
     color: inherit !important;
   }
 
-  .btn-primary, .btn-outline-primary {
+  .btn-primary,
+  .btn-outline-primary {
     background-color: $primary-color;
     border-color: $primary-color;
     color: white !important;
@@ -221,12 +261,19 @@ body.theme-crossfit {
     }
   }
 
-  h1, h2, h3, h4, h5, h6, .card-title {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .card-title {
     color: $primary-color !important;
     font-family: $font-family-heading;
   }
 
-  p, .card-text {
+  p,
+  .card-text {
     color: $tertiary-color !important;
   }
 }
@@ -375,31 +422,27 @@ body.theme-crossfit {
 hr {
   border: none;
   height: 4px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    $primary-color,
-    $accent-color,
-    $primary-color,
-    transparent
-  );
+  background: linear-gradient(90deg,
+      transparent,
+      $primary-color,
+      $accent-color,
+      $primary-color,
+      transparent);
   border-radius: 2px;
   opacity: 1;
   margin: 2rem 0;
   position: relative;
 
   &.prajituri {
-    background: repeating-linear-gradient(
-      90deg,
-      $primary-color 0px,
-      $primary-color 10px,
-      transparent 10px,
-      transparent 20px,
-      $accent-color 20px,
-      $accent-color 30px,
-      transparent 30px,
-      transparent 40px
-    );
+    background: repeating-linear-gradient(90deg,
+        $primary-color 0px,
+        $primary-color 10px,
+        transparent 10px,
+        transparent 20px,
+        $accent-color 20px,
+        $accent-color 30px,
+        transparent 30px,
+        transparent 40px);
     height: 6px;
   }
 
@@ -420,7 +463,9 @@ hr {
 
 // Animație pulse pentru hr
 @keyframes pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0;
     transform: translate(-50%, -50%) scale(1);
   }

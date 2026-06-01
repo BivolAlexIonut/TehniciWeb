@@ -1,209 +1,260 @@
 <!DOCTYPE html>
 <html lang="ro">
+
 <head>
     <%- include('../fragmente/head') %>
-    <title><%- produs.nume %> - Magazin CrossFit</title>
-    <!-- Adaugam script pentru comparare si orar etc -->
-    <script src="/resurse/js/comparare.js" defer></script>
-    
-    <style>
-        /* Corectare si stilizare breadcrumb (evitam coliziunea cu stilul global 'nav' din nav.css) */
-        nav[aria-label="breadcrumb"] {
-            background-color: transparent !important;
-            position: static !important;
-            width: auto !important;
-            padding: 0 !important;
-            margin: 0 0 1.5rem 0 !important;
-            box-shadow: none !important;
-        }
+        <title><%- produs.nume %> - Magazin CrossFit</title>
+        <!-- Adaugam script pentru comparare si orar etc -->
+        <script src="/resurse/js/comparare.js" defer></script>
 
-        nav[aria-label="breadcrumb"] .breadcrumb {
-            background-color: transparent !important;
-            padding: 0 !important;
-            margin: 0 !important;
-            font-size: 0.95rem;
-            display: flex;
-            flex-wrap: wrap;
-            list-style: none;
-        }
+        <style>
+            /* Corectare si stilizare breadcrumb (evitam coliziunea cu stilul global 'nav' din nav.css) */
+            nav[aria-label="breadcrumb"] {
+                background-color: transparent !important;
+                position: static !important;
+                width: auto !important;
+                padding: 0 !important;
+                margin: 0 0 1.5rem 0 !important;
+                box-shadow: none !important;
+            }
 
-        nav[aria-label="breadcrumb"] .breadcrumb-item {
-            display: flex;
-            align-items: center;
-            color: #6c757d; /* Culoare neutra pentru elementul activ */
-        }
+            nav[aria-label="breadcrumb"] .breadcrumb {
+                background-color: transparent !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                font-size: 0.95rem;
+                display: flex;
+                flex-wrap: wrap;
+                list-style: none;
+            }
 
-        /* Adaugam un separator elegant tip sageata */
-        nav[aria-label="breadcrumb"] .breadcrumb-item + .breadcrumb-item::before {
-            content: "\f105" !important; /* FontAwesome angle-right */
-            font-family: "Font Awesome 6 Free" !important;
-            font-weight: 900 !important;
-            padding: 0 10px !important;
-            color: #adb5bd !important;
-            font-size: 0.8rem;
-        }
+            nav[aria-label="breadcrumb"] .breadcrumb-item {
+                display: flex;
+                align-items: center;
+                color: #6c757d;
+                /* Culoare neutra pentru elementul activ */
+            }
 
-        nav[aria-label="breadcrumb"] .breadcrumb-item a {
-            color: #495057 !important; /* Culoare inchisa/neutral pentru link-uri */
-            text-decoration: none !important;
-            font-weight: 500;
-            transition: color 0.2s ease-in-out;
-        }
+            /* Adaugam un separator elegant tip sageata */
+            nav[aria-label="breadcrumb"] .breadcrumb-item+.breadcrumb-item::before {
+                content: "\f105" !important;
+                /* FontAwesome angle-right */
+                font-family: "Font Awesome 6 Free" !important;
+                font-weight: 900 !important;
+                padding: 0 10px !important;
+                color: #adb5bd !important;
+                font-size: 0.8rem;
+            }
 
-        nav[aria-label="breadcrumb"] .breadcrumb-item a:hover {
-            color: #dc2626 !important; /* Accent rosu specific site-ului la hover */
-            text-decoration: none !important;
-        }
+            nav[aria-label="breadcrumb"] .breadcrumb-item a {
+                color: #495057 !important;
+                /* Culoare inchisa/neutral pentru link-uri */
+                text-decoration: none !important;
+                font-weight: 500;
+                transition: color 0.2s ease-in-out;
+            }
 
-        nav[aria-label="breadcrumb"] .breadcrumb-item.active {
-            color: #212529 !important;
-            font-weight: 600;
-        }
-    </style>
+            nav[aria-label="breadcrumb"] .breadcrumb-item a:hover {
+                color: #dc2626 !important;
+                /* Accent rosu specific site-ului la hover */
+                text-decoration: none !important;
+            }
+
+            nav[aria-label="breadcrumb"] .breadcrumb-item.active {
+                color: #212529 !important;
+                font-weight: 600;
+            }
+        </style>
 </head>
+
 <body>
     <%- include('../fragmente/header') %>
 
-    <main class="container my-5" id="main-produs">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Acasa</a></li>
-                <li class="breadcrumb-item"><a href="/produse">Produse</a></li>
-                <li class="breadcrumb-item"><a href="/produse?categorie=<%- encodeURIComponent(produs.categorie) %>"><%- produs.categorie %></a></li>
-                <li class="breadcrumb-item active" aria-current="page"><%- produs.nume %></li>
-            </ol>
-        </nav>
+        <main class="container my-5" id="main-produs">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Acasa</a></li>
+                    <li class="breadcrumb-item"><a href="/produse">Produse</a></li>
+                    <li class="breadcrumb-item"><a
+                            href="/produse?categorie=<%- encodeURIComponent(produs.categorie) %>"><%- produs.categorie
+                                %></a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><%- produs.nume %></li>
+                </ol>
+            </nav>
 
-        <div class="row align-items-center mb-5 mt-4">
-            <!-- Coloana Carusel Imagini (Bonus 9) -->
-            <div class="col-md-6 mb-4 mb-md-0">
-                <div id="caruselProdus" class="carousel slide carousel-dark shadow-sm rounded overflow-hidden" data-bs-ride="carousel">
-                    <div class="carousel-inner bg-light d-flex align-items-center" style="height: 400px;">
-                        <% if(locals.imaginiProdus && imaginiProdus.length > 0) { %>
-                            <% imaginiProdus.forEach((imgUrl, idx) => { %>
-                                <div class="carousel-item <%- idx === 0 ? 'active' : '' %> w-100 h-100 text-center">
-                                    <img src="<%- imgUrl %>" class="d-block w-100 h-100" style="object-fit: contain; padding: 20px;" alt="<%- produs.nume %> <%- idx + 1 %>">
-                                </div>
-                            <% }) %>
-                        <% } else { %>
-                            <div class="carousel-item active w-100 h-100 text-center">
-                                <img src="<%- produs.imagine %>" class="d-block w-100 h-100" style="object-fit: contain; padding: 20px;" alt="<%- produs.nume %>">
-                            </div>
-                        <% } %>
+            <div class="row align-items-center mb-5 mt-4">
+                <!-- Coloana Carusel Imagini (Bonus 9) -->
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <div id="caruselProdus" class="carousel slide carousel-dark shadow-sm rounded overflow-hidden"
+                        data-bs-ride="carousel">
+                        <div class="carousel-inner bg-light d-flex align-items-center" style="height: 400px;">
+                            <% if(locals.imaginiProdus && imaginiProdus.length> 0) { %>
+                                <% imaginiProdus.forEach((imgUrl, idx)=> { %>
+                                    <div class="carousel-item <%- idx === 0 ? 'active' : '' %> w-100 h-100 text-center">
+                                        <img src="<%- imgUrl %>" class="d-block w-100 h-100"
+                                            style="object-fit: contain; padding: 20px;"
+                                            alt="<%- produs.nume %> <%- idx + 1 %>">
+                                    </div>
+                                    <% }) %>
+                                        <% } else { %>
+                                            <div class="carousel-item active w-100 h-100 text-center">
+                                                <img src="<%- produs.imagine %>" class="d-block w-100 h-100"
+                                                    style="object-fit: contain; padding: 20px;"
+                                                    alt="<%- produs.nume %>">
+                                            </div>
+                                            <% } %>
+                        </div>
+                        <% if(locals.imaginiProdus && imaginiProdus.length> 1) { %>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#caruselProdus"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#caruselProdus"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                            <% } %>
                     </div>
-                    <% if(locals.imaginiProdus && imaginiProdus.length > 1) { %>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#caruselProdus" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#caruselProdus" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                    <% } %>
+                </div>
+
+                <!-- Coloana Detalii -->
+                <div class="col-md-6">
+                    <!-- Bonus 18: Produs Nou -->
+                    <% let isNou=false; let unAnInUrma=new Date(); let d=new Date(produs.data_adaugare);
+                        unAnInUrma.setFullYear(unAnInUrma.getFullYear() - 1); if (d>= unAnInUrma) isNou = true;
+                        %>
+                        <% if(isNou) { %>
+                            <span class="badge bg-danger mb-2 px-3 py-2">PRODUS NOU</span>
+                            <% } %>
+
+                                <h2 class="fw-bold text-primary mb-1"><%- produs.nume %></h2>
+                                <h5 class="text-muted mb-3"><%- produs.categorie %></h5>
+
+                                <h3 class="text-success fw-bold mb-4"><%- produs.pret %> RON</h3>
+
+                                <p class="fs-5 mb-4"><%- produs.descriere %></p>
+
+                                <ul class="list-group list-group-flush mb-4 w-75">
+                                    <li class="list-group-item bg-transparent d-flex justify-content-between px-0">
+                                        <strong>Greutate:</strong> <span><%- produs.greutate %> kg</span>
+                                    </li>
+                                    <li class="list-group-item bg-transparent d-flex justify-content-between px-0">
+                                        <strong>Culoare:</strong> <span><%- produs.culoare %></span>
+                                    </li>
+                                    <li class="list-group-item bg-transparent d-flex justify-content-between px-0">
+                                        <strong>Materiale:</strong> <span><%- produs.materiale %></span>
+                                    </li>
+                                    <li class="list-group-item bg-transparent d-flex justify-content-between px-0">
+                                        <strong>Livrare:</strong> <span><%- produs.tip_livrare %></span>
+                                    </li>
+                                    <li class="list-group-item bg-transparent d-flex justify-content-between px-0">
+                                        <strong>Aprobat Competiții:</strong> <span><%- produs.pentru_competitii ? 'Da'
+                                                : 'Nu' %></span>
+                                    </li>
+                                </ul>
+
+                                <button class="btn btn-info btn-lg text-white btn-compara" data-id="<%- produs.id %>"
+                                    data-nume="<%- produs.nume %>">
+                                    <i class="fa-solid fa-scale-balanced"></i> Compară Produsul
+                                </button>
                 </div>
             </div>
 
-            <!-- Coloana Detalii -->
-            <div class="col-md-6">
-                <!-- Bonus 18: Produs Nou -->
-                <% 
-                    let isNou = false;
-                    let unAnInUrma = new Date();
-                    let d = new Date(produs.data_adaugare);
-                    unAnInUrma.setFullYear(unAnInUrma.getFullYear() - 1);
-                    if (d >= unAnInUrma) isNou = true;
-                %>
-                <% if(isNou) { %>
-                    <span class="badge bg-danger mb-2 px-3 py-2">PRODUS NOU</span>
+            <hr class="my-5">
+
+            <!-- Bonus 17: Seturi din care face parte -->
+            <% if (seturi && seturi.length> 0) { %>
+                <section class="mb-5 bg-light p-4 rounded shadow-sm">
+                    <h3 class="mb-4"><i class="fa-solid fa-boxes-stacked text-warning"></i> Seturi Avantajoase (Reduceri
+                        aplicate)</h3>
+                    <div class="row row-cols-1 row-cols-md-2 g-4">
+                        <% seturi.forEach(set=> { %>
+                            <div class="col">
+                                <div class="card h-100 border-warning shadow-sm">
+                                    <div class="card-body d-flex flex-column justify-content-between">
+                                        <div>
+                                            <h5 class="card-title text-primary"><%- set.nume_set %></h5>
+                                            <p class="card-text text-muted fst-italic small"><%- set.descriere_set %>
+                                            </p>
+
+                                            <div class="mt-3 mb-3">
+                                                <h6 class="small fw-bold border-bottom pb-1 text-secondary">Produse
+                                                    incluse în set:</h6>
+                                                <div class="d-flex flex-column gap-2">
+                                                    <% set.produse.forEach(p=> { %>
+                                                        <a href="/produs/<%- p.id %>"
+                                                            class="text-decoration-none text-dark bg-white border rounded p-2 d-flex align-items-center gap-2 shadow-sm hover-translate-x transition"
+                                                            style="cursor: pointer;">
+                                                            <img src="<%- p.imagine %>" alt="<%- p.nume %>"
+                                                                style="width: 35px; height: 35px; object-fit: contain;">
+                                                            <div class="text-truncate flex-grow-1"
+                                                                style="font-size: 0.85rem; font-weight: 500;"
+                                                                title="<%- p.nume %>"><%- p.nume %></div>
+                                                            <span class="text-success small fw-bold"><%- p.pret %>
+                                                                    RON</span>
+                                                        </a>
+                                                        <% }) %>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="border-top pt-2 mt-auto">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <span class="small text-decoration-line-through text-muted">Separat: <%-
+                                                        parseFloat(set.pret_total).toFixed(2) %> RON</span>
+                                                <span class="text-danger fw-bold fs-5">Preț Pachet: <%-
+                                                        parseFloat(set.pret_redus).toFixed(2) %> RON</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <% }) %>
+                    </div>
+                </section>
                 <% } %>
-                
-                <h2 class="fw-bold text-primary mb-1"><%- produs.nume %></h2>
-                <h5 class="text-muted mb-3"><%- produs.categorie %></h5>
-                
-                <h3 class="text-success fw-bold mb-4"><%- produs.pret %> RON</h3>
-                
-                <p class="fs-5 mb-4"><%- produs.descriere %></p>
 
-                <ul class="list-group list-group-flush mb-4 w-75">
-                    <li class="list-group-item bg-transparent d-flex justify-content-between px-0">
-                        <strong>Greutate:</strong> <span><%- produs.greutate %> kg</span>
-                    </li>
-                    <li class="list-group-item bg-transparent d-flex justify-content-between px-0">
-                        <strong>Culoare:</strong> <span><%- produs.culoare %></span>
-                    </li>
-                    <li class="list-group-item bg-transparent d-flex justify-content-between px-0">
-                        <strong>Materiale:</strong> <span><%- produs.materiale %></span>
-                    </li>
-                    <li class="list-group-item bg-transparent d-flex justify-content-between px-0">
-                        <strong>Livrare:</strong> <span><%- produs.tip_livrare %></span>
-                    </li>
-                    <li class="list-group-item bg-transparent d-flex justify-content-between px-0">
-                        <strong>Aprobat Competiții:</strong> <span><%- produs.pentru_competitii ? 'Da' : 'Nu' %></span>
-                    </li>
-                </ul>
+                    <!-- Bonus 16: Produse Similare -->
+                    <% if (produseSimilare && produseSimilare.length> 0) { %>
+                        <section class="mb-5">
+                            <h3 class="mb-4">Produse Similare (<%- produs.categorie %>)</h3>
+                            <div class="row row-cols-1 row-cols-md-3 g-4">
+                                <% produseSimilare.forEach(ps=> { %>
+                                    <div class="col">
+                                        <div class="card h-100 shadow-sm" style="cursor: pointer;"
+                                            onclick="window.location.href='/produs/<%- ps.id %>' ">
+                                            <div class="card-img-top-container overflow-hidden bg-light d-flex align-items-center justify-content-center"
+                                                style="height: 200px;">
+                                                <img src="<%- ps.imagine %>" class="card-img-top img-fluid p-2"
+                                                    alt="<%- ps.nume %>" style="max-height: 100%; object-fit: contain;">
+                                            </div>
+                                            <div class="card-body text-center">
+                                                <h6 class="card-title text-primary"><%- ps.nume %></h6>
+                                                <p class="card-text fw-bold text-success"><%- ps.pret %> RON</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <% }) %>
+                            </div>
+                        </section>
+                        <% } %>
 
-                <button class="btn btn-info btn-lg text-white btn-compara" data-id="<%- produs.id %>" data-nume="<%- produs.nume %>">
-                    <i class="fa-solid fa-scale-balanced"></i> Compară Produsul
-                </button>
-            </div>
+        </main>
+
+        <!-- CONTAINER COMPARARE (Bonus 20) comun -->
+        <div id="container-comparare"
+            class="position-fixed bottom-0 end-0 p-3 bg-dark text-white rounded shadow-lg d-none"
+            style="z-index: 1050;">
+            <h6 class="border-bottom border-secondary pb-2">Comparare Produse</h6>
+            <div id="lista-comparare" class="mb-2"></div>
+            <button id="btn-afiseaza-comparare" class="btn btn-primary btn-sm w-100" disabled>Afișează
+                Comparația</button>
         </div>
 
-        <hr class="my-5">
-
-        <!-- Bonus 17: Seturi din care face parte -->
-        <% if (seturi && seturi.length > 0) { %>
-            <section class="mb-5 bg-light p-4 rounded shadow-sm">
-                <h3 class="mb-4"><i class="fa-solid fa-boxes-stacked text-warning"></i> Seturi Avantajoase (Reduceri aplicate)</h3>
-                <div class="row row-cols-1 row-cols-md-2 g-4">
-                    <% seturi.forEach(set => { %>
-                        <div class="col">
-                            <div class="card h-100 border-warning">
-                                <div class="card-body">
-                                    <h5 class="card-title"><%- set.nume_set %></h5>
-                                    <p class="card-text text-muted fst-italic"><%- set.descriere_set %></p>
-                                    <h6 class="text-danger fw-bold">Pret redus set: <%- parseFloat(set.pret_redus).toFixed(2) %> RON</h6>
-                                    <p class="small text-decoration-line-through">Pret original componente: <%- set.pret_total %> RON</p>
-                                </div>
-                            </div>
-                        </div>
-                    <% }) %>
-                </div>
-            </section>
-        <% } %>
-
-        <!-- Bonus 16: Produse Similare -->
-        <% if (produseSimilare && produseSimilare.length > 0) { %>
-            <section class="mb-5">
-                <h3 class="mb-4">Produse Similare (<%- produs.categorie %>)</h3>
-                <div class="row row-cols-1 row-cols-md-3 g-4">
-                    <% produseSimilare.forEach(ps => { %>
-                        <div class="col">
-                            <div class="card h-100 shadow-sm" style="cursor: pointer;" onclick="window.location.href='/produs/<%- ps.id %>' ">
-                                <div class="card-img-top-container overflow-hidden bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
-                                    <img src="<%- ps.imagine %>" class="card-img-top img-fluid p-2" alt="<%- ps.nume %>" style="max-height: 100%; object-fit: contain;">
-                                </div>
-                                <div class="card-body text-center">
-                                    <h6 class="card-title text-primary"><%- ps.nume %></h6>
-                                    <p class="card-text fw-bold text-success"><%- ps.pret %> RON</p>
-                                </div>
-                            </div>
-                        </div>
-                    <% }) %>
-                </div>
-            </section>
-        <% } %>
-
-    </main>
-
-    <!-- CONTAINER COMPARARE (Bonus 20) comun - Va fi integrat de comparare.js -->
-    <div id="container-comparare" class="position-fixed bottom-0 end-0 p-3 bg-dark text-white rounded shadow-lg d-none" style="z-index: 1050;">
-        <h6 class="border-bottom border-secondary pb-2">Comparare Produse</h6>
-        <div id="lista-comparare" class="mb-2"></div>
-        <button id="btn-afiseaza-comparare" class="btn btn-primary btn-sm w-100" disabled>Afișează Comparația</button>
-    </div>
-
-    <%- include('../fragmente/footer') %>
-    <%- include('../fragmente/orar') %>
+        <%- include('../fragmente/footer') %>
+            <%- include('../fragmente/orar') %>
 </body>
+
 </html>
